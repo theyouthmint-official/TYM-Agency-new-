@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom React Web Development & Local SEO Services Trichy — TYM Agency</title>
+    <meta name="description"
+        content="High-performance custom React websites, fast loading shop pages, and Google Maps local SEO ranking services for businesses in Tiruchirappalli (Trichy), Madurai, and Tamil Nadu.">
+    <meta name="keywords" content="website creation Trichy, google maps marketing Madurai, custom online store cost, fast loading business website, google business profile settings, TYM Agency">
+    <link rel="canonical" href="https://theyouthmint.com/pages/index.html">
+    <link rel="icon" type="image/webp" href="../TYM-Agency.webp">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://theyouthmint.com/pages/index.html">
+    <meta property="og:title" content="Custom React Web Development & Local SEO Services Trichy — TYM Agency">
+    <meta property="og:description" content="High-performance custom React websites, fast loading shop pages, and Google Maps local SEO ranking services in Tamil Nadu.">
+    <meta property="og:image" content="https://theyouthmint.com/TYM-Agency.webp">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://theyouthmint.com/pages/index.html">
+    <meta name="twitter:title" content="Custom React Web Development & Local SEO Services Trichy — TYM Agency">
+    <meta name="twitter:description" content="High-performance custom React websites, fast loading shop pages, and Google Maps local SEO ranking services in Tamil Nadu.">
+    <meta name="twitter:image" content="https://theyouthmint.com/TYM-Agency.webp">
+
+    <!-- Structured Data: Organization & ProfessionalService -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://theyouthmint.com/#organization",
+          "name": "TYM Agency",
+          "url": "https://theyouthmint.com/pages/index.html",
+          "logo": "https://theyouthmint.com/TYM-Agency.webp",
+          "sameAs": [],
+          "knowsAbout": [
+            "React Website Development",
+            "Local Search Engine Optimization",
+            "Google Business Profile Optimization",
+            "Google Maps Proximity Ranking",
+            "Vite Performance Engineering"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://theyouthmint.com/#website",
+          "url": "https://theyouthmint.com/pages/index.html",
+          "name": "TYM Agency",
+          "description": "Custom React Web Development & Local SEO Services",
+          "publisher": {
+            "@id": "https://theyouthmint.com/#organization"
+          }
+        },
+        {
+          "@type": "ProfessionalService",
+          "@id": "https://theyouthmint.com/#service",
+          "name": "TYM Agency",
+          "image": "https://theyouthmint.com/TYM-Agency.webp",
+          "priceRange": "$$",
+          "telephone": "+919345887939",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Tiruchirappalli",
+            "addressLocality": "Tiruchirappalli",
+            "addressRegion": "Tamil Nadu",
+            "postalCode": "620001",
+            "addressCountry": "IN"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 10.7905,
+            "longitude": 78.7047
+          },
+          "areaServed": [
+            {
+              "@type": "State",
+              "name": "Tamil Nadu"
+            },
+            {
+              "@type": "City",
+              "name": "Tiruchirappalli"
+            },
+            {
+              "@type": "City",
+              "name": "Madurai"
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --obsidian: #0A0A0F;
+            --graphite: #111118;
+            --slate: #1A1A24;
+            --ash: #6B7280;
+            --metal: #E8E8EC;
+            --blue: #2563EB;
+            --blue-glow: #3B82F6;
+            --cyan: #06B6D4;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(37, 99, 235, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--obsidian);
+            color: var(--metal);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--blue);
+            color: #fff;
+        }
+
+        /* ─── NAVIGATION ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 4vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 15, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 36px;
+            width: auto;
+            filter: brightness(1.1);
+        }
+
+        .nav-logo span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--metal);
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--ash);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--metal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--blue);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--blue);
+            color: #fff;
+            padding: 0.65rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-cta:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--metal);
+            transition: 0.3s;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8rem 4vw 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 80px 80px;
+            pointer-events: none;
+        }
+
+        .hero-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .hero-label::before {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: var(--cyan);
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5.5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 .accent {
+            color: var(--blue);
+            position: relative;
+        }
+
+        .hero-sub {
+            font-size: clamp(1rem, 1.5vw, 1.35rem);
+            color: var(--ash);
+            max-width: 640px;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: #fff;
+            padding: 1rem 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--metal);
+            padding: 1rem 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        .hero-meta {
+            position: absolute;
+            bottom: 3rem;
+            left: 4vw;
+            display: flex;
+            gap: 3rem;
+        }
+
+        .hero-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .hero-meta-item .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--metal);
+        }
+
+        .hero-meta-item .label {
+            font-size: 0.7rem;
+            color: var(--ash);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* ─── MARQUEE ─── */
+        .marquee {
+            background: var(--graphite);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 1.25rem 0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 4rem;
+            animation: marquee 30s linear infinite;
+            width: max-content;
+        }
+
+        .marquee-track:hover {
+            animation-play-state: paused;
+        }
+
+        .marquee-item {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--ash);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .marquee-item::before {
+            content: '◆';
+            color: var(--blue);
+            font-size: 0.5rem;
+        }
+
+        @keyframes marquee {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* ─── TRUST METRICS ─── */
+        .trust-strip {
+            padding: 5rem 4vw;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .trust-card {
+            padding: 2.5rem 2rem;
+            border-right: 1px solid var(--border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .trust-card:last-child {
+            border-right: none;
+        }
+
+        .trust-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--blue);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s;
+        }
+
+        .trust-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .trust-card .metric {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: var(--metal);
+            margin-bottom: 0.5rem;
+        }
+
+        .trust-card .metric-label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--metal);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.75rem;
+        }
+
+        .trust-card .metric-desc {
+            font-size: 0.85rem;
+            color: var(--ash);
+            line-height: 1.6;
+        }
+
+        /* ─── SECTION UTILITIES ─── */
+        .section {
+            padding: 6rem 4vw;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--cyan);
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            max-width: 700px;
+        }
+
+        /* ─── SERVICES PREVIEW ─── */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border);
+        }
+
+        .service-card {
+            background: var(--obsidian);
+            padding: 3rem 2.5rem;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+
+        .service-card:hover {
+            background: var(--slate);
+        }
+
+        .service-card .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            letter-spacing: -0.01em;
+        }
+
+        .service-card p {
+            color: var(--ash);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-card .link {
+            color: var(--blue);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.2s;
+        }
+
+        .service-card .link:hover {
+            gap: 0.75rem;
+        }
+
+        /* ─── CASE STUDY FEATURE ─── */
+        .case-feature {
+            background: var(--graphite);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .case-feature .section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .case-content .case-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+        }
+
+        .case-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.75rem, 3vw, 2.75rem);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        .case-content .case-desc {
+            color: var(--ash);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .case-metrics {
+            display: flex;
+            gap: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .case-metric {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .case-metric .val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2rem;
+            font-weight: 600;
+            color: var(--blue);
+        }
+
+        .case-metric .lbl {
+            font-size: 0.7rem;
+            color: var(--ash);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .case-visual {
+            position: relative;
+        }
+
+        .case-visual .evidence-stack {
+            position: relative;
+            height: 400px;
+        }
+
+        .evidence-img {
+            position: absolute;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: grayscale(100%);
+        }
+
+        .evidence-img:hover {
+            filter: grayscale(0%);
+            z-index: 10;
+            transform: scale(1.03);
+        }
+
+        .evidence-img:nth-child(1) {
+            top: 0;
+            left: 0;
+            width: 85%;
+            height: 55%;
+            z-index: 3;
+        }
+
+        .evidence-img:nth-child(2) {
+            top: 15%;
+            left: 10%;
+            width: 80%;
+            height: 55%;
+            z-index: 2;
+        }
+
+        .evidence-img:nth-child(3) {
+            top: 30%;
+            left: 20%;
+            width: 75%;
+            height: 55%;
+            z-index: 1;
+        }
+
+        .evidence-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ─── TEAM PREVIEW ─── */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--border);
+        }
+
+        .team-member {
+            background: var(--obsidian);
+            padding: 2.5rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: background 0.3s;
+        }
+
+        .team-member:hover {
+            background: var(--slate);
+        }
+
+        .team-member .avatar {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 1.5rem;
+            border-radius: 0;
+            overflow: hidden;
+            border: 2px solid var(--border);
+            transition: border-color 0.3s;
+            background: #ffffff;
+        }
+
+        .team-member:hover .avatar {
+            border-color: var(--blue);
+        }
+
+        .team-member .avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: filter 0.4s;
+        }
+
+        .team-member:hover .avatar img {
+            filter: grayscale(0%);
+        }
+
+        .team-member h4 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .team-member .role {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--blue);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ─── PORTFOLIO STRIP ─── */
+        .portfolio-strip {
+            background: var(--graphite);
+            border-top: 1px solid var(--border);
+            padding: 4rem 4vw;
+        }
+
+        .portfolio-list {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .portfolio-row {
+            display: grid;
+            grid-template-columns: 40px 1fr 200px 120px;
+            align-items: center;
+            padding: 1.25rem 0;
+            border-bottom: 1px solid var(--border);
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .portfolio-row:hover {
+            padding-left: 1rem;
+            border-bottom-color: var(--blue);
+        }
+
+        .portfolio-row .idx {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--ash);
+        }
+
+        .portfolio-row .name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .portfolio-row .cat {
+            font-size: 0.8rem;
+            color: var(--ash);
+        }
+
+        .portfolio-row .status {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .portfolio-row .status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--cyan);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        /* ─── CTA SECTION ─── */
+        .cta-section {
+            padding: 6rem 4vw;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .cta-section p {
+            color: var(--ash);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 4vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        footer .left {
+            font-size: 0.8rem;
+            color: var(--ash);
+        }
+
+        footer .left strong {
+            color: var(--metal);
+        }
+
+        footer .right {
+            display: flex;
+            gap: 2rem;
+        }
+
+        footer .right a {
+            color: var(--ash);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            transition: color 0.2s;
+        }
+
+        footer .right a:hover {
+            color: var(--blue);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .trust-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .trust-card:nth-child(2) {
+                border-right: none;
+            }
+
+            .trust-card:nth-child(1),
+            .trust-card:nth-child(2) {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .case-feature .section {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--obsidian);
+                padding: 1.5rem;
+                border-bottom: 1px solid var(--border);
+                gap: 1.5rem;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            
+
+            .trust-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-card {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .portfolio-row {
+                grid-template-columns: 30px 1fr;
+                gap: 0.5rem;
+            }
+
+            .portfolio-row .cat,
+            .portfolio-row .status {
+                display: none;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        /* ─── HERO TWO-COLUMN & 3D BALL ─── */
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            z-index: 2;
+        }
+
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero-left .hero-meta {
+            position: static;
+            margin-top: 3.5rem;
+            display: flex;
+            gap: 3rem;
+        }
+
+        .hero-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            perspective: 1000px;
+            height: 620px;
+            position: relative;
+        }
+
+        .sphere-container {
+            width: 600px;
+            height: 600px;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateSphere 32s linear infinite;
+        }
+
+        @keyframes rotateSphere {
+            0% {
+                transform: rotateY(0deg) rotateX(12deg);
+            }
+            100% {
+                transform: rotateY(360deg) rotateX(12deg);
+            }
+        }
+
+        .sphere-item {
+            position: absolute;
+            width: 140px;
+            height: 105px;
+            left: 230px; /* (600 - 140) / 2 */
+            top: 247px;  /* (600 - 105) / 2 */
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(10, 10, 15, 0.7);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            transform-style: preserve-3d;
+            backface-visibility: visible;
+        }
+
+        .sphere-item img, 
+        .sphere-item video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* ─── RESPONSIVE SPHERE SCALING ─── */
+        .sphere-scaler {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 600px;
+            height: 600px;
+            transform-origin: center center;
+            z-index: 3;
+        }
+
+        @media (max-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+                padding-bottom: 2rem;
+            }
+            
+            .hero-left {
+                align-items: center;
+            }
+
+            .hero-left .hero-meta {
+                justify-content: center;
+                margin-top: 2.5rem;
+            }
+
+            .hero-right {
+                height: 480px;
+            }
+
+            .sphere-scaler {
+                transform: scale(0.75);
+                width: 450px;
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-right {
+                height: 340px;
+            }
+
+            .sphere-scaler {
+                transform: scale(0.5);
+                width: 300px;
+                height: 300px;
+            }
+            
+            .hero-left .hero-meta {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 2rem;
+            }
+        }
+        /* ─── HERO WATERMARK ─── */
+        .hero-watermark {
+            position: absolute;
+            right: 4vw;
+            bottom: 10%;
+            height: 75%;
+            max-height: 350px;
+            aspect-ratio: 1/1;
+            opacity: 0.025; /* extremely subtle watermark */
+            pointer-events: none;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-watermark img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero-watermark {
+                height: 45%;
+                bottom: 5%;
+                right: 2vw;
+                opacity: 0.015;
+            }
+        }
+        /* ─── CUSTOM SCROLLBAR & FOOTER SITEMAP ─── */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--obsidian);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--slate);
+            border: 2px solid var(--obsidian);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--blue);
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .footer-nav a {
+            color: var(--ash);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: color 0.2s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--metal);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-nav {
+                margin: 1.5rem 0;
+                width: 100%;
+                order: 3;
+            }
+        }
+                /* ─── FIXED BACKGROUND TECH LOGOS ─── */
+        .bg-tech-logos {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-logo {
+            position: absolute;
+            color: var(--metal);
+            opacity: 0.045; /* significantly more visible watermark */
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+
+        .bg-logo svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.2;
+        }
+
+        /* ─── FLOATING ANIMATIONS ─── */
+        @keyframes floatUp {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(4deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes floatDown {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(15px) rotate(-4deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .float-up {
+            animation: floatUp 8s ease-in-out infinite;
+        }
+
+        .float-down {
+            animation: floatDown 10s ease-in-out infinite;
+        }
+
+        .float-slow {
+            animation: floatUp 14s ease-in-out infinite;
+        }
+
+        .float-fast {
+            animation: floatDown 7s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+        <!-- BACKGROUND TECH LOGOS -->
+    <div class="bg-tech-logos">
+        <!-- React -->
+        <div class="bg-logo float-up" style="top: 8%; left: 4%; width: 110px; height: 110px;">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12a15.3 15.3 0 0 1 10-4 15.3 15.3 0 0 1 10 4 15.3 15.3 0 0 1-10 4 15.3 15.3 0 0 1-10-4z"/></svg>
+        </div>
+        <!-- Gemini -->
+        <div class="bg-logo float-down" style="top: 22%; right: 6%; width: 90px; height: 90px;">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2a1 1 0 0 1 1 1v2a7 7 0 0 0 7 7h2a1 1 0 0 1 0 2h-2a7 7 0 0 0-7 7v2a1 1 0 0 1-2 0v-2a7 7 0 0 0-7-7H2a1 1 0 0 1 0-2h2a7 7 0 0 0 7-7V3a1 1 0 0 1 1-1z"/></svg>
+        </div>
+        <!-- Claude -->
+        <div class="bg-logo float-slow" style="top: 42%; left: 5%; width: 85px; height: 85px;">
+            <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
+        </div>
+        <!-- Antigravity -->
+        <div class="bg-logo float-fast" style="top: 58%; right: 4%; width: 105px; height: 105px;">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 12h5v10h10V12h5L12 2z"/><circle cx="12" cy="18" r="2"/></svg>
+        </div>
+        <!-- Node.js -->
+        <div class="bg-logo float-up" style="top: 72%; left: 4%; width: 95px; height: 95px;">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 22 8 22 16 12 22 2 16 2 8"/></svg>
+        </div>
+        <!-- Next.js -->
+        <div class="bg-logo float-down" style="top: 86%; right: 7%; width: 100px; height: 100px;">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 7.54 16.59L10.3 8.35v7.24h1.7v-4.9l7.08 8.08A10 10 0 0 1 12 22a10 10 0 0 1 0-20z"/></svg>
+        </div>
+        <!-- HTML5 -->
+        <div class="bg-logo float-slow" style="top: 15%; left: 24%; width: 75px; height: 75px;">
+            <svg viewBox="0 0 24 24"><path d="M4 2l1.5 17L12 22l6.5-3L20 2H4zm12 6H9v2h7v2H9v2h7l-.5 4.5L12 19.5l-3.5-1L8 14h2v1.5l2 .5 2-.5.5-2H8V6h8v2z"/></svg>
+        </div>
+        <!-- CSS3 -->
+        <div class="bg-logo float-fast" style="top: 50%; left: 20%; width: 75px; height: 75px;">
+            <svg viewBox="0 0 24 24"><path d="M4 2l1.5 17L12 22l6.5-3L20 2H4zm12 5H8.5v3h7.5L15.5 15l-3.5 1-3.5-1-.2-2.5h2.5l.1 1 1.1.3 1.1-.3.2-1.7H8v-3h8V7z"/></svg>
+        </div>
+        <!-- MongoDB -->
+        <div class="bg-logo float-up" style="top: 35%; right: 26%; width: 80px; height: 80px;">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8 6 6 11 6 15c0 3.3 2.7 6 6 6s6-2.7 6-6c0-4-2-9-6-13z"/><path d="M12 2v19"/></svg>
+        </div>
+        <!-- SEO -->
+        <div class="bg-logo float-down" style="top: 68%; right: 22%; width: 85px; height: 85px;">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M11 7v8M7 11h8"/></svg>
+        </div>
+        <!-- GEO -->
+        <div class="bg-logo float-slow" style="top: 80%; left: 24%; width: 85px; height: 85px;">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg>
+        </div>
+        <!-- TypeScript -->
+        <div class="bg-logo float-fast" style="top: 5%; right: 18%; width: 70px; height: 70px;">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7h6M10 7v10M15 9h-2v2h2v4h-2"/></svg>
+        </div>
+        <!-- JavaScript -->
+        <div class="bg-logo float-up" style="top: 30%; left: 16%; width: 70px; height: 70px;">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 15h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2V9h3M9 9h3v6H9"/></svg>
+        </div>
+        <!-- Git -->
+        <div class="bg-logo float-down" style="top: 62%; left: 13%; width: 75px; height: 75px;">
+            <svg viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M6 9v6M9 9h9v6"/></svg>
+        </div>
+        <!-- Python -->
+        <div class="bg-logo float-slow" style="top: 48%; right: 14%; width: 80px; height: 80px;">
+            <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm-1 2h2v2h-2V4zm2 14h-2v-2h2v2z"/></svg>
+        </div>
+        <!-- Cloudflare -->
+        <div class="bg-logo float-fast" style="top: 78%; right: 15%; width: 85px; height: 85px;">
+            <svg viewBox="0 0 24 24"><path d="M17.5 19A3.5 3.5 0 0 0 21 15.5c0-2.79-2.54-4.5-5-4.5-.42 0-.82.04-1.2.12A5.5 5.5 0 0 0 5 13.5a3.5 3.5 0 0 0 3.5 3.5h9z"/></svg>
+        </div>
+        <!-- Figma -->
+        <div class="bg-logo float-up" style="top: 92%; left: 14%; width: 70px; height: 70px;">
+            <svg viewBox="0 0 24 24"><path d="M8 2h8v20H8z"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">
+            <img src="../TYM-Agency.webp" alt="TYM Agency">
+            <span>TYM AGENCY</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="Our-Story.html">Our Story</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="case-study.html">Case Study</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="nav-cta">Get Audit</a>
+        <div class="mobile-toggle" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-grid"></div>
+        <div class="hero-container">
+            <div class="hero-left">
+                <div class="hero-label">Enterprise Digital Engineering</div>
+                <h1>We Engineer Digital Assets That <span class="accent">Outrank</span>, <span class="accent">Outperform</span>, and <span class="accent">Outsell</span></h1>
+                <p class="hero-sub">Custom React architectures and algorithmic SEO systems for businesses that refuse template mediocrity. Every millisecond of load speed is a conversion we capture for you.</p>
+                <div class="hero-ctas">
+                    <a href="contact.html" class="btn-primary">Start Architecture Audit →</a>
+                    <a href="case-study.html" class="btn-secondary">View Case Studies</a>
+                </div>
+                <div class="hero-meta">
+                    <div class="hero-meta-item">
+                        <span class="num">&lt;1.2s</span>
+                        <span class="label">Avg Load Speed</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="num">13+</span>
+                        <span class="label">Systems Deployed</span>
+                    </div>
+                    <div class="hero-meta-item">
+                        <span class="num">100%</span>
+                        <span class="label">White Hat</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-right">
+        <div class="hero-watermark">
+            <img src="../TYM-Agency.webp" alt="TYM Agency Watermark">
+        </div>
+                <!-- 3D BALL -->
+                <div class="sphere-scaler">
+                    <div class="sphere-container">
+                    <div class="sphere-item" style="transform: rotateY(0deg) translateZ(150px) translateY(-260px);"><img src="../Projects Screenshot/Davids-Portfolio.webp" alt="David Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(60deg) translateZ(150px) translateY(-260px);"><img src="../Projects Screenshot/TYM-Events.webp" alt="TYM Events"></div>
+                    <div class="sphere-item" style="transform: rotateY(120deg) translateZ(150px) translateY(-260px);"><img src="../Projects Screenshot/SKPs-Portfolio.webp" alt="SKP Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(180deg) translateZ(150px) translateY(-260px);"><img src="../Projects Screenshot/Thamizh-Nigazhvugal.webp" alt="Thamizh Nigazhvugal"></div>
+                    <div class="sphere-item" style="transform: rotateY(240deg) translateZ(150px) translateY(-260px);"><img src="../Projects Screenshot/SKP-Realty.webp" alt="SKP Realty"></div>
+                    <div class="sphere-item" style="transform: rotateY(300deg) translateZ(150px) translateY(-260px);"><img src="../Projects Screenshot/Eliass-Portfolio.webp" alt="Elias Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(15deg) translateZ(260px) translateY(-150px);"><img src="../Projects Screenshot/TYM-Jewels.webp" alt="TYM Jewels"></div>
+                    <div class="sphere-item" style="transform: rotateY(55deg) translateZ(260px) translateY(-150px);"><img src="../Projects Screenshot/Kavaeris-Restaurant.webp" alt="Kavaeris Restaurant"></div>
+                    <div class="sphere-item" style="transform: rotateY(95deg) translateZ(260px) translateY(-150px);"><img src="../Projects Screenshot/TYM-Hardware-Store.webp" alt="TYM Hardware Store"></div>
+                    <div class="sphere-item" style="transform: rotateY(135deg) translateZ(260px) translateY(-150px);"><img src="../Projects Screenshot/Arunagiri-Estates.webp" alt="Arunagiri Estates"></div>
+                    <div class="sphere-item" style="transform: rotateY(175deg) translateZ(260px) translateY(-150px);"><img src="../Projects Screenshot/Mackrines-Portfolio.webp" alt="Mackrine Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(215deg) translateZ(260px) translateY(-150px);"><img src="../Projects Screenshot/Multicuisine-Restaurant.webp" alt="Multicuisine Restaurant"></div>
+                    <div class="sphere-item" style="transform: rotateY(255deg) translateZ(260px) translateY(-150px);"><img src="../Projects Screenshot/Davids-Portfolio.webp" alt="David Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(295deg) translateZ(260px) translateY(-150px);"><img src="../Projects Screenshot/TYM-Events.webp" alt="TYM Events"></div>
+                    <div class="sphere-item" style="transform: rotateY(335deg) translateZ(260px) translateY(-150px);"><img src="../Projects Screenshot/SKPs-Portfolio.webp" alt="SKP Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(7.5deg) translateZ(300px);"><img src="../Projects Screenshot/Thamizh-Nigazhvugal.webp" alt="Thamizh Nigazhvugal"></div>
+                    <div class="sphere-item" style="transform: rotateY(37.5deg) translateZ(300px);"><img src="../Projects Screenshot/SKP-Realty.webp" alt="SKP Realty"></div>
+                    <div class="sphere-item" style="transform: rotateY(67.5deg) translateZ(300px);"><img src="../Projects Screenshot/Eliass-Portfolio.webp" alt="Elias Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(97.5deg) translateZ(300px);"><img src="../Projects Screenshot/TYM-Jewels.webp" alt="TYM Jewels"></div>
+                    <div class="sphere-item" style="transform: rotateY(127.5deg) translateZ(300px);"><img src="../Projects Screenshot/Kavaeris-Restaurant.webp" alt="Kavaeris Restaurant"></div>
+                    <div class="sphere-item" style="transform: rotateY(157.5deg) translateZ(300px);"><img src="../Projects Screenshot/TYM-Hardware-Store.webp" alt="TYM Hardware Store"></div>
+                    <div class="sphere-item" style="transform: rotateY(187.5deg) translateZ(300px);"><img src="../Projects Screenshot/Arunagiri-Estates.webp" alt="Arunagiri Estates"></div>
+                    <div class="sphere-item" style="transform: rotateY(217.5deg) translateZ(300px);"><img src="../Projects Screenshot/Mackrines-Portfolio.webp" alt="Mackrine Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(247.5deg) translateZ(300px);"><img src="../Projects Screenshot/Multicuisine-Restaurant.webp" alt="Multicuisine Restaurant"></div>
+                    <div class="sphere-item" style="transform: rotateY(277.5deg) translateZ(300px);"><img src="../Projects Screenshot/Davids-Portfolio.webp" alt="David Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(307.5deg) translateZ(300px);"><img src="../Projects Screenshot/TYM-Events.webp" alt="TYM Events"></div>
+                    <div class="sphere-item" style="transform: rotateY(337.5deg) translateZ(300px);"><img src="../Projects Screenshot/SKPs-Portfolio.webp" alt="SKP Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(25deg) translateZ(260px) translateY(150px);"><img src="../Projects Screenshot/Thamizh-Nigazhvugal.webp" alt="Thamizh Nigazhvugal"></div>
+                    <div class="sphere-item" style="transform: rotateY(65deg) translateZ(260px) translateY(150px);"><img src="../Projects Screenshot/SKP-Realty.webp" alt="SKP Realty"></div>
+                    <div class="sphere-item" style="transform: rotateY(105deg) translateZ(260px) translateY(150px);"><img src="../Projects Screenshot/Eliass-Portfolio.webp" alt="Elias Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(145deg) translateZ(260px) translateY(150px);"><img src="../Projects Screenshot/TYM-Jewels.webp" alt="TYM Jewels"></div>
+                    <div class="sphere-item" style="transform: rotateY(185deg) translateZ(260px) translateY(150px);"><img src="../Projects Screenshot/Kavaeris-Restaurant.webp" alt="Kavaeris Restaurant"></div>
+                    <div class="sphere-item" style="transform: rotateY(225deg) translateZ(260px) translateY(150px);"><img src="../Projects Screenshot/TYM-Hardware-Store.webp" alt="TYM Hardware Store"></div>
+                    <div class="sphere-item" style="transform: rotateY(265deg) translateZ(260px) translateY(150px);"><img src="../Projects Screenshot/Arunagiri-Estates.webp" alt="Arunagiri Estates"></div>
+                    <div class="sphere-item" style="transform: rotateY(305deg) translateZ(260px) translateY(150px);"><img src="../Projects Screenshot/Mackrines-Portfolio.webp" alt="Mackrine Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(345deg) translateZ(260px) translateY(150px);"><img src="../Projects Screenshot/Multicuisine-Restaurant.webp" alt="Multicuisine Restaurant"></div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span class="marquee-item">Custom React & Vite Platforms</span>
+            <span class="marquee-item">Algorithmic Local SEO Engine</span>
+            <span class="marquee-item">Generative Engine Optimization</span>
+            <span class="marquee-item">Serverless CDN Deployment</span>
+            <span class="marquee-item">100/100 Lighthouse Scoring</span>
+            <span class="marquee-item">Data-Driven Acquisition Pipelines</span>
+            <span class="marquee-item">White-Hat Compliance Architecture</span>
+            <span class="marquee-item">Entity Graph Construction</span>
+            <span class="marquee-item">Custom React & Vite Platforms</span>
+            <span class="marquee-item">Algorithmic Local SEO Engine</span>
+            <span class="marquee-item">Generative Engine Optimization</span>
+            <span class="marquee-item">Serverless CDN Deployment</span>
+            <span class="marquee-item">100/100 Lighthouse Scoring</span>
+            <span class="marquee-item">Data-Driven Acquisition Pipelines</span>
+            <span class="marquee-item">White-Hat Compliance Architecture</span>
+            <span class="marquee-item">Entity Graph Construction</span>
+        </div>
+    </div>
+
+    <!-- TRUST METRICS -->
+    <div class="trust-strip">
+        <div class="trust-card">
+            <div class="metric">&lt;1.2s</div>
+            <div class="metric-label">Average Load Speed</div>
+            <div class="metric-desc">Custom-coded React on Vite. Zero bloat, zero plugins. Search crawlers prioritize
+                what we build.</div>
+        </div>
+        <div class="trust-card">
+            <div class="metric">100%</div>
+            <div class="metric-label">White Hat Compliance</div>
+            <div class="metric-desc">Explicit JSON-LD structures, semantic citation nodes, full index compliance. No
+                shortcuts. Ever.</div>
+        </div>
+        <div class="trust-card">
+            <div class="metric">#1</div>
+            <div class="metric-label">Local Search Placements</div>
+            <div class="metric-desc">Localized citation profiles and optimization systems that push you to the top of
+                Google Map Pack.</div>
+        </div>
+        <div class="trust-card">
+            <div class="metric">4.9★</div>
+            <div class="metric-label">Client Satisfaction</div>
+            <div class="metric-desc">Measured by results, not promises. Every project tracked against Core Web Vitals
+                and ranking KPIs.</div>
+        </div>
+    </div>
+
+    <!-- SERVICES PREVIEW -->
+    <section class="section" id="services">
+        <div class="section-header">
+            <div class="section-tag">Capabilities</div>
+            <h2 class="section-title">What We Engineer: Fast Business Websites & Local SEO</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="num">01</div>
+                <h3>Custom Engineering & Web Architecture</h3>
+                <p>We code high-velocity corporate websites using React, Vite, and serverless architectures. By
+                    bypassing heavy templated systems, we deliver raw speed, custom API integrations, and responsive
+                    layouts that scale with your growth.</p>
+                <a href="services.html#engineering" class="link">Explore →</a>
+            </div>
+            <div class="service-card">
+                <div class="num">02</div>
+                <h3>High-Conversion Storefronts</h3>
+                <p>Custom headless commerce with rapid product indexing, smart serverless filters, and secure
+                    transaction integrations. Friction-free purchasing that minimizes abandonment and maximizes revenue
+                    per visitor.</p>
+                <a href="services.html#commerce" class="link">Explore →</a>
+            </div>
+            <div class="service-card">
+                <div class="num">03</div>
+                <h3>Local SEO & Google Business Domination</h3>
+                <p>We optimize Google Business Profiles and localized citation networks to drive your business to #1 in
+                    regional Map Pack rankings. Competitor gap audits and structured local schemas establish authority.
+                </p>
+                <a href="services.html#local-seo" class="link">Explore →</a>
+            </div>
+            <div class="service-card">
+                <div class="num">04</div>
+                <h3>Generative Engine Optimization</h3>
+                <p>Structured entity graphs and llms.txt frameworks so ChatGPT, Gemini, and Perplexity recommend your
+                    brand. Secure your visibility in next-generation AI query pipelines before your competitors do.</p>
+                <a href="services.html#geo" class="link">Explore →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASE STUDY FEATURE -->
+    <section class="case-feature" id="case-study">
+        <div class="section">
+            <div class="case-content">
+                <div class="case-tag">Case Study: Regional Search Engagement</div>
+                <h2>Sabesh Fashions — Madurai Local SEO Case Study: Pushing a Local Shop to #1</h2>
+                <p class="case-desc">A premier fancy rental provider in Madurai with 18 years of reputation and zero
+                    digital authority. We engineered a custom React interface, structured their Google Business Profile
+                    entity map, and built a localized citation network. Result: #1 Google Maps ranking, +280% call
+                    volume, and the first inventory sellout in the business's history.</p>
+                <div class="case-metrics">
+                    <div class="case-metric">
+                        <span class="val">+280%</span>
+                        <span class="lbl">Call Volume</span>
+                    </div>
+                    <div class="case-metric">
+                        <span class="val">#1</span>
+                        <span class="lbl">Map Pack Rank</span>
+                    </div>
+                    <div class="case-metric">
+                        <span class="val">₹16K</span>
+                        <span class="lbl">Investment</span>
+                    </div>
+                </div>
+                <a href="case-study.html" class="btn-primary">Read Full Case Study →</a>
+            </div>
+            <div class="case-visual">
+                <div class="evidence-stack">
+                    <div class="evidence-img">
+                        <img src="../sabesh proof/hero.webp" alt="Sabesh Fashions Rental Landing Page Custom React Design">
+                    </div>
+                    <div class="evidence-img">
+                        <img src="../sabesh proof/gallery.webp" alt="Sabesh Fashions E-Commerce Product Gallery Interface">
+                    </div>
+                    <div class="evidence-img">
+                        <img src="../sabesh proof/gbp-proof.webp" alt="Sabesh Fashions #1 Google Maps Local SEO Ranking Proof in Madurai">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TEAM PREVIEW -->
+    <section class="section" id="team">
+        <div class="section-header">
+            <div class="section-tag">Web Architects & Developers</div>
+            <h2 class="section-title">Technical Builders, Not Account Managers</h2>
+        </div>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="avatar">
+                    <img src="../team member image/team-david.webp" alt="David Jacob D — Principal Web Architect & React Developer at TYM Agency">
+                </div>
+                <h4>David Jacob D</h4>
+                <div class="role">Principal Architect & Founder</div>
+            </div>
+            <div class="team-member">
+                <div class="avatar">
+                    <img src="../team member image/team-elias.webp" alt="Elias Ebenesar H — Research Lead & Systems Engineer at TYM Agency">
+                </div>
+                <h4>Elias Ebenesar H</h4>
+                <div class="role">Research Lead & Systems Engineer</div>
+            </div>
+            <div class="team-member">
+                <div class="avatar">
+                    <img src="../team member image/team-stephen.webp" alt="Stephen Daniel J — Growth Strategy Partner at TYM Agency">
+                </div>
+                <h4>Stephen Daniel J</h4>
+                <div class="role">Growth Strategy Partner</div>
+            </div>
+            <div class="team-member">
+                <div class="avatar">
+                    <img src="../team member image/team-mackrine.webp" alt="Mackrine Ruth Y — Senior Technical SEO Analyst at TYM Agency">
+                </div>
+                <h4>Mackrine Ruth Y</h4>
+                <div class="role">Senior Technical Analyst</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFOLIO STRIP -->
+    <section class="portfolio-strip" id="portfolio">
+        <div class="portfolio-list">
+            <div class="section-header" style="margin-bottom: 2rem;">
+                <div class="section-tag">Web Development Portfolio</div>
+                <h2 class="section-title">13 Custom Production Deployments. 13 Revenue Engines.</h2>
+            </div>
+            <a href="https://sabeshfashions.in" target="_blank" class="portfolio-row">
+                <span class="idx">01</span>
+                <span class="name">Sabesh Fashions</span>
+                <span class="cat">E-Commerce / Local SEO</span>
+                <span class="status">Live</span>
+            </a>
+            <a href="https://event-planner-portfolio-beta.vercel.app/" target="_blank" class="portfolio-row">
+                <span class="idx">02</span>
+                <span class="name">Thamizh Nigazhvugal</span>
+                <span class="cat">Event Services</span>
+                <span class="status">Live</span>
+            </a>
+            <a href="https://david-jacob-durairaj-portfolio.vercel.app/" target="_blank" class="portfolio-row">
+                <span class="idx">03</span>
+                <span class="name">David Jacob D Portfolio</span>
+                <span class="cat">Personal Brand</span>
+                <span class="status">Live</span>
+            </a>
+            <a href="https://elias-portfolio-zeta.vercel.app/" target="_blank" class="portfolio-row">
+                <span class="idx">04</span>
+                <span class="name">Elias Ebenesar Portfolio</span>
+                <span class="cat">Technical Portfolio</span>
+                <span class="status">Live</span>
+            </a>
+            <a href="https://mackrine-portfolio.vercel.app/" target="_blank" class="portfolio-row">
+                <span class="idx">05</span>
+                <span class="name">Mackrine Ruth Portfolio</span>
+                <span class="cat">Technical Portfolio</span>
+                <span class="status">Live</span>
+            </a>
+            <a href="https://tym-hardware.vercel.app" target="_blank" class="portfolio-row">
+                <span class="idx">06</span>
+                <span class="name">TYM Hardware Store</span>
+                <span class="cat">Retail E-Commerce</span>
+                <span class="status">Live</span>
+            </a>
+            <a href="https://tym-events-2026.vercel.app" target="_blank" class="portfolio-row">
+                <span class="idx">07</span>
+                <span class="name">TYM Events 2026</span>
+                <span class="cat">Event Management</span>
+                <span class="status">Live</span>
+            </a>
+            <a href="https://tym-jewels.vercel.app" target="_blank" class="portfolio-row">
+                <span class="idx">08</span>
+                <span class="name">TYM Jewels</span>
+                <span class="cat">Luxury Retail</span>
+                <span class="status">Live</span>
+            </a>
+            <a href="https://multicuisine-restaurant.vercel.app/" target="_blank" class="portfolio-row">
+                <span class="idx">09</span>
+                <span class="name">Multicuisine Restaurant</span>
+                <span class="cat">Hospitality</span>
+                <span class="status">Live</span>
+            </a>
+            <a href="https://skp-realty-stitch-one.vercel.app/" target="_blank" class="portfolio-row">
+                <span class="idx">10</span>
+                <span class="name">SKP Realty</span>
+                <span class="cat">Real Estate</span>
+                <span class="status">Live</span>
+            </a>
+            <a href="https://tier1-silk.vercel.app/" target="_blank" class="portfolio-row">
+                <span class="idx">11</span>
+                <span class="name">Tier1 Silk</span>
+                <span class="cat">Fashion E-Commerce</span>
+                <span class="status">Live</span>
+            </a>
+            <a href="https://arunagiri-estates.vercel.app/" target="_blank" class="portfolio-row">
+                <span class="idx">12</span>
+                <span class="name">Arunagiri Estates</span>
+                <span class="cat">Property Development</span>
+                <span class="status">Live</span>
+            </a>
+            <a href="https://skp-potfolio.vercel.app/index.html" target="_blank" class="portfolio-row">
+                <span class="idx">13</span>
+                <span class="name">SKP Portfolio</span>
+                <span class="cat">Professional Services</span>
+                <span class="status">Live</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <h2>Ready to Outrank Your Competition?</h2>
+        <p>Get a free architecture audit. We analyze your current performance, competitor positioning, and deliver a
+            technical roadmap within 24 hours.</p>
+        <div class="hero-ctas" style="justify-content: center;">
+            <a href="https://wa.me/919345887939" class="btn-primary" target="_blank">Start WhatsApp Audit →</a>
+            <a href="mailto:office.theyouthmint@gmail.com" class="btn-secondary">Email Us</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <!-- FOOTER -->
+    <footer>
+        <div class="left">
+            <strong>© 2026 TYM Agency.</strong> Hand-crafted in Tiruchirappalli, Tamil Nadu.<br>
+            A child brand of The Youth Mint.
+        </div>
+        <div class="footer-nav">
+            <a href="index.html">Home</a>
+            <a href="Our-Story.html">Our Story</a>
+            <a href="services.html">Services</a>
+            <a href="case-study.html">Case Study</a>
+            <a href="team.html">Team</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="right">
+            <a href="https://wa.me/919345887939" target="_blank">WhatsApp</a>
+            <a href="mailto:office.theyouthmint@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        function toggleMenu() {
+            const links = document.querySelector('.nav-links');
+            links.classList.toggle('active');
+        }
+
+        // Intersection observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.trust-card, .service-card, .team-member').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>

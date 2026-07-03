@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabesh Fashions Case Study: Madurai Local SEO & Shop Website — TYM Agency</title>
+    <meta name="description"
+        content="How we took Sabesh Fashions from zero digital visibility to #1 on Google Maps in Madurai in 30 days. Read the full local SEO case study and web audit.">
+    <meta name="keywords" content="Sabesh Fashions case study, local SEO case study, Madurai SEO, Google Business Profile results, custom React performance, Tiruchirappalli SEO agency, The Youth Mint">
+    <link rel="canonical" href="https://theyouthmint.com/pages/case-study.html">
+    <link rel="icon" type="image/webp" href="../TYM-Agency.webp">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://theyouthmint.com/pages/case-study.html">
+    <meta property="og:title" content="Sabesh Fashions Case Study: Madurai Local SEO & Shop Website — TYM Agency">
+    <meta property="og:description" content="How we took Sabesh Fashions from zero digital visibility to #1 on Google Maps in Madurai in 30 days. Read the full local SEO case study and web audit.">
+    <meta property="og:image" content="https://theyouthmint.com/sabesh proof/hero.webp">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://theyouthmint.com/pages/case-study.html">
+    <meta name="twitter:title" content="Sabesh Fashions Case Study: Madurai Local SEO & Shop Website — TYM Agency">
+    <meta name="twitter:description" content="How we took Sabesh Fashions from zero digital visibility to #1 on Google Maps in Madurai in 30 days. Read the full local SEO case study and web audit.">
+    <meta name="twitter:image" content="https://theyouthmint.com/sabesh proof/hero.webp">
+
+    <!-- Structured Data: TechArticle Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "TechArticle",
+          "@id": "https://theyouthmint.com/pages/case-study.html#article",
+          "url": "https://theyouthmint.com/pages/case-study.html",
+          "name": "Sabesh Fashions Case Study: Local SEO Domination",
+          "headline": "Sabesh Fashions — From Invisible to #1 in 30 Days",
+          "description": "How TYM Agency engineered a custom React interface and structured a localized entity map to drive a #1 Google Maps ranking and +280% call volume.",
+          "inLanguage": "en-US",
+          "publisher": {
+            "@id": "https://theyouthmint.com/#organization"
+          },
+          "about": [
+            {
+              "@type": "LocalBusiness",
+              "name": "Sabesh Fashions",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "Madurai",
+                "addressRegion": "Tamil Nadu",
+                "addressCountry": "IN"
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --obsidian: #0A0A0F;
+            --graphite: #111118;
+            --slate: #1A1A24;
+            --ash: #6B7280;
+            --metal: #E8E8EC;
+            --blue: #2563EB;
+            --blue-glow: #3B82F6;
+            --cyan: #06B6D4;
+            --border: rgba(255, 255, 255, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--obsidian);
+            color: var(--metal);
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        ::selection {
+            background: var(--blue);
+            color: #fff;
+        }
+
+        /* ─── NAVIGATION ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 1.25rem 4vw;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            transition: background 0.3s ease, backdrop-filter 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(10, 10, 15, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .nav-logo img {
+            height: 36px;
+            width: auto;
+            filter: brightness(1.1);
+        }
+
+        .nav-logo span {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--metal);
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--ash);
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--metal);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--blue);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--blue);
+            color: #fff;
+            padding: 0.65rem 1.5rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            border: none;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .nav-cta:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .mobile-toggle span {
+            width: 24px;
+            height: 2px;
+            background: var(--metal);
+            transition: 0.3s;
+        }
+
+        /* ─── PAGE HERO ─── */
+        .page-hero {
+            min-height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 10rem 4vw 4rem;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+            background: linear-gradient(180deg, var(--obsidian) 0%, var(--graphite) 100%);
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: radial-gradient(ellipse at top right, rgba(37, 99, 235, 0.06) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .case-meta-bar {
+            display: flex;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .case-meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .case-meta-item .lbl {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--ash);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        .case-meta-item .val {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--metal);
+        }
+
+        .case-meta-item .val.accent {
+            color: var(--blue);
+        }
+
+        .page-hero .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .page-hero .section-tag::before {
+            content: '';
+            width: 32px;
+            height: 1px;
+            background: var(--cyan);
+        }
+
+        .page-hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            max-width: 900px;
+            margin-bottom: 1.5rem;
+        }
+
+        .page-hero h1 .accent {
+            color: var(--blue);
+        }
+
+        .page-hero .lead {
+            font-size: clamp(1rem, 1.5vw, 1.25rem);
+            color: var(--ash);
+            max-width: 640px;
+            line-height: 1.7;
+        }
+
+        /* ─── SECTION UTILITIES ─── */
+        .section {
+            padding: 5rem 4vw;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+        }
+
+        .section-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-tag::before {
+            content: '';
+            width: 24px;
+            height: 1px;
+            background: var(--cyan);
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(1.75rem, 3vw, 2.75rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        /* ─── RESULTS BANNER ─── */
+        .results-banner {
+            background: var(--graphite);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            padding: 4rem 4vw;
+        }
+
+        .results-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0;
+        }
+
+        .result-cell {
+            padding: 2rem;
+            border-right: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .result-cell:last-child {
+            border-right: none;
+        }
+
+        .result-cell .num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 3rem;
+            font-weight: 600;
+            color: var(--blue);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-cell .lbl {
+            font-size: 0.8rem;
+            color: var(--ash);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* ─── EVIDENCE GALLERY ─── */
+        .evidence-section {
+            padding: 5rem 4vw;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .evidence-main {
+            position: relative;
+            border: 1px solid var(--border);
+            overflow: hidden;
+        }
+
+        .evidence-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(30%);
+            transition: filter 0.4s;
+        }
+
+        .evidence-main:hover img {
+            filter: grayscale(0%);
+        }
+
+        .evidence-main .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem;
+            background: linear-gradient(transparent, rgba(10, 10, 15, 0.95));
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--metal);
+        }
+
+        .evidence-side {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .evidence-item {
+            flex: 1;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .evidence-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(100%);
+            transition: filter 0.4s;
+        }
+
+        .evidence-item:hover img {
+            filter: grayscale(0%);
+        }
+
+        .evidence-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 1rem;
+            background: linear-gradient(transparent, rgba(10, 10, 15, 0.95));
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            color: var(--metal);
+        }
+
+        /* ─── STORY SECTIONS ─── */
+        .story-section {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .story-section:last-of-type {
+            border-bottom: none;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .story-grid.reverse {
+            direction: rtl;
+        }
+
+        .story-grid.reverse>* {
+            direction: ltr;
+        }
+
+        .story-content h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1.25rem;
+            letter-spacing: -0.01em;
+        }
+
+        .story-content p {
+            color: var(--ash);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+
+        .story-content ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-content ul li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: var(--metal);
+            font-size: 0.95rem;
+        }
+
+        .story-content ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--blue);
+            font-weight: 600;
+        }
+
+        .story-visual {
+            background: var(--graphite);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-visual::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .story-visual .viz-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .story-visual .viz-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--ash);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1.5rem;
+        }
+
+        .story-visual .viz-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .story-visual .viz-item {
+            background: var(--slate);
+            border: 1px solid var(--border);
+            padding: 0.75rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--metal);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .story-visual .viz-item .status {
+            width: 8px;
+            height: 8px;
+            background: var(--cyan);
+            border-radius: 50%;
+        }
+
+        .story-visual .viz-item .status.done {
+            background: var(--blue);
+        }
+
+        .story-visual .viz-item .status.pending {
+            background: var(--ash);
+        }
+
+        .story-visual .metric-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .story-visual .metric-row:last-child {
+            border-bottom: none;
+        }
+
+        .story-visual .metric-row .metric-name {
+            font-size: 0.85rem;
+            color: var(--ash);
+        }
+
+        .story-visual .metric-row .metric-val {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--metal);
+        }
+
+        .story-visual .metric-row .metric-val.positive {
+            color: var(--cyan);
+        }
+
+        /* ─── TESTIMONIAL ─── */
+        .testimonial-section {
+            background: var(--graphite);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .testimonial-block {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .testimonial-block .quote-mark {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 6rem;
+            color: var(--blue);
+            opacity: 0.2;
+            line-height: 0.5;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-block blockquote {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            font-weight: 500;
+            line-height: 1.6;
+            color: var(--metal);
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .testimonial-block .attribution {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--ash);
+        }
+
+        .testimonial-block .attribution strong {
+            color: var(--metal);
+            display: block;
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+            font-style: normal;
+        }
+
+        /* ─── CTA ─── */
+        .cta-section {
+            padding: 6rem 4vw;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .cta-section p {
+            color: var(--ash);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+            position: relative;
+        }
+
+        .btn-primary {
+            background: var(--blue);
+            color: #fff;
+            padding: 1rem 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(37, 99, 235, 0.25);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--metal);
+            padding: 1rem 2rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--blue);
+            color: var(--blue);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 3rem 4vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        footer .left {
+            font-size: 0.8rem;
+            color: var(--ash);
+        }
+
+        footer .left strong {
+            color: var(--metal);
+        }
+
+        footer .right {
+            display: flex;
+            gap: 2rem;
+        }
+
+        footer .right a {
+            color: var(--ash);
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            transition: color 0.2s;
+        }
+
+        footer .right a:hover {
+            color: var(--blue);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .result-cell:nth-child(2) {
+                border-right: none;
+            }
+
+            .result-cell:nth-child(1),
+            .result-cell:nth-child(2) {
+                border-bottom: 1px solid var(--border);
+            }
+
+            .evidence-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .story-grid.reverse {
+                direction: ltr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--obsidian);
+                padding: 1.5rem;
+                border-bottom: 1px solid var(--border);
+                gap: 1.5rem;
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .result-cell {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .case-meta-bar {
+                gap: 1.5rem;
+            }
+
+            footer {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        /* ─── HERO WATERMARK ─── */
+        .hero-watermark {
+            position: absolute;
+            right: 4vw;
+            bottom: 10%;
+            height: 75%;
+            max-height: 350px;
+            aspect-ratio: 1/1;
+            opacity: 0.025; /* extremely subtle watermark */
+            pointer-events: none;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-watermark img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+            filter: brightness(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero-watermark {
+                height: 45%;
+                bottom: 5%;
+                right: 2vw;
+                opacity: 0.015;
+            }
+        }
+        /* ─── CUSTOM SCROLLBAR & FOOTER SITEMAP ─── */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--obsidian);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--slate);
+            border: 2px solid var(--obsidian);
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--blue);
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .footer-nav a {
+            color: var(--ash);
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            transition: color 0.2s;
+        }
+
+        .footer-nav a:hover {
+            color: var(--metal);
+        }
+
+        @media (max-width: 1024px) {
+            .footer-nav {
+                margin: 1.5rem 0;
+                width: 100%;
+                order: 3;
+            }
+        }
+                /* ─── FIXED BACKGROUND TECH LOGOS ─── */
+        .bg-tech-logos {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-logo {
+            position: absolute;
+            color: var(--metal);
+            opacity: 0.045; /* significantly more visible watermark */
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+
+        .bg-logo svg {
+            width: 100%;
+            height: 100%;
+            stroke: currentColor;
+            fill: none;
+            stroke-width: 1.2;
+        }
+
+        /* ─── FLOATING ANIMATIONS ─── */
+        @keyframes floatUp {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(4deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @keyframes floatDown {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(15px) rotate(-4deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        .float-up {
+            animation: floatUp 8s ease-in-out infinite;
+        }
+
+        .float-down {
+            animation: floatDown 10s ease-in-out infinite;
+        }
+
+        .float-slow {
+            animation: floatUp 14s ease-in-out infinite;
+        }
+
+        .float-fast {
+            animation: floatDown 7s ease-in-out infinite;
+        }
+    </style>
+</head>
+
+<body>
+        <!-- BACKGROUND TECH LOGOS -->
+    <div class="bg-tech-logos">
+        <!-- React -->
+        <div class="bg-logo float-up" style="top: 8%; left: 4%; width: 110px; height: 110px;">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12a15.3 15.3 0 0 1 10-4 15.3 15.3 0 0 1 10 4 15.3 15.3 0 0 1-10 4 15.3 15.3 0 0 1-10-4z"/></svg>
+        </div>
+        <!-- Gemini -->
+        <div class="bg-logo float-down" style="top: 22%; right: 6%; width: 90px; height: 90px;">
+            <svg viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2a1 1 0 0 1 1 1v2a7 7 0 0 0 7 7h2a1 1 0 0 1 0 2h-2a7 7 0 0 0-7 7v2a1 1 0 0 1-2 0v-2a7 7 0 0 0-7-7H2a1 1 0 0 1 0-2h2a7 7 0 0 0 7-7V3a1 1 0 0 1 1-1z"/></svg>
+        </div>
+        <!-- Claude -->
+        <div class="bg-logo float-slow" style="top: 42%; left: 5%; width: 85px; height: 85px;">
+            <svg viewBox="0 0 24 24"><path d="M12 2v20M2 12h20M5 5l14 14M19 5L5 19"/></svg>
+        </div>
+        <!-- Antigravity -->
+        <div class="bg-logo float-fast" style="top: 58%; right: 4%; width: 105px; height: 105px;">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 12h5v10h10V12h5L12 2z"/><circle cx="12" cy="18" r="2"/></svg>
+        </div>
+        <!-- Node.js -->
+        <div class="bg-logo float-up" style="top: 72%; left: 4%; width: 95px; height: 95px;">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 22 8 22 16 12 22 2 16 2 8"/></svg>
+        </div>
+        <!-- Next.js -->
+        <div class="bg-logo float-down" style="top: 86%; right: 7%; width: 100px; height: 100px;">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a10 10 0 0 1 7.54 16.59L10.3 8.35v7.24h1.7v-4.9l7.08 8.08A10 10 0 0 1 12 22a10 10 0 0 1 0-20z"/></svg>
+        </div>
+        <!-- HTML5 -->
+        <div class="bg-logo float-slow" style="top: 15%; left: 24%; width: 75px; height: 75px;">
+            <svg viewBox="0 0 24 24"><path d="M4 2l1.5 17L12 22l6.5-3L20 2H4zm12 6H9v2h7v2H9v2h7l-.5 4.5L12 19.5l-3.5-1L8 14h2v1.5l2 .5 2-.5.5-2H8V6h8v2z"/></svg>
+        </div>
+        <!-- CSS3 -->
+        <div class="bg-logo float-fast" style="top: 50%; left: 20%; width: 75px; height: 75px;">
+            <svg viewBox="0 0 24 24"><path d="M4 2l1.5 17L12 22l6.5-3L20 2H4zm12 5H8.5v3h7.5L15.5 15l-3.5 1-3.5-1-.2-2.5h2.5l.1 1 1.1.3 1.1-.3.2-1.7H8v-3h8V7z"/></svg>
+        </div>
+        <!-- MongoDB -->
+        <div class="bg-logo float-up" style="top: 35%; right: 26%; width: 80px; height: 80px;">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8 6 6 11 6 15c0 3.3 2.7 6 6 6s6-2.7 6-6c0-4-2-9-6-13z"/><path d="M12 2v19"/></svg>
+        </div>
+        <!-- SEO -->
+        <div class="bg-logo float-down" style="top: 68%; right: 22%; width: 85px; height: 85px;">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><path d="M11 7v8M7 11h8"/></svg>
+        </div>
+        <!-- GEO -->
+        <div class="bg-logo float-slow" style="top: 80%; left: 24%; width: 85px; height: 85px;">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20M12 2a14.5 14.5 0 0 1 0 20M2 12h20"/></svg>
+        </div>
+        <!-- TypeScript -->
+        <div class="bg-logo float-fast" style="top: 5%; right: 18%; width: 70px; height: 70px;">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M7 7h6M10 7v10M15 9h-2v2h2v4h-2"/></svg>
+        </div>
+        <!-- JavaScript -->
+        <div class="bg-logo float-up" style="top: 30%; left: 16%; width: 70px; height: 70px;">
+            <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M12 15h2a1 1 0 0 0 1-1v-1a1 1 0 0 0-1-1h-2V9h3M9 9h3v6H9"/></svg>
+        </div>
+        <!-- Git -->
+        <div class="bg-logo float-down" style="top: 62%; left: 13%; width: 75px; height: 75px;">
+            <svg viewBox="0 0 24 24"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M6 9v6M9 9h9v6"/></svg>
+        </div>
+        <!-- Python -->
+        <div class="bg-logo float-slow" style="top: 48%; right: 14%; width: 80px; height: 80px;">
+            <svg viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10A10 10 0 0 0 12 2zm-1 2h2v2h-2V4zm2 14h-2v-2h2v2z"/></svg>
+        </div>
+        <!-- Cloudflare -->
+        <div class="bg-logo float-fast" style="top: 78%; right: 15%; width: 85px; height: 85px;">
+            <svg viewBox="0 0 24 24"><path d="M17.5 19A3.5 3.5 0 0 0 21 15.5c0-2.79-2.54-4.5-5-4.5-.42 0-.82.04-1.2.12A5.5 5.5 0 0 0 5 13.5a3.5 3.5 0 0 0 3.5 3.5h9z"/></svg>
+        </div>
+        <!-- Figma -->
+        <div class="bg-logo float-up" style="top: 92%; left: 14%; width: 70px; height: 70px;">
+            <svg viewBox="0 0 24 24"><path d="M8 2h8v20H8z"/><circle cx="12" cy="12" r="4"/></svg>
+        </div>
+    </div>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">
+            <img src="../TYM-Agency.webp" alt="TYM Agency">
+            <span>TYM AGENCY</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="Our-Story.html">Our Story</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="case-study.html" class="active">Case Study</a></li>
+            <li><a href="team.html">Team</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="contact.html" class="nav-cta">Get Audit</a>
+        <div class="mobile-toggle" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <section class="page-hero">
+        <div class="case-meta-bar">
+            <div class="case-meta-item">
+                <span class="lbl">Client</span>
+                <span class="val">Sabesh Fashions</span>
+            </div>
+            <div class="case-meta-item">
+                <span class="lbl">Industry</span>
+                <span class="val">Premium Fancy Rental</span>
+            </div>
+            <div class="case-meta-item">
+                <span class="lbl">Location</span>
+                <span class="val">Madurai, Tamil Nadu</span>
+            </div>
+            <div class="case-meta-item">
+                <span class="lbl">Timeline</span>
+                <span class="val accent">30 Days</span>
+            </div>
+            <div class="case-meta-item">
+                <span class="lbl">Investment</span>
+                <span class="val accent">₹16,000</span>
+            </div>
+        </div>
+        <div class="section-tag">Case Study: Madurai Local SEO</div>
+        <h1>From <span class="accent">Invisible</span> to <span class="accent">#1</span> in 30 Days</h1>
+        <p class="lead">How an 18-year-old fancy rental business with zero digital presence captured the top Google Maps
+            ranking, doubled call volume, and sold out inventory for the first time in its history.</p>
+                <div class="hero-watermark">
+            <img src="../TYM-Agency.webp" alt="TYM Agency Watermark">
+        </div>
+    </section>
+
+    <!-- RESULTS BANNER -->
+    <div class="results-banner">
+        <div class="results-grid">
+            <div class="result-cell">
+                <div class="num">#1</div>
+                <div class="lbl">Google Maps Rank</div>
+            </div>
+            <div class="result-cell">
+                <div class="num">+280%</div>
+                <div class="lbl">Call Volume Increase</div>
+            </div>
+            <div class="result-cell">
+                <div class="num">+40%</div>
+                <div class="lbl">Customer Increase</div>
+            </div>
+            <div class="result-cell">
+                <div class="num">30</div>
+                <div class="lbl">Days to Results</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EVIDENCE GALLERY -->
+    <section class="evidence-section">
+        <div class="section-header">
+            <div class="section-tag">Evidence</div>
+            <h2 class="section-title">The Build & The Proof: Local SEO Results</h2>
+        </div>
+        <div class="evidence-grid">
+            <div class="evidence-main">
+                <img src="../sabesh proof/hero.webp" alt="Sabesh Fashions Custom React Landing Interface">
+                <div class="caption">Custom React Landing Interface — Sub-second load, semantic structure,
+                    conversion-optimized layout</div>
+            </div>
+            <div class="evidence-side">
+                <div class="evidence-item">
+                    <img src="../sabesh proof/gallery.webp" alt="Product Gallery with Smart Filters">
+                    <div class="caption">Smart Filter Catalog — Instant client-side filtering, zero server lag</div>
+                </div>
+                <div class="evidence-item">
+                    <img src="../sabesh proof/gbp-proof.webp" alt="Google Maps #1 Ranking Proof">
+                    <div class="caption">Verified #1 Map Pack Position — Fancy rental queries, Madurai region</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE CHALLENGE -->
+    <section class="story-section">
+        <div class="section">
+            <div class="story-grid">
+                <div class="story-content">
+                    <div class="section-tag">The Challenge</div>
+                    <h2>The Challenge: 18 Years of Local Trust, Zero Google Search Visibility</h2>
+                    <p>Sabesh Fashions had been the go-to fancy dress rental destination in Madurai's Simmakkal area for
+                        nearly two decades. Built entirely on word-of-mouth and repeat customers, the business had
+                        something most startups never achieve: genuine trust and product quality.</p>
+                    <p>What it didn't have was a digital presence that reflected that quality.</p>
+                    <ul>
+                        <li>No professional website — customers couldn't verify the business online</li>
+                        <li>Unoptimized Google Business Profile — invisible in local search</li>
+                        <li>Zero structured data — search engines couldn't understand the offering</li>
+                        <li>Competitor directories dominating search results with inferior services</li>
+                        <li>New customers relying on outdated phone books and hearsay</li>
+                    </ul>
+                    <p>The owner knew the business was losing customers to competitors who showed up first on Google —
+                        competitors with worse inventory, higher prices, and no local reputation. The digital gap was
+                        costing real revenue, especially during festival seasons when demand peaks.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="viz-content">
+                        <div class="viz-label">Pre-Launch Audit</div>
+                        <div class="viz-stack">
+                            <div class="viz-item">
+                                <span>Website Presence</span>
+                                <span class="status pending"></span>
+                            </div>
+                            <div class="viz-item">
+                                <span>GBP Optimization</span>
+                                <span class="status pending"></span>
+                            </div>
+                            <div class="viz-item">
+                                <span>Local Citations</span>
+                                <span class="status pending"></span>
+                            </div>
+                            <div class="viz-item">
+                                <span>Schema Markup</span>
+                                <span class="status pending"></span>
+                            </div>
+                            <div class="viz-item">
+                                <span>Search Visibility</span>
+                                <span class="status pending"></span>
+                            </div>
+                            <div class="viz-item">
+                                <span>Mobile Performance</span>
+                                <span class="status pending"></span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="viz-label">Competitor Gap</div>
+                            <div class="metric-row">
+                                <span class="metric-name">Directory Sites Ranking</span>
+                                <span class="metric-val">12+</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name">Sabesh Fashions Position</span>
+                                <span class="metric-val">Not Indexed</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name">Monthly Search Volume</span>
+                                <span class="metric-val">~2,400</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE SOLUTION -->
+    <section class="story-section">
+        <div class="section">
+            <div class="story-grid reverse">
+                <div class="story-content">
+                    <div class="section-tag">The Solution</div>
+                    <h2>The Solution: Fast React Website & Google Business Profile Optimization</h2>
+                    <p>We rejected the easy path of installing a WordPress theme and calling it a website. Sabesh
+                        Fashions needed a system that would load faster than competitors, communicate its offerings
+                        clearly to search engines, and convert visitors into callers.</p>
+                    <p>Our approach was three-pronged:</p>
+                    <ul>
+                        <li><strong>Custom React Interface</strong> — Hand-coded with Vite for sub-second loads,
+                            semantic HTML5 structure, and mobile-first responsive design</li>
+                        <li><strong>Google Business Profile Entity Map</strong> — Complete category optimization,
+                            service attribute structuring, photo strategy, and review solicitation framework</li>
+                        <li><strong>Localized Citation Network</strong> — Consistent NAP data across high-authority
+                            directories, local business schema implementation, and proximity signal engineering</li>
+                    </ul>
+                    <p>The website wasn't just a digital brochure. It was built as an acquisition pipeline:
+                        high-contrast CTAs, click-to-call integration, WhatsApp direct links, and a product gallery with
+                        instant filtering that let customers browse inventory before visiting the store.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="viz-content">
+                        <div class="viz-label">Deployment Pipeline</div>
+                        <div class="viz-stack">
+                            <div class="viz-item">
+                                <span>React 18 + Vite Build</span>
+                                <span class="status done"></span>
+                            </div>
+                            <div class="viz-item">
+                                <span>Semantic HTML5 Structure</span>
+                                <span class="status done"></span>
+                            </div>
+                            <div class="viz-item">
+                                <span>JSON-LD LocalBusiness Schema</span>
+                                <span class="status done"></span>
+                            </div>
+                            <div class="viz-item">
+                                <span>GBP Category Optimization</span>
+                                <span class="status done"></span>
+                            </div>
+                            <div class="viz-item">
+                                <span>Citation Network (8 Sources)</span>
+                                <span class="status done"></span>
+                            </div>
+                            <div class="viz-item">
+                                <span>Product Gallery + Filters</span>
+                                <span class="status done"></span>
+                            </div>
+                            <div class="viz-item">
+                                <span>Click-to-Call / WhatsApp</span>
+                                <span class="status done"></span>
+                            </div>
+                            <div class="viz-item">
+                                <span>Serverless Edge Deploy</span>
+                                <span class="status done"></span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="viz-label">Performance Benchmark</div>
+                            <div class="metric-row">
+                                <span class="metric-name">Page Load (LCP)</span>
+                                <span class="metric-val positive">0.9s</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name">Lighthouse Score</span>
+                                <span class="metric-val positive">100/100</span>
+                            </div>
+                            <div class="metric-row">
+                                <span class="metric-name">Mobile Responsive</span>
+                                <span class="metric-val positive">Pass</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- THE RESULTS -->
+    <section class="story-section">
+        <div class="section">
+            <div class="story-grid">
+                <div class="story-content">
+                    <div class="section-tag">The Results</div>
+                    <h2>The Results: Google Maps #1 Ranking & First Inventory Sellout</h2>
+                    <p>The transformation wasn't gradual. It was immediate and measurable.</p>
+                    <p>Within 30 days of launch, Sabesh Fashions claimed the #1 position in Google Maps for "fancy dress
+                        rental Madurai" and related local queries. The business went from invisible to unignorable.</p>
+                    <p>But rankings are vanity metrics. The real story is in the business outcomes:</p>
+                    <ul>
+                        <li><strong>+280% increase in direct customer calls</strong> from Google search and Maps</li>
+                        <li><strong>+40% more customers</strong> during the Chithirai Festival season compared to the
+                            previous year</li>
+                        <li><strong>First inventory sellout in 18 years</strong> — demand exceeded available stock</li>
+                        <li><strong>Waiting list created for the first time</strong> in the business's history</li>
+                        <li><strong>ROI recovered within the first major season</strong> following implementation</li>
+                    </ul>
+                    <p>The owner reported that for the first time, he had to turn customers away. The website and search
+                        presence didn't just bring more customers — it brought more customers than the business could
+                        serve. That's the difference between marketing and engineering.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="viz-content">
+                        <div class="viz-label">30-Day Impact Metrics</div>
+                        <div class="metric-row">
+                            <span class="metric-name">Google Maps Rank</span>
+                            <span class="metric-val positive">#1</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-name">Call Volume</span>
+                            <span class="metric-val positive">+280%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-name">Customer Increase</span>
+                            <span class="metric-val positive">+40%</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-name">Inventory Status</span>
+                            <span class="metric-val positive">SOLD OUT</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-name">ROI Recovery</span>
+                            <span class="metric-val positive">1 Season</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-name">Investment</span>
+                            <span class="metric-val">₹16,000</span>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="viz-label">Search Query Coverage</div>
+                            <div class="viz-stack">
+                                <div class="viz-item">
+                                    <span>"fancy dress rental madurai"</span>
+                                    <span class="status done"></span>
+                                </div>
+                                <div class="viz-item">
+                                    <span>"costume rental simmakkal"</span>
+                                    <span class="status done"></span>
+                                </div>
+                                <div class="viz-item">
+                                    <span>"wedding rental madurai"</span>
+                                    <span class="status done"></span>
+                                </div>
+                                <div class="viz-item">
+                                    <span>"traditional dress rental"</span>
+                                    <span class="status done"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIAL -->
+    <section class="testimonial-section">
+        <div class="testimonial-block">
+            <div class="quote-mark">"</div>
+            <blockquote>For the first time in 18 years, we had a waiting list. The website paid for itself before the
+                festival ended. I used to worry about finding customers. Now I worry about keeping enough inventory.
+            </blockquote>
+            <div class="attribution">
+                <strong>Sabesh Fashions, Proprietor</strong>
+                Madurai, Tamil Nadu
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT THIS MEANS -->
+    <section class="story-section">
+        <div class="section">
+            <div class="story-grid reverse">
+                <div class="story-content">
+                    <div class="section-tag">The Implication</div>
+                    <h2>What This Proves: Local SEO Proximity Strategy Works</h2>
+                    <p>Sabesh Fashions wasn't a special case. It was a proof of concept.</p>
+                    <p>A local business with zero technical history, no existing digital footprint, and a modest
+                        investment of ₹16,000 achieved search dominance and revenue transformation in 30 days. The
+                        variable wasn't budget. It was architecture.</p>
+                    <p>This case validates three core principles we apply to every project:</p>
+                    <ul>
+                        <li><strong>Speed is a ranking factor and a conversion factor.</strong> Sub-second loads aren't
+                            a luxury — they're a competitive weapon.</li>
+                        <li><strong>Structured data beats unstructured effort.</strong> A well-built schema does more
+                            for visibility than months of content marketing.</li>
+                        <li><strong>Local SEO is engineering, not guesswork.</strong> Entity graphs, citation networks,
+                            and proximity signals follow predictable patterns. We build the pattern.</li>
+                    </ul>
+                    <p>If an 18-year-old rental business in Madurai can dominate local search in 30 days, your business
+                        can too. The question isn't whether it's possible. The question is whether your current agency
+                        is building systems or selling templates.</p>
+                </div>
+                <div class="story-visual">
+                    <div class="viz-content">
+                        <div class="viz-label">Project Summary</div>
+                        <div class="metric-row">
+                            <span class="metric-name">Client</span>
+                            <span class="metric-val">Sabesh Fashions</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-name">Industry</span>
+                            <span class="metric-val">Premium Rental</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-name">Location</span>
+                            <span class="metric-val">Madurai, TN</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-name">Services</span>
+                            <span class="metric-val">Web + Local SEO</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-name">Timeline</span>
+                            <span class="metric-val">30 Days</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-name">Investment</span>
+                            <span class="metric-val">₹16,000</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-name">Primary Result</span>
+                            <span class="metric-val positive">#1 Maps</span>
+                        </div>
+                        <div class="metric-row">
+                            <span class="metric-name">Business Impact</span>
+                            <span class="metric-val positive">Sold Out</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="contact">
+        <h2>Your Business Could Be Next: Get a Free SEO Audit</h2>
+        <p>Every local business with quality service deserves search visibility. We build the architecture that makes it
+            happen. Start with a free audit.</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="https://wa.me/919345887939" class="btn-primary" target="_blank">Start WhatsApp Audit →</a>
+            <a href="mailto:office.theyouthmint@gmail.com" class="btn-secondary">Email Us</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <!-- FOOTER -->
+    <footer>
+        <div class="left">
+            <strong>© 2026 TYM Agency.</strong> Hand-crafted in Tiruchirappalli, Tamil Nadu.<br>
+            A child brand of The Youth Mint.
+        </div>
+        <div class="footer-nav">
+            <a href="index.html">Home</a>
+            <a href="Our-Story.html">Our Story</a>
+            <a href="services.html">Services</a>
+            <a href="case-study.html">Case Study</a>
+            <a href="team.html">Team</a>
+            <a href="portfolio.html">Portfolio</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="right">
+            <a href="https://wa.me/919345887939" target="_blank">WhatsApp</a>
+            <a href="mailto:office.theyouthmint@gmail.com">Email</a>
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        function toggleMenu() {
+            const links = document.querySelector('.nav-links');
+            links.classList.toggle('active');
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.story-content, .story-visual, .result-cell').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+
+</html>
