@@ -299,15 +299,17 @@
             position: absolute;
             bottom: -4px;
             left: 0;
-            width: 0;
+            width: 100%;
             height: 1px;
             background: var(--blue);
-            transition: width 0.3s;
+            transform: scaleX(0);
+            transform-origin: left center;
+            transition: transform 0.3s;
         }
 
         .nav-links a:hover::after,
         .nav-links a.active::after {
-            width: 100%;
+            transform: scaleX(1);
         }
 
         .nav-cta {
@@ -435,7 +437,7 @@
             letter-spacing: 0.08em;
             border: none;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -458,7 +460,7 @@
             letter-spacing: 0.08em;
             border: 1px solid var(--border);
             cursor: pointer;
-            transition: all 0.2s;
+            transition: border-color 0.2s, color 0.2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
@@ -513,6 +515,7 @@
             gap: 4rem;
             animation: marquee 30s linear infinite;
             width: max-content;
+            will-change: transform;
         }
 
         .marquee-track:hover {
@@ -698,11 +701,15 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            transition: gap 0.2s;
         }
 
-        .service-card .link:hover {
-            gap: 0.75rem;
+        .service-card .link span {
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .service-card .link:hover span {
+            transform: translateX(4px);
         }
 
         /* ─── CASE STUDY FEATURE ─── */
@@ -781,7 +788,7 @@
         .evidence-img {
             position: absolute;
             border: 1px solid var(--border);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: filter 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             filter: grayscale(100%);
         }
 
@@ -903,13 +910,13 @@
             align-items: center;
             padding: 1.25rem 0;
             border-bottom: 1px solid var(--border);
-            transition: all 0.2s;
+            transition: border-color 0.2s, transform 0.2s;
             text-decoration: none;
             color: inherit;
         }
 
         .portfolio-row:hover {
-            padding-left: 1rem;
+            transform: translateX(8px);
             border-bottom-color: var(--blue);
         }
 
@@ -1157,6 +1164,7 @@
             position: relative;
             transform-style: preserve-3d;
             animation: rotateSphere 32s linear infinite;
+            will-change: transform;
         }
 
         @keyframes rotateSphere {
@@ -1177,11 +1185,10 @@
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.08);
-            background: rgba(10, 10, 15, 0.7);
-            backdrop-filter: blur(8px);
+            background: rgba(10, 10, 15, 0.85);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-            transform-style: preserve-3d;
-            backface-visibility: visible;
+            backface-visibility: hidden;
+            will-change: transform;
         }
 
         .sphere-item img, 
@@ -1344,8 +1351,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transform-style: preserve-3d;
             backface-visibility: hidden;
+            will-change: transform;
         }
 
         .bg-logo svg {
@@ -1463,10 +1470,10 @@
     <!-- NAVIGATION -->
     <nav id="navbar">
         <a href="index.html" class="nav-logo">
-            <img src="TYM-Agency.webp" alt="TYM Agency">
-            <span>TYM AGENCY</span>
-        </a>
-        <ul class="nav-links">
+<img src="TYM-Agency.webp" alt="TYM Agency" decoding="async">
+        <span>TYM AGENCY</span>
+    </a>
+    <ul class="nav-links">
             <li><a href="index.html" class="active">Home</a></li>
             <li><a href="Our-Story.html">Our Story</a></li>
             <li><a href="services.html">Services</a></li>
@@ -1515,42 +1522,42 @@
                 <!-- 3D BALL -->
                 <div class="sphere-scaler">
                     <div class="sphere-container">
-                    <div class="sphere-item" style="transform: rotateY(0deg) translateZ(150px) translateY(-260px);"><img src="Projects Screenshot/Davids-Portfolio.webp" alt="David Portfolio"></div>
-                    <div class="sphere-item" style="transform: rotateY(60deg) translateZ(150px) translateY(-260px);"><img src="Projects Screenshot/TYM-Events.webp" alt="TYM Events"></div>
-                    <div class="sphere-item" style="transform: rotateY(120deg) translateZ(150px) translateY(-260px);"><img src="Projects Screenshot/SKPs-Portfolio.webp" alt="SKP Portfolio"></div>
-                    <div class="sphere-item" style="transform: rotateY(180deg) translateZ(150px) translateY(-260px);"><img src="Projects Screenshot/Thamizh-Nigazhvugal.webp" alt="Thamizh Nigazhvugal"></div>
-                    <div class="sphere-item" style="transform: rotateY(240deg) translateZ(150px) translateY(-260px);"><img src="Projects Screenshot/SKP-Realty.webp" alt="SKP Realty"></div>
-                    <div class="sphere-item" style="transform: rotateY(300deg) translateZ(150px) translateY(-260px);"><img src="Projects Screenshot/Eliass-Portfolio.webp" alt="Elias Portfolio"></div>
-                    <div class="sphere-item" style="transform: rotateY(15deg) translateZ(260px) translateY(-150px);"><img src="Projects Screenshot/TYM-Jewels.webp" alt="TYM Jewels"></div>
-                    <div class="sphere-item" style="transform: rotateY(55deg) translateZ(260px) translateY(-150px);"><img src="Projects Screenshot/Kavaeris-Restaurant.webp" alt="Kavaeris Restaurant"></div>
-                    <div class="sphere-item" style="transform: rotateY(95deg) translateZ(260px) translateY(-150px);"><img src="Projects Screenshot/TYM-Hardware-Store.webp" alt="TYM Hardware Store"></div>
-                    <div class="sphere-item" style="transform: rotateY(135deg) translateZ(260px) translateY(-150px);"><img src="Projects Screenshot/Arunagiri-Estates.webp" alt="Arunagiri Estates"></div>
-                    <div class="sphere-item" style="transform: rotateY(175deg) translateZ(260px) translateY(-150px);"><img src="Projects Screenshot/Mackrines-Portfolio.webp" alt="Mackrine Portfolio"></div>
-                    <div class="sphere-item" style="transform: rotateY(215deg) translateZ(260px) translateY(-150px);"><img src="Projects Screenshot/Multicuisine-Restaurant.webp" alt="Multicuisine Restaurant"></div>
-                    <div class="sphere-item" style="transform: rotateY(255deg) translateZ(260px) translateY(-150px);"><img src="Projects Screenshot/Davids-Portfolio.webp" alt="David Portfolio"></div>
-                    <div class="sphere-item" style="transform: rotateY(295deg) translateZ(260px) translateY(-150px);"><img src="Projects Screenshot/TYM-Events.webp" alt="TYM Events"></div>
-                    <div class="sphere-item" style="transform: rotateY(335deg) translateZ(260px) translateY(-150px);"><img src="Projects Screenshot/SKPs-Portfolio.webp" alt="SKP Portfolio"></div>
-                    <div class="sphere-item" style="transform: rotateY(7.5deg) translateZ(300px);"><img src="Projects Screenshot/Thamizh-Nigazhvugal.webp" alt="Thamizh Nigazhvugal"></div>
-                    <div class="sphere-item" style="transform: rotateY(37.5deg) translateZ(300px);"><img src="Projects Screenshot/SKP-Realty.webp" alt="SKP Realty"></div>
-                    <div class="sphere-item" style="transform: rotateY(67.5deg) translateZ(300px);"><img src="Projects Screenshot/Eliass-Portfolio.webp" alt="Elias Portfolio"></div>
-                    <div class="sphere-item" style="transform: rotateY(97.5deg) translateZ(300px);"><img src="Projects Screenshot/TYM-Jewels.webp" alt="TYM Jewels"></div>
-                    <div class="sphere-item" style="transform: rotateY(127.5deg) translateZ(300px);"><img src="Projects Screenshot/Kavaeris-Restaurant.webp" alt="Kavaeris Restaurant"></div>
-                    <div class="sphere-item" style="transform: rotateY(157.5deg) translateZ(300px);"><img src="Projects Screenshot/TYM-Hardware-Store.webp" alt="TYM Hardware Store"></div>
-                    <div class="sphere-item" style="transform: rotateY(187.5deg) translateZ(300px);"><img src="Projects Screenshot/Arunagiri-Estates.webp" alt="Arunagiri Estates"></div>
-                    <div class="sphere-item" style="transform: rotateY(217.5deg) translateZ(300px);"><img src="Projects Screenshot/Mackrines-Portfolio.webp" alt="Mackrine Portfolio"></div>
-                    <div class="sphere-item" style="transform: rotateY(247.5deg) translateZ(300px);"><img src="Projects Screenshot/Multicuisine-Restaurant.webp" alt="Multicuisine Restaurant"></div>
-                    <div class="sphere-item" style="transform: rotateY(277.5deg) translateZ(300px);"><img src="Projects Screenshot/Davids-Portfolio.webp" alt="David Portfolio"></div>
-                    <div class="sphere-item" style="transform: rotateY(307.5deg) translateZ(300px);"><img src="Projects Screenshot/TYM-Events.webp" alt="TYM Events"></div>
-                    <div class="sphere-item" style="transform: rotateY(337.5deg) translateZ(300px);"><img src="Projects Screenshot/SKPs-Portfolio.webp" alt="SKP Portfolio"></div>
-                    <div class="sphere-item" style="transform: rotateY(25deg) translateZ(260px) translateY(150px);"><img src="Projects Screenshot/Thamizh-Nigazhvugal.webp" alt="Thamizh Nigazhvugal"></div>
-                    <div class="sphere-item" style="transform: rotateY(65deg) translateZ(260px) translateY(150px);"><img src="Projects Screenshot/SKP-Realty.webp" alt="SKP Realty"></div>
-                    <div class="sphere-item" style="transform: rotateY(105deg) translateZ(260px) translateY(150px);"><img src="Projects Screenshot/Eliass-Portfolio.webp" alt="Elias Portfolio"></div>
-                    <div class="sphere-item" style="transform: rotateY(145deg) translateZ(260px) translateY(150px);"><img src="Projects Screenshot/TYM-Jewels.webp" alt="TYM Jewels"></div>
-                    <div class="sphere-item" style="transform: rotateY(185deg) translateZ(260px) translateY(150px);"><img src="Projects Screenshot/Kavaeris-Restaurant.webp" alt="Kavaeris Restaurant"></div>
-                    <div class="sphere-item" style="transform: rotateY(225deg) translateZ(260px) translateY(150px);"><img src="Projects Screenshot/TYM-Hardware-Store.webp" alt="TYM Hardware Store"></div>
-                    <div class="sphere-item" style="transform: rotateY(265deg) translateZ(260px) translateY(150px);"><img src="Projects Screenshot/Arunagiri-Estates.webp" alt="Arunagiri Estates"></div>
-                    <div class="sphere-item" style="transform: rotateY(305deg) translateZ(260px) translateY(150px);"><img src="Projects Screenshot/Mackrines-Portfolio.webp" alt="Mackrine Portfolio"></div>
-                    <div class="sphere-item" style="transform: rotateY(345deg) translateZ(260px) translateY(150px);"><img src="Projects Screenshot/Multicuisine-Restaurant.webp" alt="Multicuisine Restaurant"></div>
+                    <div class="sphere-item" style="transform: rotateY(0deg) translateZ(150px) translateY(-260px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Davids-Portfolio.webp" alt="David Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(60deg) translateZ(150px) translateY(-260px);"><img loading="lazy" decoding="async" src="Projects Screenshot/TYM-Events.webp" alt="TYM Events"></div>
+                    <div class="sphere-item" style="transform: rotateY(120deg) translateZ(150px) translateY(-260px);"><img loading="lazy" decoding="async" src="Projects Screenshot/SKPs-Portfolio.webp" alt="SKP Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(180deg) translateZ(150px) translateY(-260px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Thamizh-Nigazhvugal.webp" alt="Thamizh Nigazhvugal"></div>
+                    <div class="sphere-item" style="transform: rotateY(240deg) translateZ(150px) translateY(-260px);"><img loading="lazy" decoding="async" src="Projects Screenshot/SKP-Realty.webp" alt="SKP Realty"></div>
+                    <div class="sphere-item" style="transform: rotateY(300deg) translateZ(150px) translateY(-260px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Eliass-Portfolio.webp" alt="Elias Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(15deg) translateZ(260px) translateY(-150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/TYM-Jewels.webp" alt="TYM Jewels"></div>
+                    <div class="sphere-item" style="transform: rotateY(55deg) translateZ(260px) translateY(-150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Kavaeris-Restaurant.webp" alt="Kavaeris Restaurant"></div>
+                    <div class="sphere-item" style="transform: rotateY(95deg) translateZ(260px) translateY(-150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/TYM-Hardware-Store.webp" alt="TYM Hardware Store"></div>
+                    <div class="sphere-item" style="transform: rotateY(135deg) translateZ(260px) translateY(-150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Arunagiri-Estates.webp" alt="Arunagiri Estates"></div>
+                    <div class="sphere-item" style="transform: rotateY(175deg) translateZ(260px) translateY(-150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Mackrines-Portfolio.webp" alt="Mackrine Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(215deg) translateZ(260px) translateY(-150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Multicuisine-Restaurant.webp" alt="Multicuisine Restaurant"></div>
+                    <div class="sphere-item" style="transform: rotateY(255deg) translateZ(260px) translateY(-150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Davids-Portfolio.webp" alt="David Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(295deg) translateZ(260px) translateY(-150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/TYM-Events.webp" alt="TYM Events"></div>
+                    <div class="sphere-item" style="transform: rotateY(335deg) translateZ(260px) translateY(-150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/SKPs-Portfolio.webp" alt="SKP Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(7.5deg) translateZ(300px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Thamizh-Nigazhvugal.webp" alt="Thamizh Nigazhvugal"></div>
+                    <div class="sphere-item" style="transform: rotateY(37.5deg) translateZ(300px);"><img loading="lazy" decoding="async" src="Projects Screenshot/SKP-Realty.webp" alt="SKP Realty"></div>
+                    <div class="sphere-item" style="transform: rotateY(67.5deg) translateZ(300px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Eliass-Portfolio.webp" alt="Elias Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(97.5deg) translateZ(300px);"><img loading="lazy" decoding="async" src="Projects Screenshot/TYM-Jewels.webp" alt="TYM Jewels"></div>
+                    <div class="sphere-item" style="transform: rotateY(127.5deg) translateZ(300px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Kavaeris-Restaurant.webp" alt="Kavaeris Restaurant"></div>
+                    <div class="sphere-item" style="transform: rotateY(157.5deg) translateZ(300px);"><img loading="lazy" decoding="async" src="Projects Screenshot/TYM-Hardware-Store.webp" alt="TYM Hardware Store"></div>
+                    <div class="sphere-item" style="transform: rotateY(187.5deg) translateZ(300px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Arunagiri-Estates.webp" alt="Arunagiri Estates"></div>
+                    <div class="sphere-item" style="transform: rotateY(217.5deg) translateZ(300px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Mackrines-Portfolio.webp" alt="Mackrine Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(247.5deg) translateZ(300px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Multicuisine-Restaurant.webp" alt="Multicuisine Restaurant"></div>
+                    <div class="sphere-item" style="transform: rotateY(277.5deg) translateZ(300px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Davids-Portfolio.webp" alt="David Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(307.5deg) translateZ(300px);"><img loading="lazy" decoding="async" src="Projects Screenshot/TYM-Events.webp" alt="TYM Events"></div>
+                    <div class="sphere-item" style="transform: rotateY(337.5deg) translateZ(300px);"><img loading="lazy" decoding="async" src="Projects Screenshot/SKPs-Portfolio.webp" alt="SKP Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(25deg) translateZ(260px) translateY(150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Thamizh-Nigazhvugal.webp" alt="Thamizh Nigazhvugal"></div>
+                    <div class="sphere-item" style="transform: rotateY(65deg) translateZ(260px) translateY(150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/SKP-Realty.webp" alt="SKP Realty"></div>
+                    <div class="sphere-item" style="transform: rotateY(105deg) translateZ(260px) translateY(150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Eliass-Portfolio.webp" alt="Elias Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(145deg) translateZ(260px) translateY(150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/TYM-Jewels.webp" alt="TYM Jewels"></div>
+                    <div class="sphere-item" style="transform: rotateY(185deg) translateZ(260px) translateY(150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Kavaeris-Restaurant.webp" alt="Kavaeris Restaurant"></div>
+                    <div class="sphere-item" style="transform: rotateY(225deg) translateZ(260px) translateY(150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/TYM-Hardware-Store.webp" alt="TYM Hardware Store"></div>
+                    <div class="sphere-item" style="transform: rotateY(265deg) translateZ(260px) translateY(150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Arunagiri-Estates.webp" alt="Arunagiri Estates"></div>
+                    <div class="sphere-item" style="transform: rotateY(305deg) translateZ(260px) translateY(150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Mackrines-Portfolio.webp" alt="Mackrine Portfolio"></div>
+                    <div class="sphere-item" style="transform: rotateY(345deg) translateZ(260px) translateY(150px);"><img loading="lazy" decoding="async" src="Projects Screenshot/Multicuisine-Restaurant.webp" alt="Multicuisine Restaurant"></div>
                         </div>
                 </div>
             </div>
@@ -1620,7 +1627,7 @@
                 <p>We code high-velocity corporate websites using React, Vite, and serverless architectures. By
                     bypassing heavy templated systems, we deliver raw speed, custom API integrations, and responsive
                     layouts that scale with your growth.</p>
-                <a href="services.html#engineering" class="link">Explore →</a>
+                <a href="services.html#engineering" class="link"><span>Explore →</span></a>
             </div>
             <div class="service-card">
                 <div class="num">02</div>
@@ -1628,7 +1635,7 @@
                 <p>Custom headless commerce with rapid product indexing, smart serverless filters, and secure
                     transaction integrations. Friction-free purchasing that minimizes abandonment and maximizes revenue
                     per visitor.</p>
-                <a href="services.html#commerce" class="link">Explore →</a>
+                <a href="services.html#commerce" class="link"><span>Explore →</span></a>
             </div>
             <div class="service-card">
                 <div class="num">03</div>
@@ -1636,14 +1643,14 @@
                 <p>We optimize Google Business Profiles and localized citation networks to drive your business to #1 in
                     regional Map Pack rankings. Competitor gap audits and structured local schemas establish authority.
                 </p>
-                <a href="services.html#local-seo" class="link">Explore →</a>
+                <a href="services.html#local-seo" class="link"><span>Explore →</span></a>
             </div>
             <div class="service-card">
                 <div class="num">04</div>
                 <h3>Generative Engine Optimization</h3>
                 <p>Structured entity graphs and llms.txt frameworks so ChatGPT, Gemini, and Perplexity recommend your
                     brand. Secure your visibility in next-generation AI query pipelines before your competitors do.</p>
-                <a href="services.html#geo" class="link">Explore →</a>
+                <a href="services.html#geo" class="link"><span>Explore →</span></a>
             </div>
         </div>
     </section>
@@ -1677,13 +1684,13 @@
             <div class="case-visual">
                 <div class="evidence-stack">
                     <div class="evidence-img">
-                        <img src="sabesh proof/hero.webp" alt="Sabesh Fashions Rental Landing Page Custom React Design">
+                        <img loading="lazy" decoding="async" src="sabesh proof/hero.webp" alt="Sabesh Fashions Rental Landing Page Custom React Design">
                     </div>
                     <div class="evidence-img">
-                        <img src="sabesh proof/gallery.webp" alt="Sabesh Fashions E-Commerce Product Gallery Interface">
+                        <img loading="lazy" decoding="async" src="sabesh proof/gallery.webp" alt="Sabesh Fashions E-Commerce Product Gallery Interface">
                     </div>
                     <div class="evidence-img">
-                        <img src="sabesh proof/gbp-proof.webp" alt="Sabesh Fashions #1 Google Maps Local SEO Ranking Proof in Madurai">
+                        <img loading="lazy" decoding="async" src="sabesh proof/gbp-proof.webp" alt="Sabesh Fashions #1 Google Maps Local SEO Ranking Proof in Madurai">
                     </div>
                 </div>
             </div>
@@ -1699,28 +1706,28 @@
         <div class="team-grid">
             <div class="team-member">
                 <div class="avatar">
-                    <img src="team member image/team-david.webp" alt="David Jacob D — Principal Web Architect & React Developer at TYM Agency">
+                    <img loading="lazy" decoding="async" src="team member image/team-david.webp" alt="David Jacob D — Principal Web Architect & React Developer at TYM Agency">
                 </div>
                 <h4>David Jacob D</h4>
                 <div class="role">Principal Architect & Founder</div>
             </div>
             <div class="team-member">
                 <div class="avatar">
-                    <img src="team member image/team-elias.webp" alt="Elias Ebenesar H — Research Lead & Systems Engineer at TYM Agency">
+                    <img loading="lazy" decoding="async" src="team member image/team-elias.webp" alt="Elias Ebenesar H — Research Lead & Systems Engineer at TYM Agency">
                 </div>
                 <h4>Elias Ebenesar H</h4>
                 <div class="role">Research Lead & Systems Engineer</div>
             </div>
             <div class="team-member">
                 <div class="avatar">
-                    <img src="team member image/team-stephen.webp" alt="Stephen Daniel J — Growth Strategy Partner at TYM Agency">
+                    <img loading="lazy" decoding="async" src="team member image/team-stephen.webp" alt="Stephen Daniel J — Growth Strategy Partner at TYM Agency">
                 </div>
                 <h4>Stephen Daniel J</h4>
                 <div class="role">Growth Strategy Partner</div>
             </div>
             <div class="team-member">
                 <div class="avatar">
-                    <img src="team member image/team-mackrine.webp" alt="Mackrine Ruth Y — Senior Technical SEO Analyst at TYM Agency">
+                    <img loading="lazy" decoding="async" src="team member image/team-mackrine.webp" alt="Mackrine Ruth Y — Senior Technical SEO Analyst at TYM Agency">
                 </div>
                 <h4>Mackrine Ruth Y</h4>
                 <div class="role">Senior Technical Analyst</div>
@@ -1851,13 +1858,20 @@
     </footer>
 
     <script>
-        // Navbar scroll effect
+        // Navbar scroll effect (throttled for performance)
+        let ticking = false;
         window.addEventListener('scroll', () => {
-            const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const nav = document.getElementById('navbar');
+                    if (window.scrollY > 50) {
+                        nav.classList.add('scrolled');
+                    } else {
+                        nav.classList.remove('scrolled');
+                    }
+                    ticking = false;
+                });
+                ticking = true;
             }
         });
 
@@ -1873,6 +1887,7 @@
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
                     entry.target.style.transform = 'translateY(0)';
+                    observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.1 });
@@ -1883,6 +1898,8 @@
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
+
+
     </script>
 </body>
 
