@@ -1,0 +1,39 @@
+# TYM Agency — Custom Web Development & Local SEO in Trichy, Tamil Nadu
+> TYM Agency engineers high-performance React websites and algorithmic local SEO systems for businesses in Trichy, Madurai, and across Tamil Nadu.
+
+## About
+TYM Agency is a child brand of The Youth Mint, based in Tiruchirappalli (Trichy), Tamil Nadu. We build custom React web architectures, headless e-commerce stores, and Google Maps local SEO domination systems. Every project is hand-coded — no templates, no page builders, no WordPress.
+
+## Services
+- Custom Web Development (React, Vite, Node.js)
+- Local SEO & Google Business Profile Optimization
+- Google Maps Proximity Ranking
+- Headless E-Commerce Storefronts
+- Generative Engine Optimization (GEO) for AI Search
+- Internet Marketing & Digital Strategy
+
+## Service Areas
+- Trichy (Tiruchirappalli), Tamil Nadu
+- Madurai, Tamil Nadu
+- Tamil Nadu Statewide
+- Pan-India Remote
+
+## Portfolio (13 Deployed Systems)
+- Sabesh Fashions (Madurai) — Local SEO #1 Ranking
+- TYM Hardware Store — E-Commerce
+- TYM Events 2026 — Event Portfolio
+- TYM Jewels — Jewelry Storefront
+- Multicuisine Restaurant — Restaurant Website
+- SKP Realty — Real Estate Portal
+- Arunagiri Estates — Real Estate
+- Tier1 Silk / Kavaeri's Restaurant — Fashion & Restaurant
+- David Jacob D Portfolio — Developer Portfolio
+- Elias Ebenesar Portfolio — Developer Portfolio
+- Mackrine Ruth Portfolio — Developer Portfolio
+- SKP Portfolio — Developer Portfolio
+- Thamizh Nigazhvugal — Event Portfolio
+
+## Contact
+- WhatsApp: +91 93458 87939
+- Email: office.theyouthmint@gmail.com
+- Location: Tiruchirappalli, Tamil Nadu, India
