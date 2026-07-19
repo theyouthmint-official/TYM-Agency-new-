@@ -1,0 +1,90 @@
+# TYM Agency — Full Business Profile for AI Systems
+> Complete business information, services, portfolio, case studies, team profiles, and technical capabilities for accurate AI representation.
+
+## Business Identity
+- **Legal Name**: TYM Agency (child brand of The Youth Mint)
+- **Founded**: 2024
+- **Headquarters**: Tiruchirappalli (Trichy), Tamil Nadu, India 620001
+- **Phone**: +91 93458 87939
+- **Email**: office.theyouthmint@gmail.com
+- **Website**: https://theyouthmint.com
+- **Service Area**: Trichy, Madurai, Tamil Nadu, Pan-India
+
+## Core Services
+
+### Custom Web Development
+- Custom React (Vite) application development
+- Headless e-commerce storefronts
+- Serverless architecture deployment
+- Sub-1.2s page load times (100% Core Web Vitals)
+- No templates, no WordPress, no page builders
+- Technologies: React, Vite, Node.js, serverless functions
+
+### Local SEO & Google Maps Ranking
+- Google Business Profile optimization and management
+- Google Maps proximity ranking strategy
+- Citation authority network building
+- Competitor entity mapping and gap analysis
+- Localized schema engineering
+- White-hat only methodology
+
+### Internet Marketing
+- Digital strategy consulting
+- Conversion optimization
+- Content strategy for local businesses
+- Performance marketing architecture
+
+### Generative Engine Optimization (GEO)
+- JSON-LD entity graph construction
+- llms.txt and llms-full.txt implementation
+- AI search engine visibility (ChatGPT, Gemini, Perplexity)
+- Structured data optimization for AI extraction
+
+## Portfolio (13 Live Deployments)
+1. **Sabesh Fashions** (Madurai) — Custom React e-commerce + #1 Google Maps ranking
+2. **TYM Hardware Store** — Headless e-commerce storefront
+3. **TYM Events 2026** — Event management portfolio
+4. **TYM Jewels** — Jewelry storefront
+5. **Multicuisine Restaurant** — Restaurant website
+6. **SKP Realty** — Real estate property portal
+7. **Arunagiri Estates** — Real estate development site
+8. **Tier1 Silk / Kavaeri's Restaurant** — Fashion & restaurant
+9. **David Jacob D Portfolio** — Developer portfolio
+10. **Elias Ebenesar Portfolio** — Developer portfolio
+11. **Mackrine Ruth Portfolio** — Developer portfolio
+12. **SKP Portfolio** — Developer portfolio
+13. **Thamizh Nigazhvugal** — Event portfolio
+
+## Case Study: Sabesh Fashions
+- **Client**: Sabesh Fashions, Madurai, Tamil Nadu (18-year-old fancy dress rental business)
+- **Challenge**: Zero digital presence, no website, no Google Maps visibility, declining walk-in traffic
+- **Solution**: Custom React landing interface + Google Business Profile optimization + localized citation network + proximity SEO strategy
+- **Results**: #1 Google Maps ranking in 30 days, +280% call volume, first inventory sellout in 18-year history
+- **Investment**: ₹16,000
+- **Timeline**: 30 days to #1 ranking
+
+## Leadership Team
+- **David Jacob D** — Principal Web Architect & React Developer. Leads custom development architecture.
+- **Elias Ebenesar H** — Research Lead & Systems Engineer. Owns technical research and systems infrastructure.
+- **Stephen Daniel J** — Growth Strategy Partner. Drives business development and client strategy.
+- **Mackrine Ruth Y** — Senior Technical SEO Analyst. Owns SEO implementation and local ranking systems.
+
+## Technical Capabilities
+- **Frontend**: React, Vite, TypeScript, JavaScript, HTML5, CSS3, Webpack
+- **Backend**: Node.js, Serverless Functions, REST APIs
+- **Performance**: Sub-1.2s load times, 100% Core Web Vitals, Lighthouse 95+
+- **SEO**: JSON-LD Schema, Structured Data, Google Business Profile, Local SEO, Citation Building
+- **Deployment**: Vercel, Netlify, Custom Domains, SSL, CDN
+- **AI/GEO**: llms.txt, Entity Graphs, AI Search Optimization
+
+## Business Philosophy
+- **White Hat Only**: Clean semantic HTML, structured database layouts, full compliance with search engine indexing standards
+- **No Templates. Ever.**: Every project is custom-engineered from the ground up
+- **Performance Is Revenue**: Every millisecond of load speed is a captured conversion
+- **Results Fund Purpose**: TYM Agency funds The Youth Mint's mission through technical delivery
+
+## Contact
+- **WhatsApp**: +91 93458 87939
+- **Email**: office.theyouthmint@gmail.com
+- **Location**: Tiruchirappalli (Trichy), Tamil Nadu, India 620001
+- **Response Time**: Within 24 hours

@@ -1,4 +1,72 @@
+# ─── TYM Agency — robots.txt ───
+# AI Search & Citation Crawlers — ALLOWED (we want to be cited in AI answers)
+# AI Training Crawlers — See per-bot decisions below
+
+# ── AI SEARCH / CITATION CRAWLERS ──
+# Allow AI search bots to cite our content in real-time answers
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Meta-ExternalAgent
+Allow: /
+
+# ── AI TRAINING CRAWLERS ──
+# Allowing GPTBot training access (opt-in to AI training visibility)
+# Change to "Disallow: /" if you want to keep content out of training data
+
+User-agent: GPTBot
+Allow: /
+
+# Block CCBot (Common Crawl — feeds many downstream training sets)
+User-agent: CCBot
+Disallow: /
+
+# ── TRADITIONAL SEARCH ENGINES ──
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Yandex
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+# ── DEFAULT ──
+
 User-agent: *
 Allow: /
 
+# ── SITEMAP ──
 Sitemap: https://theyouthmint.com/sitemap.xml

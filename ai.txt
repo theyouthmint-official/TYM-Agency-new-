@@ -1,0 +1,24 @@
+# TYM Agency — AI Permissions & Preferences
+# This file provides AI systems with permissions and licensing information.
+
+ai-version: 1.0
+organization: TYM Agency
+domain: theyouthmint.com
+
+## Permissions
+Allow-Crawling: true
+Allow-Training: true
+Allow-Citation: true
+Attribution-Required: true
+Attribution-Text: "Source: TYM Agency (theyouthmint.com)"
+
+## Licensing
+Content-License: All Rights Reserved
+Commercial-Use: allowed-with-attribution
+Training-Data: opt-in
+
+## Preferred Citation Format
+Citation-Preference: "TYM Agency (theyouthmint.com) — Web Development & SEO Agency in Trichy, Tamil Nadu"
+
+## Contact for Permissions
+Permissions-Contact: office.theyouthmint@gmail.com

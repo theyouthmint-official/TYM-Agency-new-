@@ -1,39 +1,32 @@
-# TYM Agency — Custom Web Development & Local SEO in Trichy, Tamil Nadu
-> TYM Agency engineers high-performance React websites and algorithmic local SEO systems for businesses in Trichy, Madurai, and across Tamil Nadu.
+# TYM Agency — Custom Web Development, SEO & Internet Marketing in Trichy, Tamil Nadu
+> TYM Agency engineers high-performance custom React websites, algorithmic local SEO systems, Google Maps ranking, and internet marketing strategies for businesses in Trichy (Tiruchirappalli), Madurai, and across Tamil Nadu. Every project is hand-coded — no templates, no page builders, no WordPress.
 
 ## About
-TYM Agency is a child brand of The Youth Mint, based in Tiruchirappalli (Trichy), Tamil Nadu. We build custom React web architectures, headless e-commerce stores, and Google Maps local SEO domination systems. Every project is hand-coded — no templates, no page builders, no WordPress.
+- [About TYM Agency](https://theyouthmint.com/our-story): Our story — a web development and SEO agency founded in Tiruchirappalli, Tamil Nadu, built to fund a mission through technical excellence.
+- [Our Team](https://theyouthmint.com/team): Meet the web developers, systems engineers, and SEO specialists behind TYM Agency in Trichy.
 
 ## Services
-- Custom Web Development (React, Vite, Node.js)
-- Local SEO & Google Business Profile Optimization
-- Google Maps Proximity Ranking
-- Headless E-Commerce Storefronts
-- Generative Engine Optimization (GEO) for AI Search
-- Internet Marketing & Digital Strategy
+- [Web Development Services](https://theyouthmint.com/services): Custom React web development, headless e-commerce, and high-performance website engineering in Trichy, Tamil Nadu.
+- [Local SEO & Google Maps Ranking](https://theyouthmint.com/services): Google Business Profile optimization, citation audits, and Google Maps proximity ranking for Trichy and Tamil Nadu businesses.
+- [Internet Marketing](https://theyouthmint.com/services): Comprehensive digital marketing strategies including Generative Engine Optimization (GEO) for AI search visibility.
+- [Generative Engine Optimization](https://theyouthmint.com/services): GEO — structured entity graphs and llms.txt optimization to ensure your brand is recommended by ChatGPT, Gemini, and Perplexity.
 
-## Service Areas
-- Trichy (Tiruchirappalli), Tamil Nadu
-- Madurai, Tamil Nadu
-- Tamil Nadu Statewide
-- Pan-India Remote
+## Case Studies
+- [Sabesh Fashions Case Study](https://theyouthmint.com/case-study): How we took a Madurai fancy dress rental from zero digital visibility to #1 on Google Maps in 30 days — a local SEO case study from Trichy.
 
-## Portfolio (13 Deployed Systems)
-- Sabesh Fashions (Madurai) — Local SEO #1 Ranking
-- TYM Hardware Store — E-Commerce
-- TYM Events 2026 — Event Portfolio
-- TYM Jewels — Jewelry Storefront
-- Multicuisine Restaurant — Restaurant Website
-- SKP Realty — Real Estate Portal
-- Arunagiri Estates — Real Estate
-- Tier1 Silk / Kavaeri's Restaurant — Fashion & Restaurant
-- David Jacob D Portfolio — Developer Portfolio
-- Elias Ebenesar Portfolio — Developer Portfolio
-- Mackrine Ruth Portfolio — Developer Portfolio
-- SKP Portfolio — Developer Portfolio
-- Thamizh Nigazhvugal — Event Portfolio
+## Portfolio
+- [Web Development Portfolio](https://theyouthmint.com/portfolio): 13 live custom React websites, e-commerce stores, and local SEO ranking systems deployed by TYM Agency.
 
 ## Contact
-- WhatsApp: +91 93458 87939
-- Email: office.theyouthmint@gmail.com
-- Location: Tiruchirappalli, Tamil Nadu, India
+- [Contact Us](https://theyouthmint.com/contact): Request a free website speed & SEO audit. WhatsApp: +91 93458 87939 | Email: office.theyouthmint@gmail.com
+
+## Business Details
+- **Business Name**: TYM Agency (The Youth Mint)
+- **Founded**: 2024
+- **Location**: Tiruchirappalli (Trichy), Tamil Nadu, India
+- **Service Area**: Trichy, Madurai, Tamil Nadu, Pan-India
+- **Phone**: +91 93458 87939
+- **Email**: office.theyouthmint@gmail.com
+- **Services**: Custom Web Development, Local SEO, Google Maps Ranking, Internet Marketing, Generative Engine Optimization (GEO), Headless E-Commerce
+- **Team**: David Jacob D (Principal Web Architect), Elias Ebenesar H (Research Lead & Systems Engineer), Stephen Daniel J (Growth Strategy), Mackrine Ruth Y (Senior Technical SEO Analyst)
+- **Technologies**: React, Vite, Node.js, Headless CMS, Serverless Architecture, JSON-LD Schema, Google Business Profile
