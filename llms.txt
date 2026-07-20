@@ -31,7 +31,10 @@
 - [Web Development Portfolio](https://theyouthmint.com/portfolio): 13 live custom React websites, e-commerce stores, and local SEO ranking systems deployed by TYM Agency.
 
 ## Work With Us
-- [Work With TYM Agency](https://theyouthmint.com/work-with-us): Let's build something that ranks — collaboration process, ideal client profiles, and how to get started.
+- [Work With TYM Agency](https://theyouthmint.com/work-with-us): Join our team in Trichy — open positions for React developers, SEO analysts, and digital marketing talent. Apply online.
+
+## Free Tools
+- [Website Speed Test](https://theyouthmint.com/speed-test): Free Google PageSpeed Insights checker — analyze your website's performance, accessibility, SEO scores, and Core Web Vitals.
 
 ## Contact
 - [Contact Us](https://theyouthmint.com/contact): Request a free website speed & SEO audit. WhatsApp: +91 93458 87939 | Email: office.theyouthmint@gmail.com

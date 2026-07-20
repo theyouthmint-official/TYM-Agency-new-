@@ -46,6 +46,11 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://theyouthmint.com/speed-test</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://theyouthmint.com/blog/post-1</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
