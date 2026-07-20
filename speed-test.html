@@ -313,7 +313,7 @@
             results.classList.remove('visible');
             error.classList.remove('visible');
 
-            const apiUrl = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(url)}&category=PERFORMANCE&category=ACCESSIBILITY&category=BEST_PRACTICES&category=SEO&strategy=mobile`;
+            const apiUrl = `/api/speedtest?url=${encodeURIComponent(url)}`;
 
             fetch(apiUrl)
                 .then(res => res.json())
