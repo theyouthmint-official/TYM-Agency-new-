@@ -314,9 +314,11 @@
             error.classList.remove('visible');
 
             const apiUrl = `/api/speedtest?url=${encodeURIComponent(url)}`;
+            const controller = new AbortController();
+            const timeout = setTimeout(() => controller.abort(), 15000);
 
-            fetch(apiUrl)
-                .then(res => res.json())
+            fetch(apiUrl, { signal: controller.signal })
+                .then(res => { clearTimeout(timeout); return res.json(); })
                 .then(data => {
                     loading.classList.remove('visible');
                     btn.disabled = false;
