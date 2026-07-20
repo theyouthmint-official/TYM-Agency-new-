@@ -2,42 +2,42 @@
 > TYM Agency engineers high-performance custom React websites, algorithmic local SEO systems, Google Maps ranking, and internet marketing strategies for businesses in Trichy (Tiruchirappalli), Madurai, and across Tamil Nadu. Every project is hand-coded — no templates, no page builders, no WordPress.
 
 ## About
-- [About TYM Agency](https://theyouthmint.com/our-story): Our story — a web development and SEO agency founded in Tiruchirappalli, Tamil Nadu, built to fund a mission through technical excellence.
-- [Our Team](https://theyouthmint.com/team): Meet the web developers, systems engineers, and SEO specialists behind TYM Agency in Trichy.
+- [About TYM Agency](https://tym-agency.vercel.app/our-story): Our story — a web development and SEO agency founded in Tiruchirappalli, Tamil Nadu, built to fund a mission through technical excellence.
+- [Our Team](https://tym-agency.vercel.app/team): Meet the web developers, systems engineers, and SEO specialists behind TYM Agency in Trichy.
 
 ## Services
-- [Web Development Services](https://theyouthmint.com/services): Custom React web development, headless e-commerce, and high-performance website engineering in Trichy, Tamil Nadu.
-- [Local SEO & Google Maps Ranking](https://theyouthmint.com/services): Google Business Profile optimization, citation audits, and Google Maps proximity ranking for Trichy and Tamil Nadu businesses.
-- [Internet Marketing](https://theyouthmint.com/services): Comprehensive digital marketing strategies including Generative Engine Optimization (GEO) for AI search visibility.
-- [Generative Engine Optimization](https://theyouthmint.com/services): GEO — structured entity graphs and llms.txt optimization to ensure your brand is recommended by ChatGPT, Gemini, and Perplexity.
+- [Web Development Services](https://tym-agency.vercel.app/services): Custom React web development, headless e-commerce, and high-performance website engineering in Trichy, Tamil Nadu.
+- [Local SEO & Google Maps Ranking](https://tym-agency.vercel.app/services): Google Business Profile optimization, citation audits, and Google Maps proximity ranking for Trichy and Tamil Nadu businesses.
+- [Internet Marketing](https://tym-agency.vercel.app/services): Comprehensive digital marketing strategies including Generative Engine Optimization (GEO) for AI search visibility.
+- [Generative Engine Optimization](https://tym-agency.vercel.app/services): GEO — structured entity graphs and llms.txt optimization to ensure your brand is recommended by ChatGPT, Gemini, and Perplexity.
 
 ## Blog
-- [Blog Home](https://theyouthmint.com/blog): Expert articles on web development, local SEO, GEO, internet marketing, and Google Business Profile optimization for Trichy and Tamil Nadu businesses.
-- [Local SEO Guide for Trichy](https://theyouthmint.com/blog/post-1): Complete local SEO guide for small businesses in Trichy — rank #1 on Google Maps in 2026.
-- [React vs WordPress for SEO](https://theyouthmint.com/blog/post-2): React vs WordPress for SEO in 2026 — why your website framework matters for Trichy businesses.
-- [GEO Guide for Tamil Nadu](https://theyouthmint.com/blog/post-3): Generative Engine Optimization (GEO) — the complete 2026 guide for Tamil Nadu businesses.
-- [Voice Search for Tamil Language](https://theyouthmint.com/blog/post-4): Voice search optimization for Tamil and regional languages in digital marketing.
-- [Core Web Vitals 2026 Guide](https://theyouthmint.com/blog/post-5): Core Web Vitals 2026 — how page speed affects your SEO rankings in Trichy.
-- [Website Cost in Trichy 2026](https://theyouthmint.com/blog/post-6): How much does a business website cost in Trichy in 2026 — pricing guide.
-- [Google Business Profile Optimization](https://theyouthmint.com/blog/post-7): Complete GBP optimization checklist for Tamil Nadu businesses in 2026.
-- [AI Overviews & Local Search](https://theyouthmint.com/blog/post-8): AI Overviews and local search — what Trichy businesses need to know in 2026.
-- [Internet Marketing Tier-2 Cities](https://theyouthmint.com/blog/post-9): Internet marketing strategies that drive real results in tier-2 Indian cities.
-- [E-E-A-T Guide 2026](https://theyouthmint.com/blog/post-10): E-E-A-T in 2026 — how to build website authority for Trichy local search rankings.
+- [Blog Home](https://tym-agency.vercel.app/blog): Expert articles on web development, local SEO, GEO, internet marketing, and Google Business Profile optimization for Trichy and Tamil Nadu businesses.
+- [Local SEO Guide for Trichy](https://tym-agency.vercel.app/blog/post-1): Complete local SEO guide for small businesses in Trichy — rank #1 on Google Maps in 2026.
+- [React vs WordPress for SEO](https://tym-agency.vercel.app/blog/post-2): React vs WordPress for SEO in 2026 — why your website framework matters for Trichy businesses.
+- [GEO Guide for Tamil Nadu](https://tym-agency.vercel.app/blog/post-3): Generative Engine Optimization (GEO) — the complete 2026 guide for Tamil Nadu businesses.
+- [Voice Search for Tamil Language](https://tym-agency.vercel.app/blog/post-4): Voice search optimization for Tamil and regional languages in digital marketing.
+- [Core Web Vitals 2026 Guide](https://tym-agency.vercel.app/blog/post-5): Core Web Vitals 2026 — how page speed affects your SEO rankings in Trichy.
+- [Website Cost in Trichy 2026](https://tym-agency.vercel.app/blog/post-6): How much does a business website cost in Trichy in 2026 — pricing guide.
+- [Google Business Profile Optimization](https://tym-agency.vercel.app/blog/post-7): Complete GBP optimization checklist for Tamil Nadu businesses in 2026.
+- [AI Overviews & Local Search](https://tym-agency.vercel.app/blog/post-8): AI Overviews and local search — what Trichy businesses need to know in 2026.
+- [Internet Marketing Tier-2 Cities](https://tym-agency.vercel.app/blog/post-9): Internet marketing strategies that drive real results in tier-2 Indian cities.
+- [E-E-A-T Guide 2026](https://tym-agency.vercel.app/blog/post-10): E-E-A-T in 2026 — how to build website authority for Trichy local search rankings.
 
 ## Case Studies
-- [Sabesh Fashions Case Study](https://theyouthmint.com/case-study): How we took a Madurai fancy dress rental from zero digital visibility to #1 on Google Maps in 30 days — a local SEO case study from Trichy.
+- [Sabesh Fashions Case Study](https://tym-agency.vercel.app/case-study): How we took a Madurai fancy dress rental from zero digital visibility to #1 on Google Maps in 30 days — a local SEO case study from Trichy.
 
 ## Portfolio
-- [Web Development Portfolio](https://theyouthmint.com/portfolio): 13 live custom React websites, e-commerce stores, and local SEO ranking systems deployed by TYM Agency.
+- [Web Development Portfolio](https://tym-agency.vercel.app/portfolio): 13 live custom React websites, e-commerce stores, and local SEO ranking systems deployed by TYM Agency.
 
 ## Work With Us
-- [Work With TYM Agency](https://theyouthmint.com/work-with-us): Join our team in Trichy — open positions for React developers, SEO analysts, and digital marketing talent. Apply online.
+- [Work With TYM Agency](https://tym-agency.vercel.app/work-with-us): Join our team in Trichy — open positions for React developers, SEO analysts, and digital marketing talent. Apply online.
 
 ## Free Tools
-- [Website Speed Test](https://theyouthmint.com/speed-test): Free Google PageSpeed Insights checker — analyze your website's performance, accessibility, SEO scores, and Core Web Vitals.
+- [Website Speed Test](https://tym-agency.vercel.app/speed-test): Free Google PageSpeed Insights checker — analyze your website's performance, accessibility, SEO scores, and Core Web Vitals.
 
 ## Contact
-- [Contact Us](https://theyouthmint.com/contact): Request a free website speed & SEO audit. WhatsApp: +91 93458 87939 | Email: office.theyouthmint@gmail.com
+- [Contact Us](https://tym-agency.vercel.app/contact): Request a free website speed & SEO audit. WhatsApp: +91 93458 87939 | Email: office.theyouthmint@gmail.com
 
 ## Business Details
 - **Business Name**: TYM Agency (The Youth Mint)

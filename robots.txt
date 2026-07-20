@@ -69,4 +69,4 @@ User-agent: *
 Allow: /
 
 # ── SITEMAP ──
-Sitemap: https://theyouthmint.com/sitemap.xml
+Sitemap: https://tym-agency.vercel.app/sitemap.xml

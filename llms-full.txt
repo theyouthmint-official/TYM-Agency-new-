@@ -7,7 +7,7 @@
 - **Headquarters**: Tiruchirappalli (Trichy), Tamil Nadu, India 620001
 - **Phone**: +91 93458 87939
 - **Email**: office.theyouthmint@gmail.com
-- **Website**: https://theyouthmint.com
+- **Website**: https://tym-agency.vercel.app
 - **Service Area**: Trichy, Madurai, Tamil Nadu, Pan-India
 
 ## Core Services
