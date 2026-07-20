@@ -1,0 +1,3031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dental Clinic Portfolio — 4 Themes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <style>
+        :root {
+            --off-white: #F5F5F0; --charcoal: #1A1A1A; --electric-coral: #FF4D4D;
+            --ice-white: #F0F4F8; --slate-blue: #4A5568; --mint: #81E6D9;
+            --warm-sand: #E8E0D5; --deep-plum: #2D1B2E; --burnt-amber: #D97706;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; background: #0a0a0a; }
+
+        /* ═══ THEME SWITCHER ═══ */
+        .theme-switcher {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 10000;
+            background: rgba(10,10,10,0.95); backdrop-filter: blur(30px);
+            padding: 1rem 2rem; display: flex; justify-content: center; gap: 0.5rem;
+            align-items: center; border-bottom: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s ease;
+        }
+        .theme-switcher.hidden { transform: translateY(-100%); }
+        .theme-switcher-label {
+            color: rgba(255,255,255,0.4); font-size: 0.7rem; letter-spacing: 3px;
+            text-transform: uppercase; margin-right: 1.5rem; font-weight: 600;
+        }
+        .theme-btn {
+            padding: 0.7rem 1.8rem; border: 1px solid rgba(255,255,255,0.15);
+            background: transparent; color: rgba(255,255,255,0.6);
+            font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600;
+            letter-spacing: 1px; border-radius: 100px; cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1); text-decoration: none;
+            text-transform: uppercase; position: relative; overflow: hidden;
+        }
+        .theme-btn::before {
+            content: ''; position: absolute; inset: 0; opacity: 0;
+            transition: opacity 0.4s;
+        }
+        .theme-btn:hover {
+            color: white; border-color: rgba(255,255,255,0.4); transform: translateY(-2px);
+        }
+        .theme-btn.active {
+            color: white; border-color: transparent; transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        .theme-btn[data-theme="brutal"].active { background: var(--electric-coral); }
+        .theme-btn[data-theme="frosted"].active { background: linear-gradient(135deg, var(--mint), #4fd1c5); color: var(--slate-blue); }
+        .theme-btn[data-theme="soft"].active { background: var(--burnt-amber); }
+        .theme-btn[data-theme="nordic"].active { background: #0a3d32; color: #6ECEB2; }
+        .theme-btn[data-theme="brutal"]:hover::before { background: rgba(255,77,77,0.1); opacity: 1; }
+        .theme-btn[data-theme="frosted"]:hover::before { background: rgba(129,230,217,0.1); opacity: 1; }
+        .theme-btn[data-theme="soft"]:hover::before { background: rgba(217,119,6,0.1); opacity: 1; }
+        .theme-btn[data-theme="nordic"]:hover::before { background: rgba(110,206,178,0.15); opacity: 1; }
+
+        /* ═══ THEME CONTAINER ═══ */
+        .theme-container {
+            display: none; opacity: 0; transition: opacity 0.6s ease;
+        }
+        .theme-container.active {
+            display: block; opacity: 1;
+        }
+
+        /* ═══ SHARED ANIMATIONS ═══ */
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
+        @keyframes float-slow { 0%,100%{transform:translateY(0)rotate(0deg)} 50%{transform:translateY(-15px)rotate(2deg)} }
+        @keyframes pulse-ring { 0%{transform:scale(0.8);opacity:0.5} 100%{transform:scale(1.3);opacity:0} }
+        @keyframes shimmer { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+        @keyframes morph { 0%,100%{border-radius:60% 40% 30% 70%/60% 30% 70% 40%} 50%{border-radius:30% 60% 70% 40%/50% 60% 30% 60%} }
+        @keyframes gradient-shift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+        @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+        @keyframes scale-pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
+        @keyframes slide-up { from{opacity:0;transform:translateY(60px)} to{opacity:1;transform:translateY(0)} }
+        @keyframes slide-left { from{opacity:0;transform:translateX(-40px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes slide-right { from{opacity:0;transform:translateX(40px)} to{opacity:1;transform:translateX(0)} }
+        @keyframes fade-scale { from{opacity:0;transform:scale(0.9)} to{opacity:1;transform:scale(1)} }
+        @keyframes draw-line { from{width:0} to{width:100%} }
+        @keyframes orbit { from{transform:rotate(0deg) translateX(80px) rotate(0deg)} to{transform:rotate(360deg) translateX(80px) rotate(-360deg)} }
+
+        .reveal { opacity: 0; transform: translateY(50px); }
+        .reveal-left { opacity: 0; transform: translateX(-40px); }
+        .reveal-right { opacity: 0; transform: translateX(40px); }
+        .reveal-scale { opacity: 0; transform: scale(0.9); }
+
+        /* ═══ SHARED COMPONENTS ═══ */
+        .section-label {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 4px;
+            text-transform: uppercase; margin-bottom: 1.2rem; display: inline-block;
+        }
+        .section-title {
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem); font-weight: 700;
+            line-height: 1.1; letter-spacing: -2px; margin-bottom: 1.5rem;
+        }
+        .section-desc {
+            font-size: 1.1rem; line-height: 1.8; max-width: 540px;
+        }
+
+        /* ═══ SHARED SVG ICONS ═══ */
+        .icon { display: inline-block; width: 1em; height: 1em; vertical-align: -0.125em; fill: currentColor; }
+
+        /* ═══ SCROLLBAR ═══ */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
+
+        /* Desktop: hide nav toggle */
+        .brutal-nav-toggle, .frosted-nav-toggle, .soft-nav-toggle, .nordic-nav-toggle {
+            display: none; background: none; border: none; font-size: 1.5rem;
+            cursor: pointer; padding: 0.25rem 0.5rem; color: inherit; line-height: 1;
+        }
+
+        @media (max-width: 768px) {
+            .theme-switcher { padding: 0.8rem 1rem; gap: 0.4rem; flex-wrap: wrap; justify-content: center; }
+            .theme-switcher-label { display: none; }
+            .theme-btn { padding: 0.5rem 1rem; font-size: 0.7rem; }
+            .section-title { font-size: clamp(1.8rem, 6vw, 2.5rem); }
+
+            /* Mobile nav: show toggle, hide links by default, stack below */
+            .brutal-nav-toggle, .frosted-nav-toggle, .soft-nav-toggle, .nordic-nav-toggle { display: block; }
+            .brutal-nav, .frosted-nav, .soft-nav, .nordic-nav { flex-wrap: wrap; }
+            .brutal-nav-links, .frosted-nav-links, .soft-nav-links, .nordic-nav-links {
+                display: none; width: 100%; flex-direction: column; gap: 0.5rem;
+                padding: 1rem 0 0.5rem; order: 3;
+            }
+            .brutal-nav-links.open, .frosted-nav-links.open, .soft-nav-links.open, .nordic-nav-links.open { display: flex; }
+            .brutal-nav-cta, .frosted-nav-cta, .soft-nav-cta, .nordic-nav-cta { display: none; }
+        }
+    </style>
+
+    <!-- ═══════════════════════════════════════════
+         THEME 1: BRUTAL MINIMAL CSS
+         ═══════════════════════════════════════════ -->
+    <style>
+        .theme-brutal {
+            background: var(--off-white); color: var(--charcoal);
+            font-family: 'Space Grotesk', sans-serif; min-height: 100vh;
+        }
+
+        /* NAV */
+        .brutal-nav {
+            position: fixed; top: var(--switcher-h, 50px); left: 0; right: 0; z-index: 1000;
+            padding: 1rem 5vw; display: flex; justify-content: space-between; align-items: center;
+            background: var(--off-white); border-bottom: 2px solid var(--charcoal);
+            transition: all 0.3s ease;
+        }
+        .brutal-nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.08); }
+        .brutal-nav-logo { font-weight: 800; font-size: 1.6rem; letter-spacing: -2px; }
+        .brutal-nav-links { display: flex; gap: 3rem; list-style: none; }
+        .brutal-nav-links a {
+            text-decoration: none; color: var(--charcoal); font-weight: 600; font-size: 0.85rem;
+            letter-spacing: 0.5px; position: relative; padding: 0.5rem 0; text-transform: uppercase;
+        }
+        .brutal-nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 3px;
+            background: var(--electric-coral); transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .brutal-nav-links a:hover::after { width: 100%; }
+        .brutal-nav-cta {
+            padding: 0.7rem 1.8rem; background: var(--charcoal); color: var(--off-white);
+            text-decoration: none; font-weight: 700; font-size: 0.8rem; letter-spacing: 1px;
+            border: 3px solid var(--charcoal); transition: all 0.3s ease; text-transform: uppercase;
+            position: relative; overflow: hidden;
+        }
+        .brutal-nav-cta::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: var(--electric-coral); transition: left 0.4s ease; z-index: 0;
+        }
+        .brutal-nav-cta:hover::before { left: 0; }
+        .brutal-nav-cta span { position: relative; z-index: 1; }
+        .brutal-nav-cta:hover { border-color: var(--electric-coral); color: var(--off-white); }
+
+        /* HERO */
+        .brutal-hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding: 8rem 5vw 4rem; position: relative; overflow: hidden;
+        }
+        .brutal-hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; width: 100%; align-items: center; }
+        .brutal-hero-text { position: relative; z-index: 2; }
+        .brutal-hero-label {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 4px;
+            text-transform: uppercase; color: var(--electric-coral); margin-bottom: 1.5rem;
+            display: flex; align-items: center; gap: 1rem;
+        }
+        .brutal-hero-label::before {
+            content: ''; width: 40px; height: 3px; background: var(--electric-coral);
+        }
+        .brutal-hero-text h1 {
+            font-size: clamp(3.5rem, 7vw, 6.5rem); font-weight: 800; line-height: 0.95;
+            letter-spacing: -4px; margin-bottom: 1.5rem;
+        }
+        .brutal-hero-text h1 .accent { display: block; color: var(--electric-coral); }
+        .brutal-hero-text p {
+            font-size: 1.15rem; max-width: 460px; line-height: 1.7;
+            margin-bottom: 2.5rem; color: rgba(26,26,26,0.65); font-weight: 400;
+        }
+        .brutal-hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .brutal-btn-primary {
+            display: inline-flex; align-items: center; gap: 0.8rem;
+            padding: 1.1rem 2.2rem; background: var(--charcoal); color: var(--off-white);
+            text-decoration: none; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px;
+            border: 3px solid var(--charcoal); transition: all 0.3s ease;
+            text-transform: uppercase; position: relative; overflow: hidden;
+        }
+        .brutal-btn-primary::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: var(--electric-coral); transition: left 0.4s ease; z-index: 0;
+        }
+        .brutal-btn-primary:hover::before { left: 0; }
+        .brutal-btn-primary span { position: relative; z-index: 1; }
+        .brutal-btn-primary:hover { border-color: var(--electric-coral); }
+        .brutal-btn-secondary {
+            display: inline-flex; align-items: center; gap: 0.8rem;
+            padding: 1.1rem 2.2rem; background: transparent; color: var(--charcoal);
+            text-decoration: none; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px;
+            border: 3px solid var(--charcoal); transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .brutal-btn-secondary:hover { background: var(--charcoal); color: var(--off-white); }
+
+        .brutal-hero-visual { position: relative; }
+        .brutal-hero-img-frame {
+            position: relative; height: 550px; background: var(--charcoal); overflow: hidden;
+        }
+        .brutal-hero-img-frame::after {
+            content: ''; position: absolute; inset: 24px; border: 2px solid var(--electric-coral);
+            animation: scale-pulse 3s ease infinite; pointer-events: none;
+        }
+        .brutal-hero-img-frame img { width: 100%; height: 100%; object-fit: cover; opacity: 0.85; filter: grayscale(25%); }
+        .brutal-hero-accent-bar {
+            position: absolute; width: 160px; height: 12px;
+            background: var(--electric-coral); bottom: -20px; right: -30px;
+        }
+        .brutal-hero-badge {
+            position: absolute; bottom: 40px; left: -50px;
+            background: var(--off-white); border: 3px solid var(--charcoal);
+            padding: 1.2rem 1.8rem; font-weight: 700; font-size: 0.8rem;
+            letter-spacing: 1px; text-transform: uppercase; display: flex; align-items: center; gap: 0.8rem;
+        }
+        .brutal-hero-badge .star { color: var(--electric-coral); font-size: 1rem; }
+
+        /* MARQUEE */
+        .brutal-marquee {
+            background: var(--charcoal); color: var(--off-white); padding: 1.2rem 0;
+            overflow: hidden; white-space: nowrap; position: relative;
+        }
+        .brutal-marquee-track {
+            display: inline-flex; animation: marquee 30s linear infinite;
+        }
+        .brutal-marquee-item {
+            font-size: 0.85rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+            padding: 0 3rem; display: flex; align-items: center; gap: 1rem;
+        }
+        .brutal-marquee-item::after {
+            content: ''; width: 6px; height: 6px; background: var(--electric-coral); border-radius: 50%;
+        }
+
+        /* ABOUT */
+        .brutal-about { padding: 8rem 5vw; }
+        .brutal-about-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 5rem; align-items: center; }
+        .brutal-about-visual { position: relative; }
+        .brutal-about-img {
+            height: 480px; background: var(--charcoal); position: relative; overflow: hidden;
+        }
+        .brutal-about-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; filter: grayscale(30%); }
+        .brutal-about-img::after {
+            content: ''; position: absolute; inset: 18px; border: 2px solid var(--electric-coral);
+            animation: scale-pulse 3s ease infinite;
+        }
+        .brutal-about-img-label {
+            position: absolute; bottom: -15px; right: 30px;
+            background: var(--electric-coral); color: var(--off-white);
+            padding: 0.8rem 1.5rem; font-weight: 700; font-size: 0.75rem;
+            letter-spacing: 2px; text-transform: uppercase;
+        }
+        .brutal-about-content .section-label { color: var(--electric-coral); }
+        .brutal-about-content .section-title { font-family: 'Space Grotesk', sans-serif; }
+        .brutal-about-content .section-desc { color: rgba(26,26,26,0.65); margin-bottom: 1.5rem; }
+        .brutal-about-stats { display: flex; gap: 3rem; margin-top: 3rem; }
+        .brutal-about-stat { border-left: 4px solid var(--electric-coral); padding-left: 1.2rem; }
+        .brutal-about-stat .num { font-size: 2.8rem; font-weight: 800; line-height: 1; letter-spacing: -2px; }
+        .brutal-about-stat .lab { font-size: 0.8rem; color: rgba(26,26,26,0.5); margin-top: 0.4rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+        /* SERVICES */
+        .brutal-services { padding: 8rem 5vw; background: var(--charcoal); color: var(--off-white); position: relative; }
+        .brutal-services-header { margin-bottom: 4rem; }
+        .brutal-services-header .section-label { color: var(--electric-coral); }
+        .brutal-services-header .section-title { color: var(--off-white); }
+        .brutal-services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .brutal-service-card {
+            padding: 2.5rem 2rem; border: 2px solid rgba(245,245,240,0.1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;
+            cursor: default;
+        }
+        .brutal-service-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 0; height: 100%;
+            background: var(--electric-coral); transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1); z-index: 0;
+        }
+        .brutal-service-card:hover::before { width: 100%; }
+        .brutal-service-card:hover { border-color: var(--electric-coral); transform: translateY(-8px); }
+        .brutal-service-card .card-num {
+            font-size: 4rem; font-weight: 800; color: rgba(245,245,240,0.04);
+            position: absolute; top: 0.5rem; right: 1rem; line-height: 1; z-index: 0; transition: color 0.3s;
+        }
+        .brutal-service-card:hover .card-num { color: rgba(255,255,255,0.1); }
+        .brutal-service-card h3 {
+            font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; position: relative; z-index: 1;
+            transition: color 0.3s; letter-spacing: -0.5px;
+        }
+        .brutal-service-card p {
+            font-size: 0.9rem; line-height: 1.7; color: rgba(245,245,240,0.55);
+            position: relative; z-index: 1; transition: color 0.3s;
+        }
+        .brutal-service-card:hover h3, .brutal-service-card:hover p { color: var(--off-white); }
+        .brutal-service-img {
+            position: absolute; inset: 0; z-index: 0;
+        }
+        .brutal-service-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .brutal-service-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(to top, rgba(26,26,26,0.92) 0%, rgba(26,26,26,0.6) 50%, rgba(26,26,26,0.3) 100%);
+            transition: background 0.5s ease;
+        }
+        .brutal-service-card:hover .brutal-service-overlay {
+            background: linear-gradient(to top, rgba(255,77,77,0.85) 0%, rgba(255,77,77,0.5) 50%, rgba(255,77,77,0.2) 100%);
+        }
+        .brutal-service-card .card-num { z-index: 2; color: rgba(245,245,240,0.15); }
+        .brutal-service-card:hover .card-num { color: rgba(255,255,255,0.15); }
+        .brutal-service-card h3 { z-index: 2; color: var(--off-white); }
+        .brutal-service-card p { z-index: 2; color: rgba(245,245,240,0.7); }
+
+        /* TESTIMONIALS */
+        .brutal-testimonials { padding: 8rem 5vw; }
+        .brutal-testimonials-header { text-align: center; margin-bottom: 4rem; }
+        .brutal-testimonials-header .section-label { color: var(--electric-coral); }
+        .brutal-testimonials-header .section-title { font-family: 'Space Grotesk', sans-serif; }
+        .brutal-testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .brutal-testimonial-card {
+            padding: 2.5rem; border: 2px solid rgba(26,26,26,0.08); transition: all 0.4s ease;
+            position: relative;
+        }
+        .brutal-testimonial-card:hover { border-color: var(--electric-coral); transform: translateY(-5px); box-shadow: 0 8px 30px rgba(255,107,107,0.15); }
+        .brutal-testimonial-stars { color: var(--electric-coral); font-size: 1rem; letter-spacing: 3px; margin-bottom: 1.2rem; }
+        .brutal-testimonial-text { font-size: 1rem; line-height: 1.8; margin-bottom: 1.5rem; color: rgba(26,26,26,0.75); font-style: italic; }
+        .brutal-testimonial-author { display: flex; align-items: center; gap: 1rem; }
+        .brutal-testimonial-avatar {
+            width: 44px; height: 44px; border-radius: 50%; background: var(--charcoal);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--off-white); font-weight: 700; font-size: 0.8rem;
+        }
+        .brutal-testimonial-name { font-weight: 700; font-size: 0.9rem; }
+        .brutal-testimonial-role { font-size: 0.8rem; color: rgba(26,26,26,0.5); }
+
+        /* CONTACT */
+        .brutal-contact { padding: 8rem 5vw; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
+        .brutal-contact-info .section-label { color: var(--electric-coral); }
+        .brutal-contact-info .section-title { font-family: 'Space Grotesk', sans-serif; margin-bottom: 2.5rem; }
+        .brutal-contact-block { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 2px solid rgba(26,26,26,0.06); }
+        .brutal-contact-block h4 {
+            font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase;
+            color: var(--electric-coral); margin-bottom: 0.6rem; font-weight: 700;
+        }
+        .brutal-contact-block p { font-size: 1.05rem; font-weight: 500; line-height: 1.6; }
+        .brutal-contact-hours { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-size: 0.95rem; }
+        .brutal-contact-hours span:nth-child(odd) { font-weight: 600; }
+        .brutal-contact-hours span:nth-child(even) { color: rgba(26,26,26,0.6); }
+        .brutal-map {
+            width: 100%; height: 300px; background: var(--charcoal); margin-top: 2rem;
+            position: relative; overflow: hidden; border: 2px solid var(--charcoal); transition: border-color 0.3s;
+        }
+        .brutal-map:hover { border-color: var(--electric-coral); }
+        .brutal-map img { width: 100%; height: 100%; object-fit: cover; opacity: 0.5; filter: grayscale(100%); }
+        .brutal-map::after {
+            content: '123 Dental Avenue, New York, NY 10001'; position: absolute; inset: 0;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--off-white); font-size: 0.9rem; font-weight: 600; letter-spacing: 1px;
+        }
+        .brutal-reviews h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 2rem; letter-spacing: -1px; }
+        .brutal-review-item {
+            padding: 1.8rem; border: 2px solid rgba(26,26,26,0.08); margin-bottom: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .brutal-review-item:hover { border-color: var(--electric-coral); transform: translateX(10px); }
+        .brutal-review-stars { color: var(--electric-coral); font-size: 1rem; letter-spacing: 3px; margin-bottom: 0.8rem; }
+        .brutal-review-text { font-size: 0.95rem; line-height: 1.7; margin-bottom: 1rem; color: rgba(26,26,26,0.7); }
+        .brutal-review-author { font-weight: 700; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* CTA BANNER */
+        .brutal-cta-banner {
+            background: var(--electric-coral); color: var(--off-white);
+            padding: 5rem 5vw; text-align: center;
+        }
+        .brutal-cta-banner h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 800; letter-spacing: -2px; margin-bottom: 1rem;
+        }
+        .brutal-cta-banner p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .brutal-cta-btn {
+            display: inline-block; padding: 1.1rem 2.5rem; background: var(--off-white); color: var(--charcoal);
+            text-decoration: none; font-weight: 700; font-size: 0.85rem; letter-spacing: 1px;
+            border: 3px solid var(--off-white); transition: all 0.3s ease; text-transform: uppercase;
+        }
+        .brutal-cta-btn:hover { background: transparent; color: var(--off-white); }
+
+        /* FOOTER */
+        .brutal-footer {
+            background: var(--charcoal); color: var(--off-white); padding: 5rem 5vw 2rem;
+            border-top: 4px solid var(--electric-coral);
+        }
+        .brutal-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .brutal-footer-brand h3 { font-size: 2rem; font-weight: 800; margin-bottom: 1.2rem; letter-spacing: -2px; }
+        .brutal-footer-brand p { font-size: 0.9rem; line-height: 1.8; color: rgba(245,245,240,0.5); max-width: 320px; }
+        .brutal-footer-col h4 { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--electric-coral); margin-bottom: 1.5rem; font-weight: 700; }
+        .brutal-footer-col a {
+            display: block; color: rgba(245,245,240,0.5); text-decoration: none;
+            font-size: 0.9rem; margin-bottom: 0.8rem; transition: all 0.3s;
+        }
+        .brutal-footer-col a:hover { color: var(--electric-coral); padding-left: 5px; }
+        .brutal-footer-bottom {
+            border-top: 1px solid rgba(245,245,240,0.08); padding-top: 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.8rem; color: rgba(245,245,240,0.35);
+        }
+        .brutal-footer-social { display: flex; gap: 0.8rem; }
+        .brutal-footer-social a {
+            width: 40px; height: 40px; border: 1px solid rgba(245,245,240,0.15);
+            display: flex; align-items: center; justify-content: center;
+            color: rgba(245,245,240,0.5); text-decoration: none; font-size: 0.8rem; font-weight: 600;
+            transition: all 0.3s;
+        }
+        .brutal-footer-social a:hover { border-color: var(--electric-coral); color: var(--electric-coral); background: rgba(255,77,77,0.1); }
+
+        @media (max-width: 1024px) {
+            .brutal-hero-grid, .brutal-about-grid, .brutal-contact, .brutal-footer-grid { grid-template-columns: 1fr; }
+            .brutal-services-grid, .brutal-testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .brutal-nav-links { display: none; }
+            .brutal-hero { padding-top: 6rem; }
+        }
+        @media (max-width: 768px) {
+            .brutal-services-grid, .brutal-testimonials-grid { grid-template-columns: 1fr; }
+            .brutal-about-stats { flex-direction: column; gap: 1.5rem; }
+            .brutal-footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .brutal-hero-btns { flex-direction: column; }
+            .brutal-service-card { min-height: 260px; }
+        }
+    </style>
+
+    <!-- ═══════════════════════════════════════════
+         THEME 2: FROSTED LUXE CSS
+         ═══════════════════════════════════════════ -->
+    <style>
+        .theme-frosted {
+            background: linear-gradient(135deg, #e8edff 0%, #e0f2fe 40%, #f0f4f8 100%);
+            color: var(--slate-blue); font-family: 'Inter', sans-serif;
+            min-height: 100vh; position: relative; overflow-x: hidden;
+        }
+
+        /* BLOBS */
+        .frosted-blob {
+            position: absolute; border-radius: 50%; filter: blur(120px);
+            opacity: 0.35; pointer-events: none; z-index: 0;
+        }
+        .frosted-blob-1 { width: 700px; height: 700px; background: linear-gradient(135deg, rgba(129,230,217,0.6), rgba(224,231,255,0.4)); top: -100px; right: -200px; animation: blob-move 30s ease infinite; }
+        .frosted-blob-2 { width: 600px; height: 600px; background: linear-gradient(135deg, rgba(224,242,254,0.5), rgba(129,230,217,0.4)); bottom: 100px; left: -200px; animation: blob-move 30s ease infinite reverse; }
+        .frosted-blob-3 { width: 500px; height: 500px; background: linear-gradient(135deg, rgba(167,139,250,0.3), rgba(129,230,217,0.2)); top: 50%; left: 30%; animation: blob-move 25s ease infinite; animation-delay: -10s; }
+        .frosted-blob-4 { width: 400px; height: 400px; background: linear-gradient(135deg, rgba(251,191,36,0.2), rgba(129,230,217,0.3)); top: 20%; right: 30%; animation: blob-move 20s ease infinite; animation-delay: -5s; }
+
+        /* NAV */
+        .frosted-nav {
+            position: fixed; top: var(--switcher-h, 50px); left: 0; right: 0; z-index: 1000;
+            padding: 1rem 5vw; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(240,244,248,0.5); backdrop-filter: blur(30px); -webkit-backdrop-filter: blur(30px);
+            border-bottom: 1px solid rgba(255,255,255,0.6); transition: all 0.3s ease;
+        }
+        .frosted-nav.scrolled { background: rgba(240,244,248,0.85); box-shadow: 0 4px 30px rgba(31,38,135,0.08); }
+        .frosted-nav-logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -1px; }
+        .frosted-nav-links { display: flex; gap: 3rem; list-style: none; }
+        .frosted-nav-links a {
+            text-decoration: none; color: var(--slate-blue); font-weight: 500; font-size: 0.85rem;
+            position: relative; padding: 0.5rem 0; letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .frosted-nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--mint), var(--slate-blue)); transition: width 0.3s ease;
+        }
+        .frosted-nav-links a:hover::after { width: 100%; }
+        .frosted-nav-cta {
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, rgba(129,230,217,0.3), rgba(255,255,255,0.3));
+            color: var(--slate-blue); text-decoration: none; font-weight: 600; font-size: 0.8rem;
+            border-radius: 100px; border: 1px solid rgba(255,255,255,0.6);
+            backdrop-filter: blur(10px); transition: all 0.4s ease;
+            box-shadow: 0 4px 20px rgba(129,230,217,0.15); letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .frosted-nav-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(129,230,217,0.3); }
+
+        /* HERO */
+        .frosted-hero {
+            min-height: 100vh; display: flex; align-items: center; justify-content: center;
+            padding: 9rem 5vw 5rem; position: relative; z-index: 1;
+            /* Premium luxury clinic background with light overlay (reduced opacity for clear visibility) */
+            background: linear-gradient(95deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.45) 50%, rgba(255, 255, 255, 0.1) 100%), url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1600&q=80') no-repeat center center;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .frosted-hero-grid {
+            display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 4rem;
+            width: 100%; max-width: 1200px; margin: 0 auto; align-items: center;
+            position: relative; z-index: 2;
+        }
+        .frosted-hero-content {
+            display: flex; flex-direction: column; align-items: flex-start;
+            position: relative; z-index: 1;
+            text-align: left;
+        }
+        .frosted-hero-trust {
+            display: inline-flex; align-items: center; gap: 0.8rem;
+            background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.8); padding: 0.5rem 1.2rem;
+            border-radius: 100px; font-size: 0.75rem; font-weight: 700;
+            color: #0b7a75; margin-bottom: 1.8rem; letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(31,38,135,0.03);
+        }
+        .frosted-hero-trust .divider {
+            color: rgba(74, 85, 104, 0.3); font-weight: 300; margin: 0 0.2rem;
+        }
+        .frosted-hero-eyebrow {
+            font-size: 0.75rem; font-weight: 700; letter-spacing: 3px;
+            text-transform: uppercase; color: #0d9488; margin-bottom: 1rem;
+            display: inline-flex; align-items: center; gap: 0.8rem;
+        }
+        .frosted-hero-eyebrow::before {
+            content: ''; width: 20px; height: 1px; background: #0d9488;
+        }
+        .frosted-hero-content h1 {
+            font-size: clamp(2.5rem, 5.5vw, 4rem); font-weight: 300;
+            line-height: 1.15; margin-bottom: 1.5rem; color: #1e293b;
+            letter-spacing: -1px;
+        }
+        .frosted-hero-content h1 strong {
+            font-weight: 800;
+            background: linear-gradient(135deg, #0d9488, #1e293b);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }
+        .frosted-hero-content p {
+            font-size: 1.1rem; color: #374151;
+            margin-bottom: 2.5rem; line-height: 1.75; font-weight: 400;
+            max-width: 560px;
+        }
+        .frosted-hero-btn-group {
+            display: flex; gap: 1rem; flex-wrap: wrap; width: 100%;
+        }
+        .frosted-hero-btn {
+            display: inline-flex; align-items: center; gap: 0.8rem;
+            padding: 1.1rem 2.4rem; border-radius: 100px;
+            text-decoration: none; font-size: 0.85rem; letter-spacing: 0.5px;
+            text-transform: uppercase; transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            font-weight: 700;
+        }
+        .frosted-hero-btn.primary-btn {
+            background: linear-gradient(135deg, rgba(79,209,197,0.85) 0%, rgba(129,230,217,0.95) 100%);
+            border: 1px solid rgba(255,255,255,0.8); color: #1e293b;
+            box-shadow: 0 8px 25px rgba(79,209,197,0.25);
+        }
+        .frosted-hero-btn.primary-btn:hover {
+            background: linear-gradient(135deg, rgba(79,209,197,1) 0%, rgba(129,230,217,1) 100%);
+            transform: translateY(-3px); box-shadow: 0 15px 35px rgba(79,209,197,0.4);
+        }
+        .frosted-hero-btn.secondary-btn {
+            background: rgba(255,255,255,0.6); border: 1px solid rgba(255,255,255,0.8);
+            color: var(--slate-blue); box-shadow: 0 4px 15px rgba(31,38,135,0.03);
+        }
+        .frosted-hero-btn.secondary-btn:hover {
+            background: rgba(255,255,255,0.85); border-color: rgba(255,255,255,1);
+            transform: translateY(-3px); box-shadow: 0 15px 30px rgba(31,38,135,0.08);
+        }
+        .frosted-hero-media {
+            display: flex; justify-content: center; align-items: center;
+            position: relative; z-index: 1;
+            width: 100%;
+        }
+        .frosted-hero-dentist-img {
+            width: 100%; max-width: 480px; height: auto; object-fit: cover;
+            border-radius: 40px; box-shadow: 0 20px 40px rgba(31,38,135,0.08);
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .frosted-hero-dentist-img:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(31,38,135,0.15);
+        }
+
+        .frosted-float-orb {
+            position: absolute; border-radius: 50%;
+            background: rgba(255,255,255,0.25); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.4); animation: float 8s ease-in-out infinite;
+        }
+        .frosted-float-orb:nth-child(1) { width: 100px; height: 100px; top: 12%; right: 10%; animation-delay: 0s; }
+        .frosted-float-orb:nth-child(2) { width: 70px; height: 70px; top: 55%; left: 6%; animation-delay: -2.5s; }
+        .frosted-float-orb:nth-child(3) { width: 80px; height: 80px; bottom: 15%; right: 18%; animation-delay: -5s; }
+        .frosted-float-orb:nth-child(4) { width: 55px; height: 55px; top: 28%; left: 15%; animation-delay: -1s; }
+        .frosted-float-orb:nth-child(5) { width: 45px; height: 45px; bottom: 30%; left: 25%; animation-delay: -3.5s; }
+
+        /* MARQUEE */
+        .frosted-marquee {
+            background: rgba(255,255,255,0.3); backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255,255,255,0.4); border-bottom: 1px solid rgba(255,255,255,0.4);
+            padding: 1.2rem 0; overflow: hidden; white-space: nowrap; position: relative; z-index: 1;
+        }
+        .frosted-marquee-track { display: inline-flex; animation: marquee 35s linear infinite; }
+        .frosted-marquee-item {
+            font-size: 0.8rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+            padding: 0 3rem; color: rgba(74,85,104,0.5); display: flex; align-items: center; gap: 1rem;
+        }
+        .frosted-marquee-item::after {
+            content: ''; width: 5px; height: 5px; background: var(--mint); border-radius: 50%;
+        }
+
+        /* ABOUT */
+        .frosted-about { padding: 8rem 5vw; position: relative; z-index: 1; }
+        .frosted-about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+        .frosted-about-glass {
+            background: rgba(255,255,255,0.3); backdrop-filter: blur(30px);
+            border: 1px solid rgba(255,255,255,0.5); border-radius: 32px;
+            padding: 3.5rem; position: relative; overflow: hidden;
+        }
+        .frosted-about-glass .section-label { color: var(--mint); }
+        .frosted-about-glass .section-title { font-weight: 300; }
+        .frosted-about-glass .section-title span { font-weight: 800; }
+        .frosted-about-glass .section-desc { color: rgba(74,85,104,0.65); margin-bottom: 1.5rem; }
+        .frosted-about-img-wrap {
+            position: relative; height: 520px;
+            background: rgba(255,255,255,0.2); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.4); border-radius: 32px;
+            overflow: hidden;
+        }
+        .frosted-about-img-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: 0.9; }
+        .frosted-about-img-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0; padding: 2.5rem;
+            background: linear-gradient(transparent, rgba(74,85,104,0.85)); color: white;
+        }
+        .frosted-about-img-overlay p { font-weight: 600; font-size: 1.1rem; }
+        .frosted-about-img-overlay span { font-size: 0.85rem; opacity: 0.7; }
+        .frosted-about-stats { display: flex; gap: 2rem; margin-top: 2.5rem; }
+        .frosted-about-stat {
+            text-align: center; padding: 1.5rem 2rem;
+            background: rgba(255,255,255,0.3); backdrop-filter: blur(15px);
+            border: 1px solid rgba(255,255,255,0.4); border-radius: 20px;
+            transition: all 0.3s;
+        }
+        .frosted-about-stat:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(31,38,135,0.08); }
+        .frosted-about-stat .num { font-size: 2.2rem; font-weight: 800; color: var(--slate-blue); }
+        .frosted-about-stat .lab { font-size: 0.8rem; color: rgba(74,85,104,0.5); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+        /* SERVICES */
+        .frosted-services { padding: 8rem 5vw; position: relative; z-index: 1; }
+        .frosted-services-header { text-align: center; margin-bottom: 4rem; }
+        .frosted-services-header .section-label { color: var(--mint); }
+        .frosted-services-header .section-title { font-weight: 300; }
+        .frosted-services-header .section-title span { font-weight: 800; }
+        .frosted-services-header p { color: rgba(74,85,104,0.55); font-size: 1.05rem; margin-top: 0.5rem; }
+        .frosted-services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .frosted-service-card {
+            background: rgba(255,255,255,0.3); backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,255,255,0.5); border-radius: 28px;
+            padding: 2.5rem 2rem; text-align: center; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; overflow: hidden;
+        }
+        .frosted-service-card::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--mint), var(--slate-blue));
+            transform: scaleX(0); transform-origin: left; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .frosted-service-card:hover::after { transform: scaleX(1); }
+        .frosted-service-card:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(31,38,135,0.1); }
+        .frosted-service-icon {
+            width: 70px; height: 70px;
+            background: linear-gradient(135deg, rgba(129,230,217,0.2), rgba(255,255,255,0.3));
+            border-radius: 24px; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 1.5rem; font-size: 1.8rem; border: 1px solid rgba(255,255,255,0.4);
+            transition: all 0.3s;
+        }
+        .frosted-service-card:hover .frosted-service-icon {
+            transform: scale(1.1); box-shadow: 0 10px 30px rgba(129,230,217,0.2);
+        }
+        .frosted-service-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.7rem; }
+        .frosted-service-card p { font-size: 0.9rem; color: rgba(74,85,104,0.6); line-height: 1.7; }
+        .frosted-service-img {
+            position: absolute; inset: 0; z-index: 0; border-radius: 28px; overflow: hidden;
+        }
+        .frosted-service-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .frosted-service-overlay {
+            position: absolute; inset: 0; z-index: 1; border-radius: 28px;
+            background: linear-gradient(to top, rgba(74,85,104,0.88) 0%, rgba(74,85,104,0.5) 50%, rgba(255,255,255,0.1) 100%);
+            transition: background 0.5s ease;
+        }
+        .frosted-service-card:hover .frosted-service-overlay {
+            background: linear-gradient(to top, rgba(31,38,135,0.85) 0%, rgba(31,38,135,0.5) 50%, rgba(129,230,217,0.15) 100%);
+        }
+        .frosted-service-icon { position: relative; z-index: 2; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); }
+        .frosted-service-card:hover .frosted-service-icon { background: rgba(129,230,217,0.3); }
+        .frosted-service-card h3 { position: relative; z-index: 2; color: #fff; }
+        .frosted-service-card p { position: relative; z-index: 2; color: rgba(255,255,255,0.75); }
+
+        /* TESTIMONIALS */
+        .frosted-testimonials { padding: 8rem 5vw; position: relative; z-index: 1; }
+        .frosted-testimonials-header { text-align: center; margin-bottom: 4rem; }
+        .frosted-testimonials-header .section-label { color: var(--mint); }
+        .frosted-testimonials-header .section-title { font-weight: 300; }
+        .frosted-testimonials-header .section-title span { font-weight: 800; }
+        .frosted-testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .frosted-testimonial-card {
+            background: rgba(255,255,255,0.3); backdrop-filter: blur(25px);
+            border: 1px solid rgba(255,255,255,0.5); border-radius: 28px;
+            padding: 2.5rem; transition: all 0.4s ease;
+        }
+        .frosted-testimonial-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(31,38,135,0.08); }
+        .frosted-testimonial-stars { color: var(--mint); font-size: 1rem; letter-spacing: 3px; margin-bottom: 1.2rem; }
+        .frosted-testimonial-text { font-size: 1rem; line-height: 1.8; margin-bottom: 1.5rem; color: rgba(74,85,104,0.75); font-style: italic; }
+        .frosted-testimonial-author { display: flex; align-items: center; gap: 1rem; }
+        .frosted-testimonial-avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, rgba(129,230,217,0.3), rgba(255,255,255,0.3));
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.8rem; color: var(--slate-blue); border: 1px solid rgba(255,255,255,0.4);
+        }
+        .frosted-testimonial-name { font-weight: 600; font-size: 0.9rem; }
+        .frosted-testimonial-role { font-size: 0.8rem; color: rgba(74,85,104,0.5); }
+
+        /* CONTACT */
+        .frosted-contact { padding: 8rem 5vw; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; position: relative; z-index: 1; }
+        .frosted-contact-glass {
+            background: rgba(255,255,255,0.3); backdrop-filter: blur(30px);
+            border: 1px solid rgba(255,255,255,0.5); border-radius: 32px; padding: 3.5rem;
+        }
+        .frosted-contact-glass .section-label { color: var(--mint); }
+        .frosted-contact-glass .section-title { font-weight: 300; margin-bottom: 2.5rem; }
+        .frosted-contact-glass .section-title span { font-weight: 800; }
+        .frosted-info-row {
+            display: flex; align-items: center; gap: 1.2rem;
+            padding: 1.2rem 0; border-bottom: 1px solid rgba(74,85,104,0.06);
+            transition: all 0.3s;
+        }
+        .frosted-info-row:hover { padding-left: 10px; }
+        .frosted-info-icon {
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, rgba(129,230,217,0.2), rgba(255,255,255,0.3));
+            border-radius: 16px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; border: 1px solid rgba(255,255,255,0.4); transition: all 0.3s;
+        }
+        .frosted-info-row:hover .frosted-info-icon { transform: scale(1.1); }
+        .frosted-info-text h4 { font-size: 0.75rem; color: rgba(74,85,104,0.45); margin-bottom: 0.3rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+        .frosted-info-text p { font-weight: 600; font-size: 0.95rem; }
+        .frosted-review-glass {
+            background: rgba(255,255,255,0.3); backdrop-filter: blur(30px);
+            border: 1px solid rgba(255,255,255,0.5); border-radius: 32px; padding: 3.5rem;
+        }
+        .frosted-review-glass h3 { font-size: 1.5rem; font-weight: 300; margin-bottom: 1.5rem; }
+        .frosted-review-glass h3 span { font-weight: 800; }
+        .frosted-review-item {
+            padding: 1.5rem; background: rgba(255,255,255,0.4); border-radius: 20px;
+            margin-bottom: 1rem; transition: all 0.3s; border: 1px solid rgba(255,255,255,0.3);
+        }
+        .frosted-review-item:hover { transform: scale(1.02); box-shadow: 0 15px 40px rgba(31,38,135,0.08); }
+        .frosted-review-stars { color: var(--mint); margin-bottom: 0.6rem; font-size: 1rem; letter-spacing: 2px; }
+        .frosted-review-text { font-size: 0.9rem; line-height: 1.7; color: rgba(74,85,104,0.7); margin-bottom: 0.5rem; }
+        .frosted-review-author { font-weight: 600; font-size: 0.85rem; color: var(--slate-blue); }
+        .frosted-map-glass {
+            grid-column: 1 / -1; height: 320px;
+            background: rgba(255,255,255,0.25); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.5); border-radius: 32px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--slate-blue); font-weight: 600; font-size: 1rem;
+            margin-top: 1rem; overflow: hidden; position: relative;
+        }
+        .frosted-map-glass img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.25; filter: blur(1px); }
+        .frosted-map-glass span { position: relative; z-index: 1; }
+
+        /* CTA BANNER */
+        .frosted-cta-banner {
+            background: linear-gradient(135deg, rgba(129,230,217,0.3), rgba(167,139,250,0.2));
+            backdrop-filter: blur(20px); border-top: 1px solid rgba(255,255,255,0.4); border-bottom: 1px solid rgba(255,255,255,0.4);
+            padding: 5rem 5vw; text-align: center; position: relative; z-index: 1; overflow: hidden;
+        }
+        .frosted-cta-banner::before {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 6s linear infinite;
+        }
+        .frosted-cta-banner > * { position: relative; z-index: 1; }
+        .frosted-cta-banner h2 {
+            font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 300; margin-bottom: 1rem;
+        }
+        .frosted-cta-banner h2 strong { font-weight: 800; }
+        .frosted-cta-banner p { font-size: 1.1rem; color: rgba(74,85,104,0.7); margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .frosted-cta-btn {
+            display: inline-block; padding: 1.1rem 2.5rem;
+            background: linear-gradient(135deg, var(--slate-blue), #2d3748);
+            color: white; text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            border-radius: 100px; transition: all 0.4s ease; letter-spacing: 0.5px; text-transform: uppercase;
+            box-shadow: 0 8px 30px rgba(74,85,104,0.3);
+        }
+        .frosted-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(74,85,104,0.4); }
+
+        /* FOOTER */
+        .frosted-footer {
+            background: linear-gradient(135deg, rgba(74,85,104,0.95), rgba(45,55,72,0.98));
+            backdrop-filter: blur(20px); color: white; padding: 5rem 5vw 2rem;
+            position: relative; z-index: 1;
+        }
+        .frosted-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .frosted-footer-brand h3 { font-size: 1.8rem; font-weight: 800; margin-bottom: 1.2rem; letter-spacing: -1px; }
+        .frosted-footer-brand p { font-size: 0.9rem; line-height: 1.8; color: rgba(255,255,255,0.5); max-width: 320px; }
+        .frosted-footer-col h4 { font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--mint); margin-bottom: 1.5rem; font-weight: 700; }
+        .frosted-footer-col a {
+            display: block; color: rgba(255,255,255,0.5); text-decoration: none;
+            font-size: 0.9rem; margin-bottom: 0.8rem; transition: all 0.3s;
+        }
+        .frosted-footer-col a:hover { color: var(--mint); padding-left: 5px; }
+        .frosted-footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            font-size: 0.8rem; color: rgba(255,255,255,0.35);
+        }
+        .frosted-footer-social { display: flex; gap: 0.8rem; }
+        .frosted-footer-social a {
+            width: 42px; height: 42px; border-radius: 50%;
+            background: rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: center;
+            color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.8rem; font-weight: 600;
+            transition: all 0.3s; border: 1px solid rgba(255,255,255,0.1);
+        }
+        .frosted-footer-social a:hover { background: var(--mint); color: var(--slate-blue); transform: translateY(-3px); }
+
+        @media (max-width: 1024px) {
+            .frosted-about-grid, .frosted-contact, .frosted-footer-grid { grid-template-columns: 1fr; }
+            .frosted-services-grid, .frosted-testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+            .frosted-nav-links { display: none; }
+            .frosted-hero { padding-top: 8rem; }
+            .frosted-hero-grid { grid-template-columns: 1fr; gap: 3rem; text-align: center; }
+            .frosted-hero-content { align-items: center; text-align: center; }
+            .frosted-hero-eyebrow { justify-content: center; }
+            .frosted-hero-btn-group { justify-content: center; }
+        }
+        @media (max-width: 768px) {
+            .frosted-services-grid, .frosted-testimonials-grid { grid-template-columns: 1fr; }
+            .frosted-about-stats { flex-direction: column; gap: 1rem; }
+            .frosted-footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .frosted-service-card { min-height: 260px; }
+        }
+    </style>
+
+    <!-- ═══════════════════════════════════════════
+         THEME 3: SOFT BRUTAL CSS
+         ═══════════════════════════════════════════ -->
+    <style>
+        .theme-soft {
+            background: var(--warm-sand); color: var(--deep-plum);
+            font-family: 'Playfair Display', serif; min-height: 100vh;
+            position: relative; overflow-x: hidden;
+        }
+
+        /* NAV */
+        .soft-nav {
+            position: fixed; top: var(--switcher-h, 50px); left: 0; right: 0; z-index: 1000;
+            padding: 1.2rem 5vw; display: flex; justify-content: space-between; align-items: center;
+            background: var(--warm-sand);
+            box-shadow: 0 4px 20px rgba(166,156,142,0.12);
+            transition: all 0.3s ease;
+        }
+        .soft-nav.scrolled { box-shadow: 0 8px 30px rgba(166,156,142,0.2); }
+        .soft-nav-logo { font-family: 'Playfair Display', serif; font-weight: 800; font-size: 1.7rem; letter-spacing: -1px; }
+        .soft-nav-links { display: flex; gap: 3rem; list-style: none; }
+        .soft-nav-links a {
+            text-decoration: none; color: var(--deep-plum); font-family: 'Inter', sans-serif;
+            font-weight: 500; font-size: 0.85rem; position: relative; padding: 0.5rem 0;
+            letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .soft-nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px;
+            background: var(--burnt-amber); transition: width 0.3s ease;
+        }
+        .soft-nav-links a:hover::after { width: 100%; }
+        .soft-nav-cta {
+            padding: 0.8rem 2rem; background: var(--warm-sand); color: var(--deep-plum);
+            text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.8rem;
+            border-radius: 18px; letter-spacing: 0.5px; text-transform: uppercase;
+            box-shadow: 6px 6px 12px rgba(166,156,142,0.3), -6px -6px 12px rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+        }
+        .soft-nav-cta:hover {
+            box-shadow: inset 3px 3px 6px rgba(166,156,142,0.2), inset -3px -3px 6px rgba(255,255,255,0.4);
+            transform: translateY(1px);
+        }
+
+        /* HERO */
+        .soft-hero {
+            min-height: 100vh; display: flex; align-items: center;
+            padding: 8rem 5vw 4rem; position: relative; overflow: hidden;
+        }
+        .soft-hero-bg-morph {
+            position: absolute; width: 800px; height: 800px;
+            background: linear-gradient(135deg, rgba(217,119,6,0.06), rgba(45,27,46,0.04));
+            border-radius: 50%; top: 50px; right: -300px;
+            animation: morph 25s ease-in-out infinite;
+            pointer-events: none;
+        }
+        .soft-hero-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 5rem; width: 100%; align-items: center; position: relative; z-index: 1; }
+        .soft-hero-text { position: relative; z-index: 2; }
+        .soft-hero-label {
+            font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 4px;
+            text-transform: uppercase; color: var(--burnt-amber); margin-bottom: 1.5rem;
+            display: flex; align-items: center; gap: 1rem;
+        }
+        .soft-hero-label::before {
+            content: ''; width: 40px; height: 2px; background: var(--burnt-amber);
+        }
+        .soft-hero-text h1 {
+            font-size: clamp(3rem, 6.5vw, 5.5rem); font-weight: 800;
+            line-height: 1; margin-bottom: 1.5rem; letter-spacing: -2px;
+        }
+        .soft-hero-text h1 em { font-style: italic; color: var(--burnt-amber); display: block; font-weight: 600; }
+        .soft-hero-text p {
+            font-family: 'Inter', sans-serif; font-size: 1.15rem;
+            line-height: 1.7; color: rgba(45,27,46,0.6);
+            max-width: 480px; margin-bottom: 2.5rem;
+        }
+        .soft-hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .soft-btn-primary {
+            display: inline-flex; align-items: center; gap: 0.8rem;
+            padding: 1.1rem 2.5rem; background: var(--warm-sand); color: var(--deep-plum);
+            text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem;
+            border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase;
+            box-shadow: 8px 8px 16px rgba(166,156,142,0.3), -8px -8px 16px rgba(255,255,255,0.5);
+            transition: all 0.4s ease;
+        }
+        .soft-btn-primary:hover {
+            box-shadow: inset 4px 4px 8px rgba(166,156,142,0.2), inset -4px -4px 8px rgba(255,255,255,0.4);
+            transform: translateY(2px);
+        }
+        .soft-btn-secondary {
+            display: inline-flex; align-items: center; gap: 0.8rem;
+            padding: 1.1rem 2.5rem; background: transparent; color: var(--deep-plum);
+            text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem;
+            border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase;
+            border: 2px solid rgba(45,27,46,0.2); transition: all 0.3s ease;
+        }
+        .soft-btn-secondary:hover { border-color: var(--burnt-amber); color: var(--burnt-amber); }
+
+        .soft-hero-visual { position: relative; }
+        .soft-hero-img-neu {
+            width: 100%; height: 550px; border-radius: 36px;
+            background: var(--warm-sand);
+            box-shadow: 24px 24px 48px rgba(166,156,142,0.3), -24px -24px 48px rgba(255,255,255,0.5), inset 3px 3px 6px rgba(255,255,255,0.3);
+            padding: 24px; overflow: hidden; position: relative;
+        }
+        .soft-hero-img-neu img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; filter: sepia(6%) saturate(92%); }
+        .soft-hero-badge {
+            position: absolute; bottom: 60px; left: -50px;
+            background: var(--warm-sand); padding: 1.8rem 2.2rem; border-radius: 28px;
+            box-shadow: 14px 14px 28px rgba(166,156,142,0.3), -14px -14px 28px rgba(255,255,255,0.5);
+            font-family: 'Inter', sans-serif; animation: float 7s ease-in-out infinite;
+        }
+        .soft-hero-badge .num { font-size: 3rem; font-weight: 800; color: var(--burnt-amber); line-height: 1; font-family: 'Playfair Display', serif; }
+        .soft-hero-badge .lab { font-size: 0.8rem; color: rgba(45,27,46,0.5); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+        /* MARQUEE */
+        .soft-marquee {
+            background: var(--deep-plum); color: var(--warm-sand);
+            padding: 1.2rem 0; overflow: hidden; white-space: nowrap;
+        }
+        .soft-marquee-track { display: inline-flex; animation: marquee 30s linear infinite; }
+        .soft-marquee-item {
+            font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; letter-spacing: 3px;
+            text-transform: uppercase; padding: 0 3rem; display: flex; align-items: center; gap: 1rem;
+        }
+        .soft-marquee-item::after {
+            content: ''; width: 6px; height: 6px; background: var(--burnt-amber); border-radius: 50%;
+        }
+
+        /* ABOUT */
+        .soft-about { padding: 8rem 5vw; position: relative; z-index: 1; }
+        .soft-about-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 5rem; align-items: center; }
+        .soft-about-img-wrap { position: relative; }
+        .soft-about-img-neu {
+            width: 100%; height: 480px; border-radius: 36px;
+            background: var(--warm-sand);
+            box-shadow: 18px 18px 36px rgba(166,156,142,0.3), -18px -18px 36px rgba(255,255,255,0.5);
+            padding: 20px; overflow: hidden;
+        }
+        .soft-about-img-neu img { width: 100%; height: 100%; object-fit: cover; border-radius: 24px; filter: sepia(4%); }
+        .soft-about-img-label {
+            position: absolute; bottom: -12px; right: 30px;
+            background: var(--burnt-amber); color: white;
+            padding: 0.8rem 1.5rem; font-family: 'Inter', sans-serif; font-weight: 700; font-size: 0.75rem;
+            letter-spacing: 2px; text-transform: uppercase;
+        }
+        .soft-about-content .section-label { color: var(--burnt-amber); font-family: 'Inter', sans-serif; }
+        .soft-about-content .section-title { font-family: 'Playfair Display', serif; }
+        .soft-about-content .section-title em { font-style: italic; color: var(--burnt-amber); }
+        .soft-about-content .section-desc { color: rgba(45,27,46,0.6); font-family: 'Inter', sans-serif; margin-bottom: 1.5rem; }
+        .soft-about-stats { display: flex; gap: 2rem; margin-top: 2.5rem; }
+        .soft-about-stat {
+            text-align: center; padding: 1.5rem 2rem; border-radius: 28px;
+            background: var(--warm-sand);
+            box-shadow: 8px 8px 16px rgba(166,156,142,0.25), -8px -8px 16px rgba(255,255,255,0.5);
+            transition: all 0.3s ease;
+        }
+        .soft-about-stat:hover { transform: translateY(-5px); }
+        .soft-about-stat .num { font-size: 2.2rem; font-weight: 800; color: var(--burnt-amber); font-family: 'Playfair Display', serif; }
+        .soft-about-stat .lab { font-family: 'Inter', sans-serif; font-size: 0.75rem; color: rgba(45,27,46,0.5); margin-top: 0.3rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+        /* SERVICES */
+        .soft-services { padding: 8rem 5vw; position: relative; z-index: 1; }
+        .soft-services-header { text-align: center; margin-bottom: 4rem; }
+        .soft-services-header .section-label { color: var(--burnt-amber); font-family: 'Inter', sans-serif; }
+        .soft-services-header .section-title { font-family: 'Playfair Display', serif; }
+        .soft-services-header .section-title em { font-style: italic; color: var(--burnt-amber); }
+        .soft-services-header p { font-family: 'Inter', sans-serif; color: rgba(45,27,46,0.5); margin-top: 0.8rem; font-size: 1.05rem; }
+        .soft-services-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; max-width: 1100px; margin: 0 auto; }
+        .soft-service-card-neu {
+            padding: 3rem; border-radius: 32px; background: var(--warm-sand);
+            box-shadow: 14px 14px 28px rgba(166,156,142,0.25), -14px -14px 28px rgba(255,255,255,0.5);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1); position: relative; overflow: hidden;
+        }
+        .soft-service-card-neu::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--burnt-amber), var(--deep-plum));
+            transform: scaleX(0); transform-origin: left; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .soft-service-card-neu:hover::before { transform: scaleX(1); }
+        .soft-service-card-neu:hover {
+            transform: translateY(-10px);
+            box-shadow: 22px 22px 44px rgba(166,156,142,0.3), -22px -22px 44px rgba(255,255,255,0.6);
+        }
+        .soft-service-card-neu .card-num {
+            font-size: 5rem; font-weight: 800; color: rgba(217,119,6,0.08);
+            position: absolute; top: 1rem; right: 1.5rem; line-height: 1; font-family: 'Playfair Display', serif;
+        }
+        .soft-service-card-neu h3 { font-size: 1.7rem; font-weight: 700; margin-bottom: 0.8rem; }
+        .soft-service-card-neu p { font-family: 'Inter', sans-serif; font-size: 0.95rem; line-height: 1.7; color: rgba(45,27,46,0.6); }
+        .soft-service-img {
+            position: absolute; inset: 0; z-index: 0; border-radius: 32px; overflow: hidden;
+        }
+        .soft-service-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .soft-service-overlay {
+            position: absolute; inset: 0; z-index: 1; border-radius: 32px;
+            background: linear-gradient(to top, rgba(45,27,46,0.88) 0%, rgba(45,27,46,0.5) 50%, rgba(217,119,6,0.1) 100%);
+            transition: background 0.5s ease;
+        }
+        .soft-service-card-neu:hover .soft-service-overlay {
+            background: linear-gradient(to top, rgba(217,119,6,0.85) 0%, rgba(217,119,6,0.45) 50%, rgba(45,27,46,0.15) 100%);
+        }
+        .soft-service-card-neu .card-num { position: relative; z-index: 2; color: rgba(255,255,255,0.15); }
+        .soft-service-card-neu h3 { position: relative; z-index: 2; color: #fff; font-size: 1.3rem; }
+        .soft-service-card-neu p { position: relative; z-index: 2; color: rgba(255,255,255,0.8); }
+
+        /* TESTIMONIALS */
+        .soft-testimonials { padding: 8rem 5vw; position: relative; z-index: 1; }
+        .soft-testimonials-header { text-align: center; margin-bottom: 4rem; }
+        .soft-testimonials-header .section-label { color: var(--burnt-amber); font-family: 'Inter', sans-serif; }
+        .soft-testimonials-header .section-title { font-family: 'Playfair Display', serif; }
+        .soft-testimonials-header .section-title em { font-style: italic; color: var(--burnt-amber); }
+        .soft-testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+        .soft-testimonial-card {
+            padding: 2.5rem; border-radius: 32px; background: var(--warm-sand);
+            box-shadow: 12px 12px 24px rgba(166,156,142,0.2), -12px -12px 24px rgba(255,255,255,0.5);
+            transition: all 0.4s ease; position: relative;
+        }
+        .soft-testimonial-card:hover { transform: scale(1.02) rotate(-0.5deg); }
+        .soft-testimonial-quote { font-size: 3.5rem; color: var(--burnt-amber); opacity: 0.15; line-height: 0.5; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; }
+        .soft-testimonial-stars { color: var(--burnt-amber); font-size: 1rem; letter-spacing: 3px; margin-bottom: 1rem; }
+        .soft-testimonial-text { font-size: 1.05rem; line-height: 1.8; color: rgba(45,27,46,0.7); margin-bottom: 1.5rem; font-style: italic; }
+        .soft-testimonial-author { display: flex; align-items: center; gap: 1rem; }
+        .soft-testimonial-avatar {
+            width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            background: var(--warm-sand); box-shadow: inset 3px 3px 6px rgba(166,156,142,0.2), inset -3px -3px 6px rgba(255,255,255,0.4);
+            color: var(--deep-plum); font-weight: 700; font-size: 0.8rem; font-family: 'Inter', sans-serif;
+        }
+        .soft-testimonial-name { font-weight: 700; font-size: 0.9rem; }
+        .soft-testimonial-role { font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(45,27,46,0.5); }
+
+        /* CONTACT */
+        .soft-contact { padding: 8rem 5vw; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; position: relative; z-index: 1; }
+        .soft-contact-info .section-label { color: var(--burnt-amber); font-family: 'Inter', sans-serif; }
+        .soft-contact-info .section-title { font-family: 'Playfair Display', serif; margin-bottom: 2.5rem; }
+        .soft-contact-info .section-title em { font-style: italic; color: var(--burnt-amber); }
+        .soft-contact-card-neu {
+            padding: 2rem; border-radius: 28px; background: var(--warm-sand);
+            box-shadow: 10px 10px 20px rgba(166,156,142,0.2), -10px -10px 20px rgba(255,255,255,0.5);
+            margin-bottom: 1.2rem; transition: all 0.3s ease;
+        }
+        .soft-contact-card-neu:hover {
+            box-shadow: inset 5px 5px 10px rgba(166,156,142,0.15), inset -5px -5px 10px rgba(255,255,255,0.4);
+        }
+        .soft-contact-card-neu h4 {
+            font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 3px;
+            text-transform: uppercase; color: var(--burnt-amber); margin-bottom: 0.6rem; font-weight: 700;
+        }
+        .soft-contact-card-neu p { font-family: 'Inter', sans-serif; font-size: 1.05rem; font-weight: 500; color: var(--deep-plum); line-height: 1.5; }
+        .soft-contact-hours { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; font-family: 'Inter', sans-serif; font-size: 0.9rem; color: rgba(45,27,46,0.65); }
+        .soft-contact-hours span:nth-child(odd) { font-weight: 600; }
+        .soft-map-neu {
+            grid-column: 1 / -1; height: 300px; border-radius: 32px;
+            background: var(--warm-sand);
+            box-shadow: inset 10px 10px 20px rgba(166,156,142,0.2), inset -10px -10px 20px rgba(255,255,255,0.5);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--deep-plum); font-family: 'Inter', sans-serif;
+            font-weight: 600; font-size: 1rem; margin-top: 1.5rem;
+            overflow: hidden; position: relative;
+        }
+        .soft-map-neu img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.12; filter: sepia(30%); }
+        .soft-map-neu span { position: relative; z-index: 1; }
+        .soft-reviews h3 { font-size: 1.6rem; font-weight: 700; margin-bottom: 1.5rem; }
+        .soft-review-card-neu {
+            padding: 2rem; border-radius: 28px; background: var(--warm-sand);
+            box-shadow: 12px 12px 24px rgba(166,156,142,0.2), -12px -12px 24px rgba(255,255,255,0.5);
+            margin-bottom: 1.2rem; transition: all 0.4s ease; position: relative;
+        }
+        .soft-review-card-neu:hover { transform: scale(1.02) rotate(-0.5deg); }
+        .soft-review-quote-mark { font-size: 3rem; color: var(--burnt-amber); opacity: 0.15; line-height: 0.5; margin-bottom: 0.5rem; font-family: 'Playfair Display', serif; }
+        .soft-review-stars { color: var(--burnt-amber); margin-bottom: 0.6rem; font-size: 1rem; letter-spacing: 2px; }
+        .soft-review-text { font-size: 1rem; line-height: 1.7; color: rgba(45,27,46,0.7); margin-bottom: 0.8rem; }
+        .soft-review-author { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem; color: var(--deep-plum); }
+
+        /* CTA BANNER */
+        .soft-cta-banner {
+            background: var(--deep-plum); color: var(--warm-sand);
+            padding: 5rem 5vw; text-align: center; position: relative; z-index: 1; overflow: hidden;
+        }
+        .soft-cta-banner::before {
+            content: ''; position: absolute; width: 600px; height: 600px;
+            background: linear-gradient(135deg, rgba(217,119,6,0.1), transparent);
+            border-radius: 50%; top: -200px; left: -200px; animation: morph 20s ease-in-out infinite;
+        }
+        .soft-cta-banner > * { position: relative; z-index: 1; }
+        .soft-cta-banner h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 700; margin-bottom: 1rem;
+        }
+        .soft-cta-banner h2 em { font-style: italic; color: var(--burnt-amber); }
+        .soft-cta-banner p { font-family: 'Inter', sans-serif; font-size: 1.1rem; opacity: 0.7; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .soft-cta-btn {
+            display: inline-block; padding: 1.1rem 2.5rem; background: var(--burnt-amber); color: white;
+            text-decoration: none; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.85rem;
+            border-radius: 20px; transition: all 0.4s ease; letter-spacing: 0.5px; text-transform: uppercase;
+            box-shadow: 0 8px 30px rgba(217,119,6,0.3);
+        }
+        .soft-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 15px 40px rgba(217,119,6,0.4); }
+
+        /* FOOTER */
+        .soft-footer {
+            background: var(--deep-plum); color: var(--warm-sand); padding: 5rem 5vw 2rem;
+            position: relative; z-index: 1;
+        }
+        .soft-footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; margin-bottom: 4rem; }
+        .soft-footer-brand h3 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 800; margin-bottom: 1.2rem; letter-spacing: -1px; }
+        .soft-footer-brand p { font-family: 'Inter', sans-serif; font-size: 0.9rem; line-height: 1.8; color: rgba(232,224,213,0.45); max-width: 320px; }
+        .soft-footer-col h4 { font-family: 'Inter', sans-serif; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--burnt-amber); margin-bottom: 1.5rem; font-weight: 700; }
+        .soft-footer-col a {
+            display: block; color: rgba(232,224,213,0.45); text-decoration: none;
+            font-family: 'Inter', sans-serif; font-size: 0.9rem; margin-bottom: 0.8rem; transition: all 0.3s;
+        }
+        .soft-footer-col a:hover { color: var(--burnt-amber); padding-left: 5px; }
+        .soft-footer-bottom {
+            border-top: 1px solid rgba(232,224,213,0.08); padding-top: 2rem;
+            display: flex; justify-content: space-between; align-items: center;
+            font-family: 'Inter', sans-serif; font-size: 0.8rem; color: rgba(232,224,213,0.35);
+        }
+        .soft-footer-social { display: flex; gap: 0.8rem; }
+        .soft-footer-social a {
+            width: 44px; height: 44px; border-radius: 50%;
+            background: var(--warm-sand); display: flex; align-items: center; justify-content: center;
+            color: var(--deep-plum); text-decoration: none; font-size: 0.8rem; font-weight: 700;
+            box-shadow: 4px 4px 8px rgba(0,0,0,0.2), -4px -4px 8px rgba(255,255,255,0.05);
+            transition: all 0.3s; font-family: 'Inter', sans-serif;
+        }
+        .soft-footer-social a:hover { transform: translateY(-3px); box-shadow: 6px 6px 12px rgba(0,0,0,0.3); }
+
+        @media (max-width: 1024px) {
+            .soft-hero-grid, .soft-about-grid, .soft-contact, .soft-footer-grid { grid-template-columns: 1fr; }
+            .soft-services-grid, .soft-testimonials-grid { grid-template-columns: 1fr; }
+            .soft-nav-links { display: none; }
+            .soft-hero { padding-top: 6rem; }
+        }
+        @media (max-width: 768px) {
+            .soft-about-stats { flex-direction: column; gap: 1rem; }
+            .soft-footer-bottom { flex-direction: column; gap: 1.5rem; text-align: center; }
+            .soft-hero-btns { flex-direction: column; }
+            .soft-service-card-neu { min-height: 260px; }
+        }
+    </style>
+
+    <!-- ═══════════════════════════════════════════
+         THEME 4: NORDIC CALM CSS (Scandinavian Biophilic)
+         ═══════════════════════════════════════════ -->
+    <style>
+        .theme-nordic {
+            background: #F8F6F0; color: #2C2C2C;
+            font-family: 'Inter', sans-serif; min-height: 100vh;
+        }
+
+        /* NAV */
+        .nordic-nav {
+            position: fixed; top: var(--switcher-h, 50px); left: 0; right: 0; z-index: 1000;
+            padding: 0.8rem 5vw; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(8,48,40,0.92); backdrop-filter: blur(20px);
+            transition: all 0.3s ease; border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+        .nordic-nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
+        .nordic-nav-logo { font-family: 'Playfair Display', serif; font-weight: 700; font-size: 1.6rem; color: #6ECEB2; }
+        .nordic-nav-links { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nordic-nav-links a {
+            text-decoration: none; color: rgba(255,255,255,0.7); font-weight: 500; font-size: 0.85rem;
+            letter-spacing: 0.3px; position: relative; padding: 0.3rem 0;
+        }
+        .nordic-nav-links a::after {
+            content: ''; position: absolute; bottom: 0; left: 50%; width: 0; height: 2px;
+            background: #6ECEB2; transition: all 0.3s ease; transform: translateX(-50%);
+        }
+        .nordic-nav-links a:hover { color: #fff; }
+        .nordic-nav-links a:hover::after { width: 100%; }
+        .nordic-nav-cta {
+            padding: 0.7rem 1.8rem; background: #6ECEB2; color: #083028;
+            text-decoration: none; font-weight: 700; font-size: 0.8rem; letter-spacing: 0.5px;
+            border-radius: 100px; transition: all 0.3s ease;
+        }
+        .nordic-nav-cta:hover { background: #a8e6cf; transform: translateY(-2px); box-shadow: 0 6px 25px rgba(110,206,178,0.35); }
+        .nordic-nav-toggle { color: rgba(255,255,255,0.8); background: none; border: none; font-size: 1.5rem; cursor: pointer; padding: 0.25rem 0.5rem; line-height: 1; }
+
+        /* ═══ EMERALD SEA — ORGANIC WAVE DECORATIONS ═══ */
+        .nordic-wave-deco {
+            position: absolute; pointer-events: none; z-index: 0;
+        }
+        .nordic-wave-deco svg { display: block; }
+        .nordic-wave-deco-1 { top: 0; left: -5%; width: 55%; opacity: 0.07; }
+        .nordic-wave-deco-2 { bottom: 5%; right: -8%; width: 45%; opacity: 0.05; transform: rotate(15deg); }
+        .nordic-wave-deco-3 { top: 20%; right: -3%; width: 30%; opacity: 0.06; transform: rotate(-10deg); }
+        .nordic-wave-deco-4 { bottom: -5%; left: 10%; width: 50%; opacity: 0.04; transform: rotate(8deg); }
+        .nordic-blob-deco {
+            position: absolute; pointer-events: none; z-index: 0;
+            border-radius: 50%; filter: blur(60px);
+        }
+
+        /* ═══ WAVY SECTION DIVIDERS ═══ */
+        .nordic-wave {
+            width: 100%; overflow: hidden; line-height: 0; margin-top: -1px; position: relative; z-index: 2;
+        }
+        .nordic-wave svg { display: block; width: 100%; height: 50px; }
+        .nordic-wave-flip { margin-top: 0; margin-bottom: -1px; transform: rotate(180deg); }
+
+        /* ═══ HERO ═══ */
+        .nordic-hero {
+            min-height: 100vh; display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            padding: 6rem 5vw 2rem; position: relative; overflow: hidden;
+            background: linear-gradient(170deg, #083028 0%, #0a3d32 35%, #0d4a3c 60%, #083028 100%);
+            text-align: center; color: #fff;
+        }
+        .nordic-hero::before {
+            content: ''; position: absolute; top: -30%; right: -15%; width: 70%; height: 80%;
+            background: radial-gradient(ellipse, rgba(110,206,178,0.12) 0%, transparent 65%);
+            pointer-events: none;
+        }
+        .nordic-hero::after {
+            content: ''; position: absolute; bottom: -20%; left: -10%; width: 50%; height: 60%;
+            background: radial-gradient(ellipse, rgba(56,161,128,0.1) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .nordic-hero-bg-blob {
+            position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
+            width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(110,206,178,0.1) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none;
+        }
+        .nordic-hero-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
+        .nordic-hero-label {
+            font-size: 0.7rem; font-weight: 700; letter-spacing: 5px;
+            text-transform: uppercase; color: #6ECEB2; margin-bottom: 1.5rem;
+            display: inline-flex; align-items: center; gap: 1rem;
+        }
+        .nordic-hero-label::before, .nordic-hero-label::after {
+            content: ''; width: 40px; height: 1px; background: rgba(110,206,178,0.5);
+        }
+        .nordic-hero-text h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 6.5vw, 5rem); font-weight: 700; line-height: 1.08;
+            letter-spacing: -2px; margin-bottom: 1.2rem; color: #fff;
+        }
+        .nordic-hero-text h1 em { font-style: italic; color: #6ECEB2; }
+        .nordic-hero-text p {
+            font-size: 1.05rem; max-width: 500px; line-height: 1.7;
+            margin: 0 auto 2rem; color: rgba(255,255,255,0.6);
+        }
+        .nordic-hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+        .nordic-btn-primary {
+            padding: 0.9rem 2.2rem; background: #6ECEB2; color: #083028;
+            text-decoration: none; font-weight: 700; font-size: 0.85rem;
+            border-radius: 100px; transition: all 0.3s ease;
+        }
+        .nordic-btn-primary:hover { background: #a8e6cf; transform: translateY(-3px); box-shadow: 0 10px 30px rgba(110,206,178,0.3); }
+        .nordic-btn-secondary {
+            padding: 0.9rem 2.2rem; background: transparent; color: #6ECEB2;
+            text-decoration: none; font-weight: 600; font-size: 0.85rem;
+            border: 1.5px solid rgba(110,206,178,0.4); border-radius: 100px; transition: all 0.3s ease;
+        }
+        .nordic-btn-secondary:hover { background: rgba(110,206,178,0.1); border-color: #6ECEB2; transform: translateY(-3px); }
+        .nordic-hero-img-row {
+            display: flex; gap: 1.2rem; margin-top: 2.5rem; position: relative; z-index: 1;
+            align-items: flex-end; justify-content: center;
+        }
+        .nordic-hero-img-sm {
+            border-radius: 16px; overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.3); border: 1px solid rgba(110,206,178,0.15);
+        }
+        .nordic-hero-img-sm img { width: 200px; height: 150px; object-fit: cover; display: block; }
+        .nordic-hero-img-lg {
+            border-radius: 20px; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.35); border: 1px solid rgba(110,206,178,0.1);
+        }
+        .nordic-hero-img-lg img { width: 320px; height: 220px; object-fit: cover; display: block; }
+        .nordic-hero-badge {
+            position: absolute; bottom: -16px; right: -16px;
+            background: rgba(8,48,40,0.9); backdrop-filter: blur(10px);
+            border: 1px solid rgba(110,206,178,0.3); border-radius: 12px;
+            padding: 0.8rem 1.2rem; color: #fff; text-align: center;
+        }
+        .nordic-hero-badge .num { font-size: 1.6rem; font-weight: 800; line-height: 1; color: #6ECEB2; }
+        .nordic-hero-badge .lab { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 1px; opacity: 0.7; margin-top: 2px; }
+
+        /* ═══ TRUST BAR ═══ */
+        .nordic-trust {
+            display: flex; justify-content: center; gap: 3rem;
+            padding: 1.8rem 5vw; background: #0a3d32; flex-wrap: wrap;
+            border-bottom: 1px solid rgba(110,206,178,0.1);
+        }
+        .nordic-trust-item { text-align: center; min-width: 100px; }
+        .nordic-trust-num { font-size: 1.6rem; font-weight: 800; color: #6ECEB2; line-height: 1.2; }
+        .nordic-trust-label { font-size: 0.65rem; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1.5px; font-weight: 600; margin-top: 2px; }
+
+        /* ═══ ABOUT ═══ */
+        .nordic-about {
+            padding: 5rem 5vw; text-align: center; background: #f0f7f4;
+            position: relative; overflow: hidden;
+        }
+        .nordic-about-img-wrap {
+            width: 260px; height: 260px; margin: 0 auto 2.5rem;
+            border-radius: 50%; overflow: hidden;
+            box-shadow: 0 20px 60px rgba(8,48,40,0.15);
+            border: 5px solid #fff; position: relative; z-index: 1;
+        }
+        .nordic-about-img-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .nordic-about-content { max-width: 600px; margin: 0 auto; position: relative; z-index: 1; }
+        .nordic-about-content .section-label { color: #2d7a5e; }
+        .nordic-about-content .section-title em { color: #2d7a5e; }
+        .nordic-about-content .section-desc { color: #4a6b60; }
+        .nordic-about-stats {
+            display: flex; justify-content: center; gap: 3.5rem; margin-top: 2.5rem;
+            padding-top: 2rem; border-top: 1px solid rgba(45,122,94,0.15);
+        }
+        .nordic-about-stat { text-align: center; }
+        .nordic-about-stat .num { font-size: 2rem; font-weight: 800; color: #083028; line-height: 1.2; }
+        .nordic-about-stat .lab { font-size: 0.7rem; color: #2d7a5e; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* ═══ SERVICES — IMAGE CARDS ═══ */
+        .nordic-services {
+            padding: 5rem 5vw; background: #fff; position: relative; overflow: hidden;
+        }
+        .nordic-services-header { text-align: center; margin-bottom: 3rem; position: relative; z-index: 1; }
+        .nordic-services-header .section-label { color: #2d7a5e; }
+        .nordic-services-header .section-title em { color: #2d7a5e; }
+        .nordic-services-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem;
+            max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;
+        }
+        .nordic-service-card {
+            position: relative; border-radius: 16px; overflow: hidden;
+            transition: all 0.4s ease; border: 1px solid rgba(45,122,94,0.08);
+            min-height: 280px; display: flex; flex-direction: column; justify-content: flex-end;
+        }
+        .nordic-service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 50px rgba(8,48,40,0.12);
+            border-color: rgba(45,122,94,0.2);
+        }
+        .nordic-service-img {
+            position: absolute; inset: 0; z-index: 0;
+        }
+        .nordic-service-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+        .nordic-service-card:hover .nordic-service-img img { transform: scale(1.06); }
+        .nordic-service-overlay {
+            position: absolute; inset: 0; z-index: 1;
+            background: linear-gradient(to top, rgba(8,48,40,0.9) 0%, rgba(8,48,40,0.4) 50%, rgba(8,48,40,0.1) 100%);
+            transition: background 0.5s ease;
+        }
+        .nordic-service-card:hover .nordic-service-overlay {
+            background: linear-gradient(to top, rgba(110,206,178,0.85) 0%, rgba(110,206,178,0.4) 50%, rgba(8,48,40,0.1) 100%);
+        }
+        .nordic-service-body { position: relative; z-index: 2; padding: 1.4rem 1.5rem 1.5rem; }
+        .nordic-service-icon {
+            width: 40px; height: 40px; border-radius: 10px;
+            background: rgba(255,255,255,0.15); backdrop-filter: blur(8px);
+            color: #fff; display: flex; align-items: center;
+            justify-content: center; font-size: 0.9rem; font-weight: 700;
+            margin-bottom: 0.8rem; transition: all 0.4s ease;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .nordic-service-card:hover .nordic-service-icon { background: rgba(255,255,255,0.25); transform: scale(1.08); }
+        .nordic-service-card h3 {
+            font-family: 'Playfair Display', serif; font-size: 1.05rem;
+            margin-bottom: 0.4rem; color: #fff;
+        }
+        .nordic-service-card p { font-size: 0.85rem; color: rgba(255,255,255,0.75); line-height: 1.6; }
+
+        /* ═══ TESTIMONIALS ═══ */
+        .nordic-testimonials {
+            padding: 5rem 5vw; background: #f0f7f4; position: relative; overflow: hidden;
+        }
+        .nordic-testimonials-header { text-align: center; margin-bottom: 3rem; position: relative; z-index: 1; }
+        .nordic-testimonials-header .section-label { color: #2d7a5e; }
+        .nordic-testimonials-header .section-title em { color: #2d7a5e; }
+        .nordic-testimonials-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+            max-width: 1100px; margin: 0 auto; position: relative; z-index: 1;
+        }
+        .nordic-testimonial-card {
+            background: #fff; border-radius: 16px; padding: 2rem 1.8rem 1.8rem;
+            box-shadow: 0 4px 20px rgba(8,48,40,0.04);
+            transition: all 0.4s ease; position: relative; overflow: hidden;
+            border: 1px solid rgba(45,122,94,0.06);
+        }
+        .nordic-testimonial-card::before {
+            content: '\201C'; position: absolute; top: -8px; right: 16px;
+            font-size: 5rem; font-family: 'Playfair Display', serif; color: #6ECEB2;
+            opacity: 0.15; line-height: 1; pointer-events: none;
+        }
+        .nordic-testimonial-card:hover {
+            transform: translateY(-4px); box-shadow: 0 12px 40px rgba(8,48,40,0.08);
+        }
+        .nordic-testimonial-stars { color: #d4a853; margin-bottom: 0.8rem; font-size: 0.8rem; letter-spacing: 3px; }
+        .nordic-testimonial-text {
+            font-size: 0.95rem; line-height: 1.7; color: #3a5c50;
+            margin-bottom: 1.2rem; font-style: italic; position: relative; z-index: 1;
+        }
+        .nordic-testimonial-author {
+            display: flex; align-items: center; gap: 0.7rem;
+            padding-top: 1rem; border-top: 1px solid rgba(45,122,94,0.1);
+        }
+        .nordic-testimonial-avatar {
+            width: 36px; height: 36px; border-radius: 50%; background: #2d7a5e;
+            color: #fff; display: flex; align-items: center; justify-content: center;
+            font-size: 0.75rem; font-weight: 700;
+        }
+        .nordic-testimonial-name { font-weight: 600; font-size: 0.85rem; color: #083028; }
+        .nordic-testimonial-role { font-size: 0.7rem; color: #6ECEB2; }
+
+        /* ═══ CONTACT ═══ */
+        .nordic-contact {
+            padding: 5rem 5vw; background: #fff; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .nordic-contact .section-label { color: #2d7a5e; }
+        .nordic-contact .section-title em { color: #2d7a5e; }
+        .nordic-contact-subtitle { color: #4a6b60; font-size: 1rem; margin-bottom: 2.5rem; max-width: 480px; margin-left: auto; margin-right: auto; }
+        .nordic-contact-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.2rem;
+            max-width: 650px; margin: 0 auto 2.5rem;
+        }
+        .nordic-contact-card {
+            background: #f0f7f4; border-radius: 14px; padding: 1.3rem;
+            border: 1px solid rgba(45,122,94,0.08); text-align: left;
+            transition: all 0.3s ease;
+        }
+        .nordic-contact-card:hover {
+            border-color: rgba(45,122,94,0.25); box-shadow: 0 8px 25px rgba(8,48,40,0.06);
+        }
+        .nordic-contact-card h4 { color: #2d7a5e; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; }
+        .nordic-contact-card p { font-size: 0.9rem; color: #3a5c50; line-height: 1.6; }
+        .nordic-contact-hours { display: grid; grid-template-columns: auto 1fr; gap: 0.15rem 1rem; font-size: 0.85rem; color: #3a5c50; }
+        .nordic-contact-hours span:last-child { text-align: right; font-weight: 500; }
+        .nordic-map {
+            border-radius: 14px; overflow: hidden; box-shadow: 0 6px 25px rgba(8,48,40,0.06);
+            max-width: 650px; margin: 0 auto;
+        }
+        .nordic-map img { width: 100%; display: block; height: 180px; object-fit: cover; }
+        .nordic-map span { display: block; padding: 0.7rem 1rem; background: #f0f7f4; font-size: 0.8rem; color: #4a6b60; }
+        .nordic-reviews { margin-top: 3rem; max-width: 650px; margin-left: auto; margin-right: auto; }
+        .nordic-reviews h3 { margin-bottom: 1.2rem; text-align: left; color: #083028; font-size: 1.1rem; }
+        .nordic-review-card {
+            display: flex; gap: 1rem; align-items: flex-start;
+            background: #f0f7f4; border-radius: 14px; padding: 1.1rem;
+            border: 1px solid rgba(45,122,94,0.08); margin-bottom: 0.8rem;
+            transition: all 0.3s ease; text-align: left;
+        }
+        .nordic-review-card:hover { border-color: rgba(45,122,94,0.25); transform: translateX(3px); }
+        .nordic-review-stars { color: #d4a853; margin-bottom: 0.2rem; font-size: 0.65rem; letter-spacing: 2px; }
+        .nordic-review-text { font-size: 0.85rem; line-height: 1.5; color: #4a6b60; margin-bottom: 0.4rem; }
+        .nordic-review-author { display: flex; align-items: center; gap: 0.4rem; font-weight: 600; font-size: 0.75rem; color: #083028; }
+        .nordic-review-avatar {
+            width: 26px; height: 26px; border-radius: 50%; background: #2d7a5e;
+            color: #fff; display: inline-flex; align-items: center; justify-content: center;
+            font-size: 0.6rem; font-weight: 700; min-width: 26px;
+        }
+
+        /* ═══ CTA BANNER ═══ */
+        .nordic-cta-banner {
+            padding: 4.5rem 5vw; text-align: center; position: relative; overflow: hidden;
+            background: linear-gradient(135deg, #083028 0%, #0d4a3c 50%, #0a3d32 100%);
+            color: #fff;
+        }
+        .nordic-cta-banner::before {
+            content: ''; position: absolute; top: -50%; left: -25%; width: 150%; height: 200%;
+            background: radial-gradient(ellipse, rgba(110,206,178,0.15) 0%, transparent 55%);
+            pointer-events: none;
+        }
+        .nordic-cta-banner::after {
+            content: ''; position: absolute; bottom: -40%; right: -20%; width: 60%; height: 120%;
+            background: radial-gradient(ellipse, rgba(56,161,128,0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .nordic-cta-banner h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 2.8rem); margin-bottom: 0.8rem;
+            position: relative; z-index: 1;
+        }
+        .nordic-cta-banner h2 em { font-style: italic; color: #6ECEB2; }
+        .nordic-cta-banner p {
+            font-size: 1rem; opacity: 0.7; margin-bottom: 2rem;
+            max-width: 450px; margin-left: auto; margin-right: auto;
+            position: relative; z-index: 1;
+        }
+        .nordic-cta-btn {
+            display: inline-block; padding: 1rem 2.5rem; background: #6ECEB2; color: #083028;
+            text-decoration: none; font-weight: 700; font-size: 0.85rem;
+            border-radius: 100px; transition: all 0.3s ease; position: relative; z-index: 1;
+        }
+        .nordic-cta-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 35px rgba(110,206,178,0.3); background: #a8e6cf; }
+
+        /* ═══ FOOTER ═══ */
+        .nordic-footer { background: #061f1a; color: rgba(255,255,255,0.6); padding: 3rem 5vw 1.5rem; }
+        .nordic-footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2.5rem; margin-bottom: 1.5rem; }
+        .nordic-footer-brand h3 { font-family: 'Playfair Display', serif; color: #6ECEB2; font-size: 1.3rem; margin-bottom: 0.6rem; }
+        .nordic-footer-brand p { font-size: 0.8rem; line-height: 1.6; opacity: 0.4; max-width: 260px; }
+        .nordic-footer-col h4 { color: rgba(255,255,255,0.8); font-size: 0.75rem; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 1.5px; }
+        .nordic-footer-col a {
+            display: block; color: rgba(255,255,255,0.3); text-decoration: none;
+            font-size: 0.8rem; margin-bottom: 0.5rem; transition: all 0.2s;
+        }
+        .nordic-footer-col a:hover { color: #6ECEB2; padding-left: 4px; }
+        .nordic-footer-bottom {
+            display: flex; justify-content: space-between; align-items: center;
+            padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.7rem; color: rgba(255,255,255,0.25);
+        }
+        .nordic-footer-social { display: flex; gap: 1rem; }
+        .nordic-footer-social a {
+            color: rgba(255,255,255,0.25); text-decoration: none; font-size: 0.7rem;
+            font-weight: 600; letter-spacing: 1px; transition: color 0.2s;
+        }
+        .nordic-footer-social a:hover { color: #6ECEB2; }
+
+        /* ═══ RESPONSIVE ═══ */
+        @media (max-width: 1024px) {
+            .nordic-services-grid { grid-template-columns: repeat(2, 1fr); }
+            .nordic-contact-grid { grid-template-columns: 1fr; }
+            .nordic-footer-grid { grid-template-columns: 1fr 1fr; }
+            .nordic-hero-img-row { flex-wrap: wrap; justify-content: center; }
+            .nordic-nav-links { display: none; }
+        }
+        @media (max-width: 768px) {
+            .nordic-trust { gap: 1.5rem; }
+            .nordic-services-grid { grid-template-columns: 1fr; max-width: 400px; }
+            .nordic-testimonials-grid { grid-template-columns: 1fr; max-width: 400px; margin: 0 auto; }
+            .nordic-about-stats { flex-direction: column; gap: 1.2rem; align-items: center; }
+            .nordic-footer-bottom { flex-direction: column; gap: 0.8rem; text-align: center; }
+            .nordic-hero-btns { flex-direction: column; align-items: center; }
+            .nordic-hero-img-row { flex-direction: column; align-items: center; }
+            .nordic-hero-img-sm img, .nordic-hero-img-lg img { width: 100%; height: auto; }
+            .nordic-footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     THEME SWITCHER BAR
+     ═══════════════════════════════════════════ -->
+<div class="theme-switcher">
+    <span class="theme-switcher-label">Select Theme</span>
+    <button class="theme-btn active" data-theme="brutal" onclick="switchTheme('brutal')">Brutal Minimal</button>
+    <button class="theme-btn" data-theme="frosted" onclick="switchTheme('frosted')">Frosted Luxe</button>
+    <button class="theme-btn" data-theme="soft" onclick="switchTheme('soft')">Soft Brutal</button>
+    <button class="theme-btn" data-theme="nordic" onclick="switchTheme('nordic')">Nordic Calm</button>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     WEBSITE 1: BRUTAL MINIMAL
+     ═══════════════════════════════════════════ -->
+<div class="theme-container active" id="theme-brutal">
+    <section class="theme-brutal">
+        <nav class="brutal-nav" id="nav-brutal">
+            <div class="brutal-nav-logo">DENTAL.CO</div>
+            <button class="brutal-nav-toggle" aria-label="Menu">☰</button>
+            <ul class="brutal-nav-links">
+                <li><a href="#b-about">About</a></li>
+                <li><a href="#b-services">Services</a></li>
+                <li><a href="#b-testimonials">Reviews</a></li>
+                <li><a href="#b-contact">Contact</a></li>
+            </ul>
+            <a href="tel:5551234567" class="brutal-nav-cta"><span>Call Now</span></a>
+        </nav>
+
+        <!-- HERO -->
+        <div class="brutal-hero">
+            <div class="brutal-hero-grid">
+                <div class="brutal-hero-text reveal">
+                    <div class="brutal-hero-label">Premium Dental Care</div>
+                    <h1>Smile<br><span class="accent">Confidently.</span></h1>
+                    <p>Modern techniques, compassionate team, lasting results. We transform dental anxiety into comfort and your smile into art.</p>
+                    <div class="brutal-hero-btns">
+                        <a href="#b-contact" class="brutal-btn-primary"><span>Book Appointment</span></a>
+                        <a href="#b-services" class="brutal-btn-secondary">Our Services</a>
+                    </div>
+                </div>
+                <div class="brutal-hero-visual reveal-scale">
+                    <div class="brutal-hero-img-frame">
+                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80" srcset="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=400&q=80 400w, https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80 800w, https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="Modern dental clinic interior">
+                    </div>
+                    <div class="brutal-hero-accent-bar"></div>
+                    <div class="brutal-hero-badge"><span class="star">*</span> 4.9 Google Rating</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARQUEE -->
+        <div class="brutal-marquee">
+            <div class="brutal-marquee-track">
+                <span class="brutal-marquee-item">General Dentistry</span>
+                <span class="brutal-marquee-item">Cosmetic Dentistry</span>
+                <span class="brutal-marquee-item">Orthodontics</span>
+                <span class="brutal-marquee-item">Dental Implants</span>
+                <span class="brutal-marquee-item">Emergency Care</span>
+                <span class="brutal-marquee-item">Pediatric Dentistry</span>
+                <span class="brutal-marquee-item">General Dentistry</span>
+                <span class="brutal-marquee-item">Cosmetic Dentistry</span>
+                <span class="brutal-marquee-item">Orthodontics</span>
+                <span class="brutal-marquee-item">Dental Implants</span>
+                <span class="brutal-marquee-item">Emergency Care</span>
+                <span class="brutal-marquee-item">Pediatric Dentistry</span>
+            </div>
+        </div>
+
+        <!-- ABOUT -->
+        <div class="brutal-about" id="b-about">
+            <div class="brutal-about-grid">
+                <div class="brutal-about-visual reveal-left">
+                    <div class="brutal-about-img">
+                        <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&q=80" srcset="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=400&q=80 400w, https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&q=80 800w, https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="Dental team with patient" loading="lazy">
+                    </div>
+                    <div class="brutal-about-img-label">Since 2010</div>
+                </div>
+                <div class="brutal-about-content reveal-right">
+                    <div class="section-label">About Us</div>
+                    <h2 class="section-title">We believe every smile tells a story worth perfecting.</h2>
+                    <p class="section-desc">Since 2010, we've been transforming dental experiences across the community. Our clinic combines cutting-edge technology with a warm, patient-centered approach. From routine cleanings to complex cosmetic procedures, we deliver excellence without compromise.</p>
+                    <p class="section-desc">Our team of board-certified dentists brings together decades of experience in cosmetic, restorative, and preventive dentistry — all focused on one goal: your perfect smile.</p>
+                    <div class="brutal-about-stats">
+                        <div class="brutal-about-stat reveal"><div class="num">14+</div><div class="lab">Years Experience</div></div>
+                        <div class="brutal-about-stat reveal"><div class="num">5K+</div><div class="lab">Happy Patients</div></div>
+                        <div class="brutal-about-stat reveal"><div class="num">4.9</div><div class="lab">Google Rating</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVICES -->
+        <div class="brutal-services" id="b-services">
+            <div class="brutal-services-header">
+                <div class="section-label reveal">What We Do</div>
+                <h2 class="section-title reveal">Our Services</h2>
+            </div>
+            <div class="brutal-services-grid">
+                <div class="brutal-service-card reveal">
+                    <div class="brutal-service-img"><img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80" alt="General dentistry" loading="lazy"></div>
+                    <div class="brutal-service-overlay"></div>
+                    <span class="card-num">01</span>
+                    <h3>General Dentistry</h3>
+                    <p>Comprehensive exams, cleanings, fillings, and preventive care to keep your smile healthy year-round.</p>
+                </div>
+                <div class="brutal-service-card reveal">
+                    <div class="brutal-service-img"><img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&q=80" alt="Cosmetic dentistry" loading="lazy"></div>
+                    <div class="brutal-service-overlay"></div>
+                    <span class="card-num">02</span>
+                    <h3>Cosmetic Dentistry</h3>
+                    <p>Teeth whitening, veneers, and smile makeovers designed to give you the confidence you deserve.</p>
+                </div>
+                <div class="brutal-service-card reveal">
+                    <div class="brutal-service-img"><img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=600&q=80" alt="Orthodontics" loading="lazy"></div>
+                    <div class="brutal-service-overlay"></div>
+                    <span class="card-num">03</span>
+                    <h3>Orthodontics</h3>
+                    <p>Traditional braces and clear aligners to straighten teeth and correct bite issues for all ages.</p>
+                </div>
+                <div class="brutal-service-card reveal">
+                    <div class="brutal-service-img"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Dental implants" loading="lazy"></div>
+                    <div class="brutal-service-overlay"></div>
+                    <span class="card-num">04</span>
+                    <h3>Dental Implants</h3>
+                    <p>Permanent tooth replacement solutions that look, feel, and function like natural teeth.</p>
+                </div>
+                <div class="brutal-service-card reveal">
+                    <div class="brutal-service-img"><img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=600&q=80" alt="Emergency care" loading="lazy"></div>
+                    <div class="brutal-service-overlay"></div>
+                    <span class="card-num">05</span>
+                    <h3>Emergency Care</h3>
+                    <p>Same-day appointments for toothaches, broken teeth, and urgent dental needs.</p>
+                </div>
+                <div class="brutal-service-card reveal">
+                    <div class="brutal-service-img"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80" alt="Pediatric dentistry" loading="lazy"></div>
+                    <div class="brutal-service-overlay"></div>
+                    <span class="card-num">06</span>
+                    <h3>Pediatric Dentistry</h3>
+                    <p>Gentle, friendly dental care tailored specifically for children and teens.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TESTIMONIALS -->
+        <div class="brutal-testimonials" id="b-testimonials">
+            <div class="brutal-testimonials-header">
+                <div class="section-label reveal">Testimonials</div>
+                <h2 class="section-title reveal">What Patients Say</h2>
+            </div>
+            <div class="brutal-testimonials-grid">
+                <div class="brutal-testimonial-card reveal">
+                    <div class="brutal-testimonial-stars">★★★★★</div>
+                    <p class="brutal-testimonial-text">"Best dental experience I've ever had. The team was incredibly professional and made me feel completely at ease from the moment I walked in."</p>
+                    <div class="brutal-testimonial-author">
+                        <div class="brutal-testimonial-avatar">SM</div>
+                        <div>
+                            <div class="brutal-testimonial-name">Sarah Mitchell</div>
+                            <div class="brutal-testimonial-role">Cosmetic Patient</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="brutal-testimonial-card reveal">
+                    <div class="brutal-testimonial-stars">★★★★★</div>
+                    <p class="brutal-testimonial-text">"My smile transformation was beyond expectations. The cosmetic dentistry work is flawless — I get compliments every single day!"</p>
+                    <div class="brutal-testimonial-author">
+                        <div class="brutal-testimonial-avatar">JK</div>
+                        <div>
+                            <div class="brutal-testimonial-name">James Kennedy</div>
+                            <div class="brutal-testimonial-role">Veneer Patient</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="brutal-testimonial-card reveal">
+                    <div class="brutal-testimonial-stars">★★★★★</div>
+                    <p class="brutal-testimonial-text">"They handled my emergency with such care and urgency. Truly a lifesaver when I chipped my tooth on a weekend evening."</p>
+                    <div class="brutal-testimonial-author">
+                        <div class="brutal-testimonial-avatar">ER</div>
+                        <div>
+                            <div class="brutal-testimonial-name">Emily Rodriguez</div>
+                            <div class="brutal-testimonial-role">Emergency Patient</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="brutal-contact" id="b-contact">
+            <div class="brutal-contact-info reveal-left">
+                <div class="section-label">Get In Touch</div>
+                <h2 class="section-title">Contact Us</h2>
+                <div class="brutal-contact-block">
+                    <h4>Address</h4>
+                    <p>123 Dental Avenue, Suite 400<br>Medical District, New York, NY 10001</p>
+                </div>
+                <div class="brutal-contact-block">
+                    <h4>Phone</h4>
+                    <p><svg class="icon" viewBox="0 0 24 24" style="width:1em;height:1em;vertical-align:-0.125em;margin-right:0.4em"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>(555) 123-4567</p>
+                </div>
+                <div class="brutal-contact-block">
+                    <h4>Email</h4>
+                    <p><svg class="icon" viewBox="0 0 24 24" style="width:1em;height:1em;vertical-align:-0.125em;margin-right:0.4em"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>hello@dental.co</p>
+                </div>
+                <div class="brutal-contact-block">
+                    <h4>Business Hours</h4>
+                    <div class="brutal-contact-hours">
+                        <span>Monday - Friday</span><span>8:00 AM — 6:00 PM</span>
+                        <span>Saturday</span><span>9:00 AM — 2:00 PM</span>
+                        <span>Sunday</span><span>Closed</span>
+                    </div>
+                </div>
+                <div class="brutal-map">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80" srcset="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&q=80 400w, https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80 800w, https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="Map location" loading="lazy">
+                </div>
+            </div>
+            <div class="brutal-reviews reveal-right">
+                <h3>Recent Reviews</h3>
+                <div class="brutal-review-item">
+                    <div class="brutal-review-stars">★★★★★</div>
+                    <p class="brutal-review-text">"The most professional dental team in the city. Highly recommend for anyone seeking quality care."</p>
+                    <p class="brutal-review-author">Michael Chen</p>
+                </div>
+                <div class="brutal-review-item">
+                    <div class="brutal-review-stars">★★★★★</div>
+                    <p class="brutal-review-text">"Finally found a dentist I trust. The transparency in pricing and treatment plans is refreshing."</p>
+                    <p class="brutal-review-author">Lisa Park</p>
+                </div>
+                <div class="brutal-review-item">
+                    <div class="brutal-review-stars">★★★★★</div>
+                    <p class="brutal-review-text">"My kids actually look forward to dental visits now. The pediatric team is amazing with children."</p>
+                    <p class="brutal-review-author">David Thompson</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA BANNER -->
+        <div class="brutal-cta-banner">
+            <h2>Ready for Your Perfect Smile?</h2>
+            <p>Book your consultation today and take the first step towards a healthier, more confident you.</p>
+            <a href="tel:5551234567" class="brutal-cta-btn">Schedule Your Visit</a>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="brutal-footer">
+            <div class="brutal-footer-grid">
+                <div class="brutal-footer-brand">
+                    <h3>DENTAL.CO</h3>
+                    <p>Premium dental care since 2010. Transforming smiles with modern techniques and compassionate service across New York.</p>
+                </div>
+                <div class="brutal-footer-col">
+                    <h4>Services</h4>
+                    <a href="#">General Dentistry</a>
+                    <a href="#">Cosmetic Dentistry</a>
+                    <a href="#">Orthodontics</a>
+                    <a href="#">Dental Implants</a>
+                </div>
+                <div class="brutal-footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Our Team</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="brutal-footer-col">
+                    <h4>Support</h4>
+                    <a href="#">Contact</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+            <div class="brutal-footer-bottom">
+                <span>© 2024 Dental.Co. All rights reserved.</span>
+                <div class="brutal-footer-social">
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     WEBSITE 2: FROSTED LUXE
+     ═══════════════════════════════════════════ -->
+<div class="theme-container" id="theme-frosted">
+    <section class="theme-frosted">
+        <div class="frosted-blob frosted-blob-1"></div>
+        <div class="frosted-blob frosted-blob-2"></div>
+        <div class="frosted-blob frosted-blob-3"></div>
+        <div class="frosted-blob frosted-blob-4"></div>
+
+        <nav class="frosted-nav" id="nav-frosted">
+            <div class="frosted-nav-logo">DENTAL.CO</div>
+            <button class="frosted-nav-toggle" aria-label="Menu">☰</button>
+            <ul class="frosted-nav-links">
+                <li><a href="#f-about">About</a></li>
+                <li><a href="#f-services">Services</a></li>
+                <li><a href="#f-testimonials">Reviews</a></li>
+                <li><a href="#f-contact">Contact</a></li>
+            </ul>
+            <a href="tel:5551234567" class="frosted-nav-cta">Book Now</a>
+        </nav>
+
+        <!-- HERO -->
+        <div class="frosted-hero">
+            <div class="frosted-float-orb"></div>
+            <div class="frosted-float-orb"></div>
+            <div class="frosted-float-orb"></div>
+            <div class="frosted-float-orb"></div>
+            <div class="frosted-float-orb"></div>
+            
+            <div class="frosted-hero-grid">
+                <!-- Left Column: Copywriting -->
+                <div class="frosted-hero-content reveal-left">
+                    <div class="frosted-hero-trust">
+                        <span>FIVE STAR RATED DENTAL CLINIC</span>
+                        <span class="divider">|</span>
+                        <span>5,000+ HAPPY PATIENTS</span>
+                    </div>
+                    <div class="frosted-hero-eyebrow">CLINICAL EXCELLENCE — SERENE LUXURY</div>
+                    <h1>Elevating Dental Artistry,<br><strong>Perfecting Your Smile</strong></h1>
+                    <p>Experience bespoke dental care in a state-of-the-art clinical oasis. Our elite specialists combine advanced digital diagnostics with a serene, spa-like atmosphere tailored to your absolute comfort.</p>
+                    <div class="frosted-hero-btn-group">
+                        <a href="#f-contact" class="frosted-hero-btn primary-btn">Book Appointment</a>
+                        <a href="#f-services" class="frosted-hero-btn secondary-btn">Our Services</a>
+                    </div>
+                </div>
+                <!-- Right Column: Visual -->
+                <div class="frosted-hero-media reveal-right">
+                    <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80" alt="Professional Dentist" class="frosted-hero-dentist-img" loading="eager">
+                </div>
+            </div>
+        </div>
+
+        <!-- MARQUEE -->
+        <div class="frosted-marquee">
+            <div class="frosted-marquee-track">
+                <span class="frosted-marquee-item">General Dentistry</span>
+                <span class="frosted-marquee-item">Cosmetic Dentistry</span>
+                <span class="frosted-marquee-item">Orthodontics</span>
+                <span class="frosted-marquee-item">Dental Implants</span>
+                <span class="frosted-marquee-item">Emergency Care</span>
+                <span class="frosted-marquee-item">Pediatric Dentistry</span>
+                <span class="frosted-marquee-item">General Dentistry</span>
+                <span class="frosted-marquee-item">Cosmetic Dentistry</span>
+                <span class="frosted-marquee-item">Orthodontics</span>
+                <span class="frosted-marquee-item">Dental Implants</span>
+                <span class="frosted-marquee-item">Emergency Care</span>
+                <span class="frosted-marquee-item">Pediatric Dentistry</span>
+            </div>
+        </div>
+
+        <!-- ABOUT -->
+        <div class="frosted-about" id="f-about">
+            <div class="frosted-about-grid">
+                <div class="frosted-about-glass reveal-left">
+                    <div class="section-label">About Us</div>
+                    <h2 class="section-title">Care That <span>Transcends</span></h2>
+                    <p class="section-desc">For over a decade, we've redefined what it means to visit the dentist. Our practice blends advanced digital diagnostics with a serene, spa-like environment.</p>
+                    <p class="section-desc">Every treatment is personalized, every visit is memorable. We believe exceptional dental care should feel as good as it looks.</p>
+                    <div class="frosted-about-stats">
+                        <div class="frosted-about-stat reveal"><div class="num">14+</div><div class="lab">Years</div></div>
+                        <div class="frosted-about-stat reveal"><div class="num">5K+</div><div class="lab">Patients</div></div>
+                        <div class="frosted-about-stat reveal"><div class="num">50+</div><div class="lab">Awards</div></div>
+                    </div>
+                </div>
+                <div class="frosted-about-visual reveal-right">
+                    <div class="frosted-about-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80" srcset="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&q=80 400w, https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80 800w, https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="Dentist performing procedure" loading="lazy">
+                        <div class="frosted-about-img-overlay">
+                            <p>Trusted by 5,000+ patients</p>
+                            <span>Since 2010</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVICES -->
+        <div class="frosted-services" id="f-services">
+            <div class="frosted-services-header">
+                <h2 class="section-title reveal">Our <span>Services</span></h2>
+                <p class="reveal">Comprehensive care for every smile</p>
+            </div>
+            <div class="frosted-services-grid">
+                <div class="frosted-service-card reveal">
+                    <div class="frosted-service-img"><img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80" alt="General dentistry" loading="lazy"></div>
+                    <div class="frosted-service-overlay"></div>
+                    <div class="frosted-service-icon">G</div>
+                    <h3>General Dentistry</h3>
+                    <p>Routine exams, cleanings, and preventive treatments to maintain optimal oral health.</p>
+                </div>
+                <div class="frosted-service-card reveal">
+                    <div class="frosted-service-img"><img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&q=80" alt="Cosmetic dentistry" loading="lazy"></div>
+                    <div class="frosted-service-overlay"></div>
+                    <div class="frosted-service-icon">C</div>
+                    <h3>Cosmetic</h3>
+                    <p>Whitening, veneers, and full smile makeovers for a radiant, confident appearance.</p>
+                </div>
+                <div class="frosted-service-card reveal">
+                    <div class="frosted-service-img"><img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=600&q=80" alt="Orthodontics" loading="lazy"></div>
+                    <div class="frosted-service-overlay"></div>
+                    <div class="frosted-service-icon">O</div>
+                    <h3>Orthodontics</h3>
+                    <p>Clear aligners and braces to achieve perfectly aligned teeth at any age.</p>
+                </div>
+                <div class="frosted-service-card reveal">
+                    <div class="frosted-service-img"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Dental implants" loading="lazy"></div>
+                    <div class="frosted-service-overlay"></div>
+                    <div class="frosted-service-icon">I</div>
+                    <h3>Implants</h3>
+                    <p>Permanent, natural-looking tooth replacements with advanced implant technology.</p>
+                </div>
+                <div class="frosted-service-card reveal">
+                    <div class="frosted-service-img"><img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=600&q=80" alt="Emergency care" loading="lazy"></div>
+                    <div class="frosted-service-overlay"></div>
+                    <div class="frosted-service-icon">E</div>
+                    <h3>Emergency</h3>
+                    <p>Same-day urgent care for toothaches, injuries, and unexpected dental issues.</p>
+                </div>
+                <div class="frosted-service-card reveal">
+                    <div class="frosted-service-img"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80" alt="Pediatric dentistry" loading="lazy"></div>
+                    <div class="frosted-service-overlay"></div>
+                    <div class="frosted-service-icon">P</div>
+                    <h3>Pediatric</h3>
+                    <p>Child-friendly dental care in a welcoming, anxiety-free environment.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TESTIMONIALS -->
+        <div class="frosted-testimonials" id="f-testimonials">
+            <div class="frosted-testimonials-header">
+                <div class="section-label reveal">Testimonials</div>
+                <h2 class="section-title reveal">Patient <span>Stories</span></h2>
+            </div>
+            <div class="frosted-testimonials-grid">
+                <div class="frosted-testimonial-card reveal">
+                    <div class="frosted-testimonial-stars">★★★★★</div>
+                    <p class="frosted-testimonial-text">"Absolutely the best dental experience. The clinic is beautiful and the staff is incredibly kind."</p>
+                    <div class="frosted-testimonial-author">
+                        <div class="frosted-testimonial-avatar">SM</div>
+                        <div>
+                            <div class="frosted-testimonial-name">Sarah Mitchell</div>
+                            <div class="frosted-testimonial-role">Regular Patient</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="frosted-testimonial-card reveal">
+                    <div class="frosted-testimonial-stars">★★★★★</div>
+                    <p class="frosted-testimonial-text">"My veneers look completely natural. I can't stop smiling! The attention to detail is remarkable."</p>
+                    <div class="frosted-testimonial-author">
+                        <div class="frosted-testimonial-avatar">JK</div>
+                        <div>
+                            <div class="frosted-testimonial-name">James Kennedy</div>
+                            <div class="frosted-testimonial-role">Cosmetic Patient</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="frosted-testimonial-card reveal">
+                    <div class="frosted-testimonial-stars">★★★★★</div>
+                    <p class="frosted-testimonial-text">"They saw me same-day for a broken tooth. Exceptional care when I needed it most."</p>
+                    <div class="frosted-testimonial-author">
+                        <div class="frosted-testimonial-avatar">ER</div>
+                        <div>
+                            <div class="frosted-testimonial-name">Emily Rodriguez</div>
+                            <div class="frosted-testimonial-role">Emergency Patient</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="frosted-contact" id="f-contact">
+            <div class="frosted-contact-glass reveal-left">
+                <div class="section-label">Get In Touch</div>
+                <h2 class="section-title">Contact <span>Us</span></h2>
+                <div class="frosted-info-row">
+                    <div class="frosted-info-icon">L</div>
+                    <div class="frosted-info-text">
+                        <h4>Location</h4>
+                        <p>123 Dental Avenue, Suite 400<br>New York, NY 10001</p>
+                    </div>
+                </div>
+                <div class="frosted-info-row">
+                    <div class="frosted-info-icon">P</div>
+                    <div class="frosted-info-text">
+                        <h4>Phone</h4>
+                        <p><svg class="icon" viewBox="0 0 24 24" style="width:1em;height:1em;vertical-align:-0.125em;margin-right:0.4em"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>(555) 123-4567</p>
+                    </div>
+                </div>
+                <div class="frosted-info-row">
+                    <div class="frosted-info-icon">E</div>
+                    <div class="frosted-info-text">
+                        <h4>Email</h4>
+                        <p><svg class="icon" viewBox="0 0 24 24" style="width:1em;height:1em;vertical-align:-0.125em;margin-right:0.4em"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>hello@dental.co</p>
+                    </div>
+                </div>
+                <div class="frosted-info-row">
+                    <div class="frosted-info-icon">H</div>
+                    <div class="frosted-info-text">
+                        <h4>Hours</h4>
+                        <p>Mon-Fri: 8AM-6PM | Sat: 9AM-2PM</p>
+                    </div>
+                </div>
+            </div>
+            <div class="frosted-review-glass reveal-right">
+                <h3>Patient <span>Reviews</span></h3>
+                <div class="frosted-review-item">
+                    <div class="frosted-review-stars">★★★★★</div>
+                    <p class="frosted-review-text">"The technology here is incredible. Digital scans, same-day crowns — it's like dentistry from the future."</p>
+                    <p class="frosted-review-author">Robert Williams</p>
+                </div>
+                <div class="frosted-review-item">
+                    <div class="frosted-review-stars">★★★★★</div>
+                    <p class="frosted-review-text">"I used to dread dental visits. Now I actually enjoy them. The spa-like atmosphere makes all the difference."</p>
+                    <p class="frosted-review-author">Amanda Foster</p>
+                </div>
+                <div class="frosted-review-item">
+                    <div class="frosted-review-stars">★★★★★</div>
+                    <p class="frosted-review-text">"Transparent pricing, no hidden fees. Finally a dental practice that respects its patients."</p>
+                    <p class="frosted-review-author">Chris Martinez</p>
+                </div>
+            </div>
+            <div class="frosted-map-glass">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80" srcset="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&q=80 400w, https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80 800w, https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="Location map" loading="lazy">
+                <span>123 Dental Avenue, New York, NY 10001</span>
+            </div>
+        </div>
+
+        <!-- CTA BANNER -->
+        <div class="frosted-cta-banner">
+            <h2>Ready for <strong>Your Perfect Smile?</strong></h2>
+            <p>Book your consultation today and experience dental care reimagined.</p>
+            <a href="tel:5551234567" class="frosted-cta-btn">Schedule Your Visit</a>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="frosted-footer">
+            <div class="frosted-footer-grid">
+                <div class="frosted-footer-brand">
+                    <h3>DENTAL.CO</h3>
+                    <p>Premium dental care reimagined. Where technology meets tenderness for smiles that last a lifetime.</p>
+                </div>
+                <div class="frosted-footer-col">
+                    <h4>Services</h4>
+                    <a href="#">General Dentistry</a>
+                    <a href="#">Cosmetic Dentistry</a>
+                    <a href="#">Orthodontics</a>
+                    <a href="#">Implants</a>
+                </div>
+                <div class="frosted-footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Our Team</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="frosted-footer-col">
+                    <h4>Support</h4>
+                    <a href="#">Contact</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+            <div class="frosted-footer-bottom">
+                <span>© 2024 Dental.Co. All rights reserved.</span>
+                <div class="frosted-footer-social">
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     WEBSITE 3: SOFT BRUTAL
+     ═══════════════════════════════════════════ -->
+<div class="theme-container" id="theme-soft">
+    <section class="theme-soft">
+        <nav class="soft-nav" id="nav-soft">
+            <div class="soft-nav-logo">DENTAL.CO</div>
+            <button class="soft-nav-toggle" aria-label="Menu">☰</button>
+            <ul class="soft-nav-links">
+                <li><a href="#s-about">About</a></li>
+                <li><a href="#s-services">Services</a></li>
+                <li><a href="#s-testimonials">Reviews</a></li>
+                <li><a href="#s-contact">Contact</a></li>
+            </ul>
+            <a href="tel:5551234567" class="soft-nav-cta">Call Us</a>
+        </nav>
+
+        <!-- HERO -->
+        <div class="soft-hero">
+            <div class="soft-hero-bg-morph"></div>
+            <div class="soft-hero-grid">
+                <div class="soft-hero-text reveal">
+                    <div class="soft-hero-label">Premium Dental Care</div>
+                    <h1>Craft Your <em>Perfect Smile</em></h1>
+                    <p>Where artistry meets precision. Experience dental care that feels as good as it looks — warm, personal, and uncompromisingly excellent.</p>
+                    <div class="soft-hero-btns">
+                        <a href="#s-contact" class="soft-btn-primary">Begin Your Journey</a>
+                        <a href="#s-services" class="soft-btn-secondary">Explore Services</a>
+                    </div>
+                </div>
+                <div class="soft-hero-visual reveal-scale">
+                    <div class="soft-hero-img-neu">
+                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80" srcset="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=400&q=80 400w, https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80 800w, https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="Beautiful smile">
+                    </div>
+                    <div class="soft-hero-badge">
+                        <div class="num">4.9</div>
+                        <div class="lab">Google Rating</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARQUEE -->
+        <div class="soft-marquee">
+            <div class="soft-marquee-track">
+                <span class="soft-marquee-item">General Dentistry</span>
+                <span class="soft-marquee-item">Cosmetic Dentistry</span>
+                <span class="soft-marquee-item">Orthodontics</span>
+                <span class="soft-marquee-item">Dental Implants</span>
+                <span class="soft-marquee-item">Emergency Care</span>
+                <span class="soft-marquee-item">Pediatric Dentistry</span>
+                <span class="soft-marquee-item">General Dentistry</span>
+                <span class="soft-marquee-item">Cosmetic Dentistry</span>
+                <span class="soft-marquee-item">Orthodontics</span>
+                <span class="soft-marquee-item">Dental Implants</span>
+                <span class="soft-marquee-item">Emergency Care</span>
+                <span class="soft-marquee-item">Pediatric Dentistry</span>
+            </div>
+        </div>
+
+        <!-- ABOUT -->
+        <div class="soft-about" id="s-about">
+            <div class="soft-about-grid">
+                <div class="soft-about-img-wrap reveal-left">
+                    <div class="soft-about-img-neu">
+                        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80" srcset="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=400&q=80 400w, https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800&q=80 800w, https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="Dental team" loading="lazy">
+                    </div>
+                    <div class="soft-about-img-label">Est. 2010</div>
+                </div>
+                <div class="soft-about-content reveal-right">
+                    <div class="section-label">About Us</div>
+                    <h2 class="section-title">Excellence in <em>Every Detail</em></h2>
+                    <p class="section-desc">Since 2010, our practice has been a sanctuary for those seeking more than routine dental care. We combine time-honored craftsmanship with the latest innovations.</p>
+                    <p class="section-desc">Our team of specialists brings together decades of experience in cosmetic, restorative, and preventive dentistry — all under one roof, all focused on you.</p>
+                    <div class="soft-about-stats">
+                        <div class="soft-about-stat reveal"><div class="num">14+</div><div class="lab">Years</div></div>
+                        <div class="soft-about-stat reveal"><div class="num">5K+</div><div class="lab">Patients</div></div>
+                        <div class="soft-about-stat reveal"><div class="num">50+</div><div class="lab">Awards</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SERVICES -->
+        <div class="soft-services" id="s-services">
+            <div class="soft-services-header">
+                <div class="section-label reveal">What We Do</div>
+                <h2 class="section-title reveal">Our <em>Services</em></h2>
+                <p class="reveal">Comprehensive dental solutions tailored to your unique needs</p>
+            </div>
+            <div class="soft-services-grid">
+                <div class="soft-service-card-neu reveal">
+                    <div class="soft-service-img"><img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80" alt="General dentistry" loading="lazy"></div>
+                    <div class="soft-service-overlay"></div>
+                    <span class="card-num">01</span>
+                    <h3>General Dentistry</h3>
+                    <p>Complete preventive care including exams, cleanings, and fillings to maintain your oral health foundation.</p>
+                </div>
+                <div class="soft-service-card-neu reveal">
+                    <div class="soft-service-img"><img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&q=80" alt="Cosmetic dentistry" loading="lazy"></div>
+                    <div class="soft-service-overlay"></div>
+                    <span class="card-num">02</span>
+                    <h3>Cosmetic Dentistry</h3>
+                    <p>Transform your smile with whitening, veneers, and bespoke smile design crafted by our aesthetic specialists.</p>
+                </div>
+                <div class="soft-service-card-neu reveal">
+                    <div class="soft-service-img"><img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=600&q=80" alt="Orthodontics" loading="lazy"></div>
+                    <div class="soft-service-overlay"></div>
+                    <span class="card-num">03</span>
+                    <h3>Orthodontics</h3>
+                    <p>Achieve perfectly aligned teeth with clear aligners or traditional braces, customized for your lifestyle.</p>
+                </div>
+                <div class="soft-service-card-neu reveal">
+                    <div class="soft-service-img"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Dental implants" loading="lazy"></div>
+                    <div class="soft-service-overlay"></div>
+                    <span class="card-num">04</span>
+                    <h3>Dental Implants</h3>
+                    <p>Restore missing teeth with permanent, natural-looking implants using state-of-the-art 3D planning technology.</p>
+                </div>
+                <div class="soft-service-card-neu reveal">
+                    <div class="soft-service-img"><img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=600&q=80" alt="Emergency care" loading="lazy"></div>
+                    <div class="soft-service-overlay"></div>
+                    <span class="card-num">05</span>
+                    <h3>Emergency Care</h3>
+                    <p>When dental emergencies strike, we provide same-day relief with compassionate, expert treatment.</p>
+                </div>
+                <div class="soft-service-card-neu reveal">
+                    <div class="soft-service-img"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80" alt="Pediatric dentistry" loading="lazy"></div>
+                    <div class="soft-service-overlay"></div>
+                    <span class="card-num">06</span>
+                    <h3>Pediatric Dentistry</h3>
+                    <p>Creating positive dental experiences for children with gentle care and a warm, welcoming atmosphere.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- TESTIMONIALS -->
+        <div class="soft-testimonials" id="s-testimonials">
+            <div class="soft-testimonials-header">
+                <div class="section-label reveal">Testimonials</div>
+                <h2 class="section-title reveal">Patient <em>Stories</em></h2>
+            </div>
+            <div class="soft-testimonials-grid">
+                <div class="soft-testimonial-card reveal">
+                    <div class="soft-testimonial-quote">"</div>
+                    <div class="soft-testimonial-stars">★★★★★</div>
+                    <p class="soft-testimonial-text">The most incredible dental team I've ever encountered. They turned my anxiety into comfort and my smile into art.</p>
+                    <div class="soft-testimonial-author">
+                        <div class="soft-testimonial-avatar">SM</div>
+                        <div>
+                            <div class="soft-testimonial-name">Sarah Mitchell</div>
+                            <div class="soft-testimonial-role">Smile Makeover</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="soft-testimonial-card reveal">
+                    <div class="soft-testimonial-quote">"</div>
+                    <div class="soft-testimonial-stars">★★★★★</div>
+                    <p class="soft-testimonial-text">I finally have the smile I dreamed of. The attention to detail in my veneer work is simply extraordinary.</p>
+                    <div class="soft-testimonial-author">
+                        <div class="soft-testimonial-avatar">JK</div>
+                        <div>
+                            <div class="soft-testimonial-name">James Kennedy</div>
+                            <div class="soft-testimonial-role">Veneer Patient</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="soft-testimonial-card reveal">
+                    <div class="soft-testimonial-quote">"</div>
+                    <div class="soft-testimonial-stars">★★★★★</div>
+                    <p class="soft-testimonial-text">Emergency visit handled with grace and expertise. They truly care about their patients, not just their teeth.</p>
+                    <div class="soft-testimonial-author">
+                        <div class="soft-testimonial-avatar">ER</div>
+                        <div>
+                            <div class="soft-testimonial-name">Emily Rodriguez</div>
+                            <div class="soft-testimonial-role">Emergency Care</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="soft-contact" id="s-contact">
+            <div class="soft-contact-info reveal-left">
+                <div class="section-label">Get In Touch</div>
+                <h2 class="section-title">Visit <em>Us</em></h2>
+                <div class="soft-contact-card-neu">
+                    <h4>Address</h4>
+                    <p>123 Dental Avenue, Suite 400<br>Medical District, New York, NY 10001</p>
+                </div>
+                <div class="soft-contact-card-neu">
+                    <h4>Phone</h4>
+                    <p><svg class="icon" viewBox="0 0 24 24" style="width:1em;height:1em;vertical-align:-0.125em;margin-right:0.4em"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>(555) 123-4567</p>
+                </div>
+                <div class="soft-contact-card-neu">
+                    <h4>Email</h4>
+                    <p><svg class="icon" viewBox="0 0 24 24" style="width:1em;height:1em;vertical-align:-0.125em;margin-right:0.4em"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>hello@dental.co</p>
+                </div>
+                <div class="soft-contact-card-neu">
+                    <h4>Hours</h4>
+                    <div class="soft-contact-hours">
+                        <span>Mon-Fri</span><span>8:00 AM — 6:00 PM</span>
+                        <span>Saturday</span><span>9:00 AM — 2:00 PM</span>
+                        <span>Sunday</span><span>Closed</span>
+                    </div>
+                </div>
+                <div class="soft-map-neu">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80" srcset="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&q=80 400w, https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80 800w, https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="Map" loading="lazy">
+                    <span>123 Dental Avenue, New York, NY 10001</span>
+                </div>
+            </div>
+            <div class="soft-reviews reveal-right">
+                <h3>Recent Reviews</h3>
+                <div class="soft-review-card-neu">
+                    <div class="soft-review-quote-mark">"</div>
+                    <div class="soft-review-stars">★★★★★</div>
+                    <p class="soft-review-text">The neumorphic design of this clinic matches their philosophy — warm, tactile, and deeply human. Best dental experience.</p>
+                    <p class="soft-review-author"><span class="soft-review-avatar">MW</span>Mark Wilson</p>
+                </div>
+                <div class="soft-review-card-neu">
+                    <div class="soft-review-quote-mark">"</div>
+                    <div class="soft-review-stars">★★★★★</div>
+                    <p class="soft-review-text">Every detail is considered. From the ambient lighting to the gentle touch of the hygienist — pure excellence.</p>
+                    <p class="soft-review-author"><span class="soft-review-avatar">JL</span>Jennifer Lee</p>
+                </div>
+                <div class="soft-review-card-neu">
+                    <div class="soft-review-quote-mark">"</div>
+                    <div class="soft-review-stars">★★★★★</div>
+                    <p class="soft-review-text">I've been to dentists worldwide. This practice stands apart for its blend of artistry and genuine compassion.</p>
+                    <p class="soft-review-author"><span class="soft-review-avatar">TB</span>Thomas Brown</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA BANNER -->
+        <div class="soft-cta-banner">
+            <h2>Ready for <em>Your Perfect Smile?</em></h2>
+            <p>Book your consultation today and experience dental care that transcends the ordinary.</p>
+            <a href="tel:5551234567" class="soft-cta-btn">Schedule Your Visit</a>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="soft-footer">
+            <div class="soft-footer-grid">
+                <div class="soft-footer-brand">
+                    <h3>DENTAL.CO</h3>
+                    <p>Where artistry meets dentistry. Crafting perfect smiles with warmth, precision, and uncompromising excellence since 2010.</p>
+                </div>
+                <div class="soft-footer-col">
+                    <h4>Services</h4>
+                    <a href="#">General Dentistry</a>
+                    <a href="#">Cosmetic Dentistry</a>
+                    <a href="#">Orthodontics</a>
+                    <a href="#">Implants</a>
+                </div>
+                <div class="soft-footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Our Team</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="soft-footer-col">
+                    <h4>Support</h4>
+                    <a href="#">Contact</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+            <div class="soft-footer-bottom">
+                <span>© 2024 Dental.Co. All rights reserved.</span>
+                <div class="soft-footer-social">
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     WEBSITE 4: NORDIC CALM — EMERALD SEA
+     ═══════════════════════════════════════════ -->
+<div class="theme-container" id="theme-nordic">
+    <section class="theme-nordic">
+        <nav class="nordic-nav" id="nav-nordic">
+            <div class="nordic-nav-logo">DENTAL.CO</div>
+            <button class="nordic-nav-toggle" aria-label="Menu">☰</button>
+            <ul class="nordic-nav-links">
+                <li><a href="#n-about">About</a></li>
+                <li><a href="#n-services">Services</a></li>
+                <li><a href="#n-testimonials">Reviews</a></li>
+                <li><a href="#n-contact">Contact</a></li>
+            </ul>
+            <a href="tel:5551234567" class="nordic-nav-cta">Book Now</a>
+        </nav>
+
+        <!-- ═══ HERO — DARK EMERALD ═══ -->
+        <div class="nordic-hero">
+            <div class="nordic-hero-bg-blob"></div>
+            <!-- scattered wave decorations -->
+            <svg class="nordic-wave-deco nordic-wave-deco-1" viewBox="0 0 600 200" fill="none"><path d="M0,100 C150,180 300,20 450,100 C525,140 575,60 600,100" stroke="#6ECEB2" stroke-width="1.5" fill="none"/><path d="M0,130 C120,60 280,170 420,90 C500,50 560,130 600,80" stroke="#6ECEB2" stroke-width="1" fill="none" opacity="0.5"/></svg>
+            <svg class="nordic-wave-deco nordic-wave-deco-2" viewBox="0 0 500 180" fill="none"><path d="M0,90 C100,150 200,30 350,90 C420,120 470,50 500,90" stroke="#38a180" stroke-width="1.2" fill="none"/><path d="M0,60 C80,120 220,10 340,80 C400,110 450,40 500,70" stroke="#38a180" stroke-width="0.8" fill="none" opacity="0.4"/></svg>
+            <svg class="nordic-wave-deco nordic-wave-deco-3" viewBox="0 0 400 150" fill="none"><path d="M0,75 C80,130 160,20 280,75 C340,100 380,50 400,75" stroke="#6ECEB2" stroke-width="1" fill="none" opacity="0.6"/></svg>
+
+            <div class="nordic-hero-content">
+                <div class="nordic-hero-text reveal">
+                    <div class="nordic-hero-label">Your Smile Sanctuary</div>
+                    <h1>Feel at Home.<br><em>Smile Brightly.</em></h1>
+                    <p>Experience dental care that wraps you in warmth and comfort. Where every visit feels like a gentle conversation, not a procedure.</p>
+                    <div class="nordic-hero-btns">
+                        <a href="#n-contact" class="nordic-btn-primary">Book Your Visit</a>
+                        <a href="#n-services" class="nordic-btn-secondary">Explore Care</a>
+                    </div>
+                </div>
+                <div class="nordic-hero-img-row reveal-scale">
+                    <div class="nordic-hero-img-sm">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=400&q=80" alt="Dentist with patient" loading="eager">
+                    </div>
+                    <div class="nordic-hero-img-lg">
+                        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=800&q=80" alt="Beautiful smile" loading="eager">
+                        <div class="nordic-hero-badge">
+                            <div class="num">4.9</div>
+                            <div class="lab">Google Rating</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WAVY DIVIDER -->
+        <div class="nordic-wave">
+            <svg viewBox="0 0 1440 50" preserveAspectRatio="none">
+                <path d="M0,25 C240,50 480,0 720,25 C960,50 1200,0 1440,25 L1440,50 L0,50 Z" fill="#0a3d32"/>
+            </svg>
+        </div>
+
+        <!-- ═══ TRUST BAR ═══ -->
+        <div class="nordic-trust">
+            <div class="nordic-trust-item reveal">
+                <div class="nordic-trust-num">14+</div>
+                <div class="nordic-trust-label">Years Experience</div>
+            </div>
+            <div class="nordic-trust-item reveal">
+                <div class="nordic-trust-num">5,000+</div>
+                <div class="nordic-trust-label">Happy Patients</div>
+            </div>
+            <div class="nordic-trust-item reveal">
+                <div class="nordic-trust-num">50+</div>
+                <div class="nordic-trust-label">Awards Won</div>
+            </div>
+        </div>
+
+        <!-- WAVY DIVIDER -->
+        <div class="nordic-wave nordic-wave-flip">
+            <svg viewBox="0 0 1440 50" preserveAspectRatio="none">
+                <path d="M0,25 C240,50 480,0 720,25 C960,50 1200,0 1440,25 L1440,50 L0,50 Z" fill="#f0f7f4"/>
+            </svg>
+        </div>
+
+        <!-- ═══ ABOUT ═══ -->
+        <div class="nordic-about" id="n-about">
+            <svg class="nordic-wave-deco nordic-wave-deco-4" viewBox="0 0 500 180" fill="none"><path d="M0,90 C100,150 250,30 380,90 C440,120 480,50 500,90" stroke="#2d7a5e" stroke-width="1.2" fill="none" opacity="0.4"/></svg>
+            <div class="nordic-about-img-wrap reveal-scale">
+                <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80" alt="Dental team" loading="lazy">
+            </div>
+            <div class="nordic-about-content reveal">
+                <div class="section-label">About Us</div>
+                <h2 class="section-title">Where Warmth <em>Meets Wisdom</em></h2>
+                <p class="section-desc">At our practice, we believe exceptional dentistry begins with genuine human connection. Our serene, spa-like environment transforms every visit into a moment of calm and care.</p>
+                <p class="section-desc">With a team of gentle specialists and state-of-the-art technology, we craft smiles that radiate confidence — all in an atmosphere that feels like home.</p>
+                <div class="nordic-about-stats">
+                    <div class="nordic-about-stat reveal"><div class="num">14+</div><div class="lab">Years</div></div>
+                    <div class="nordic-about-stat reveal"><div class="num">5K+</div><div class="lab">Patients</div></div>
+                    <div class="nordic-about-stat reveal"><div class="num">50+</div><div class="lab">Awards</div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WAVY DIVIDER -->
+        <div class="nordic-wave">
+            <svg viewBox="0 0 1440 50" preserveAspectRatio="none">
+                <path d="M0,25 C240,50 480,0 720,25 C960,50 1200,0 1440,25 L1440,50 L0,50 Z" fill="#fff"/>
+            </svg>
+        </div>
+
+        <!-- ═══ SERVICES — IMAGE CARDS ═══ -->
+        <div class="nordic-services" id="n-services">
+            <svg class="nordic-wave-deco nordic-wave-deco-1" viewBox="0 0 600 200" fill="none"><path d="M0,100 C150,180 300,20 450,100 C525,140 575,60 600,100" stroke="#2d7a5e" stroke-width="1" fill="none" opacity="0.25"/></svg>
+            <div class="nordic-services-header">
+                <div class="section-label reveal">What We Do</div>
+                <h2 class="section-title reveal">Our <em>Care</em></h2>
+                <p class="reveal">Gentle, comprehensive dental solutions for your entire family</p>
+            </div>
+            <div class="nordic-services-grid">
+                <div class="nordic-service-card reveal">
+                    <div class="nordic-service-img"><img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=600&q=80" alt="General dentistry" loading="lazy"></div>
+                    <div class="nordic-service-overlay"></div>
+                    <div class="nordic-service-body">
+                        <div class="nordic-service-icon">G</div>
+                        <h3>General Dentistry</h3>
+                        <p>Complete preventive care including exams, cleanings, and fillings to maintain your oral health foundation.</p>
+                    </div>
+                </div>
+                <div class="nordic-service-card reveal">
+                    <div class="nordic-service-img"><img src="https://images.unsplash.com/photo-1609840114035-3c981b782dfe?w=600&q=80" alt="Cosmetic dentistry" loading="lazy"></div>
+                    <div class="nordic-service-overlay"></div>
+                    <div class="nordic-service-body">
+                        <div class="nordic-service-icon">C</div>
+                        <h3>Cosmetic Dentistry</h3>
+                        <p>Transform your smile with whitening, veneers, and bespoke smile design crafted by our aesthetic specialists.</p>
+                    </div>
+                </div>
+                <div class="nordic-service-card reveal">
+                    <div class="nordic-service-img"><img src="https://images.unsplash.com/photo-1598256989800-fe5f95da9787?w=600&q=80" alt="Orthodontics" loading="lazy"></div>
+                    <div class="nordic-service-overlay"></div>
+                    <div class="nordic-service-body">
+                        <div class="nordic-service-icon">O</div>
+                        <h3>Orthodontics</h3>
+                        <p>Achieve perfectly aligned teeth with clear aligners or traditional braces, customized for your lifestyle.</p>
+                    </div>
+                </div>
+                <div class="nordic-service-card reveal">
+                    <div class="nordic-service-img"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Dental implants" loading="lazy"></div>
+                    <div class="nordic-service-overlay"></div>
+                    <div class="nordic-service-body">
+                        <div class="nordic-service-icon">I</div>
+                        <h3>Dental Implants</h3>
+                        <p>Restore missing teeth with permanent, natural-looking implants using state-of-the-art 3D planning technology.</p>
+                    </div>
+                </div>
+                <div class="nordic-service-card reveal">
+                    <div class="nordic-service-img"><img src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?w=600&q=80" alt="Emergency care" loading="lazy"></div>
+                    <div class="nordic-service-overlay"></div>
+                    <div class="nordic-service-body">
+                        <div class="nordic-service-icon">E</div>
+                        <h3>Emergency Care</h3>
+                        <p>When dental emergencies strike, we provide same-day relief with compassionate, expert treatment.</p>
+                    </div>
+                </div>
+                <div class="nordic-service-card reveal">
+                    <div class="nordic-service-img"><img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?w=600&q=80" alt="Pediatric dentistry" loading="lazy"></div>
+                    <div class="nordic-service-overlay"></div>
+                    <div class="nordic-service-body">
+                        <div class="nordic-service-icon">P</div>
+                        <h3>Pediatric Dentistry</h3>
+                        <p>Creating positive dental experiences for children with gentle care and a warm, welcoming atmosphere.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WAVY DIVIDER -->
+        <div class="nordic-wave nordic-wave-flip">
+            <svg viewBox="0 0 1440 50" preserveAspectRatio="none">
+                <path d="M0,25 C240,50 480,0 720,25 C960,50 1200,0 1440,25 L1440,50 L0,50 Z" fill="#f0f7f4"/>
+            </svg>
+        </div>
+
+        <!-- ═══ TESTIMONIALS ═══ -->
+        <div class="nordic-testimonials" id="n-testimonials">
+            <svg class="nordic-wave-deco nordic-wave-deco-3" viewBox="0 0 400 150" fill="none"><path d="M0,75 C80,130 160,20 280,75 C340,100 380,50 400,75" stroke="#2d7a5e" stroke-width="1" fill="none" opacity="0.2"/></svg>
+            <div class="nordic-testimonials-header">
+                <div class="section-label reveal">Testimonials</div>
+                <h2 class="section-title reveal">Patient <em>Stories</em></h2>
+            </div>
+            <div class="nordic-testimonials-grid">
+                <div class="nordic-testimonial-card reveal">
+                    <div class="nordic-testimonial-stars">★★★★★</div>
+                    <p class="nordic-testimonial-text">The most incredible dental team I've ever encountered. They turned my anxiety into comfort and my smile into art.</p>
+                    <div class="nordic-testimonial-author">
+                        <div class="nordic-testimonial-avatar">SM</div>
+                        <div>
+                            <div class="nordic-testimonial-name">Sarah Mitchell</div>
+                            <div class="nordic-testimonial-role">Smile Makeover</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nordic-testimonial-card reveal">
+                    <div class="nordic-testimonial-stars">★★★★★</div>
+                    <p class="nordic-testimonial-text">I finally have the smile I dreamed of. The attention to detail in my veneer work is simply extraordinary.</p>
+                    <div class="nordic-testimonial-author">
+                        <div class="nordic-testimonial-avatar">JK</div>
+                        <div>
+                            <div class="nordic-testimonial-name">James Kennedy</div>
+                            <div class="nordic-testimonial-role">Veneer Patient</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="nordic-testimonial-card reveal">
+                    <div class="nordic-testimonial-stars">★★★★★</div>
+                    <p class="nordic-testimonial-text">Emergency visit handled with grace and expertise. They truly care about their patients, not just their teeth.</p>
+                    <div class="nordic-testimonial-author">
+                        <div class="nordic-testimonial-avatar">ER</div>
+                        <div>
+                            <div class="nordic-testimonial-name">Emily Rodriguez</div>
+                            <div class="nordic-testimonial-role">Emergency Care</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- WAVY DIVIDER -->
+        <div class="nordic-wave">
+            <svg viewBox="0 0 1440 50" preserveAspectRatio="none">
+                <path d="M0,25 C240,50 480,0 720,25 C960,50 1200,0 1440,25 L1440,50 L0,50 Z" fill="#fff"/>
+            </svg>
+        </div>
+
+        <!-- ═══ CONTACT ═══ -->
+        <div class="nordic-contact" id="n-contact">
+            <div class="section-label reveal">Get In Touch</div>
+            <h2 class="section-title reveal">Visit <em>Us</em></h2>
+            <p class="nordic-contact-subtitle reveal">We'd love to hear from you. Reach out today and let's create your perfect smile together.</p>
+
+            <div class="nordic-contact-grid">
+                <div class="nordic-contact-card reveal">
+                    <h4>Address</h4>
+                    <p>123 Dental Avenue, Suite 400<br>Medical District, New York, NY 10001</p>
+                </div>
+                <div class="nordic-contact-card reveal">
+                    <h4>Phone</h4>
+                    <p><svg class="icon" viewBox="0 0 24 24" style="width:1em;height:1em;vertical-align:-0.125em;margin-right:0.4em"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>(555) 123-4567</p>
+                </div>
+                <div class="nordic-contact-card reveal">
+                    <h4>Email</h4>
+                    <p><svg class="icon" viewBox="0 0 24 24" style="width:1em;height:1em;vertical-align:-0.125em;margin-right:0.4em"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>hello@dental.co</p>
+                </div>
+                <div class="nordic-contact-card reveal">
+                    <h4>Hours</h4>
+                    <div class="nordic-contact-hours">
+                        <span>Mon-Fri</span><span>8:00 AM — 6:00 PM</span>
+                        <span>Saturday</span><span>9:00 AM — 2:00 PM</span>
+                        <span>Sunday</span><span>Closed</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="nordic-map reveal">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80" srcset="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=400&q=80 400w, https://images.unsplash.com/photo-1524661135-423995f22d0b?w=800&q=80 800w, https://images.unsplash.com/photo-1524661135-423995f22d0b?w=1200&q=80 1200w" sizes="(max-width: 768px) 100vw, 800px" alt="Map" loading="lazy">
+                <span>123 Dental Avenue, New York, NY 10001</span>
+            </div>
+
+            <div class="nordic-reviews reveal">
+                <h3>Recent Reviews</h3>
+                <div class="nordic-review-card">
+                    <div class="nordic-review-stars">★★★★★</div>
+                    <p class="nordic-review-text">The warmest dental experience I've ever had. From the welcome tea to the gentle care — absolutely wonderful.</p>
+                    <p class="nordic-review-author"><span class="nordic-review-avatar">MW</span>Mark Wilson</p>
+                </div>
+                <div class="nordic-review-card">
+                    <div class="nordic-review-stars">★★★★★</div>
+                    <p class="nordic-review-text">Every detail is considered. From the ambient lighting to the gentle touch of the hygienist — pure excellence.</p>
+                    <p class="nordic-review-author"><span class="nordic-review-avatar">JL</span>Jennifer Lee</p>
+                </div>
+                <div class="nordic-review-card">
+                    <div class="nordic-review-stars">★★★★★</div>
+                    <p class="nordic-review-text">I've been to dentists worldwide. This practice stands apart for its blend of artistry and genuine compassion.</p>
+                    <p class="nordic-review-author"><span class="nordic-review-avatar">TB</span>Thomas Brown</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══ CTA BANNER ═══ -->
+        <div class="nordic-cta-banner">
+            <h2>Ready for <em>Your Perfect Smile?</em></h2>
+            <p>Book your consultation today and discover dental care that truly cares.</p>
+            <a href="tel:5551234567" class="nordic-cta-btn">Schedule Your Visit</a>
+        </div>
+
+        <!-- ═══ FOOTER ═══ -->
+        <footer class="nordic-footer">
+            <div class="nordic-footer-grid">
+                <div class="nordic-footer-brand">
+                    <h3>DENTAL.CO</h3>
+                    <p>Where gentle expertise meets genuine warmth. Crafting smiles with heart since 2010.</p>
+                </div>
+                <div class="nordic-footer-col">
+                    <h4>Services</h4>
+                    <a href="#">General Dentistry</a>
+                    <a href="#">Cosmetic Dentistry</a>
+                    <a href="#">Orthodontics</a>
+                    <a href="#">Implants</a>
+                </div>
+                <div class="nordic-footer-col">
+                    <h4>Company</h4>
+                    <a href="#">About Us</a>
+                    <a href="#">Our Team</a>
+                    <a href="#">Careers</a>
+                    <a href="#">Blog</a>
+                </div>
+                <div class="nordic-footer-col">
+                    <h4>Support</h4>
+                    <a href="#">Contact</a>
+                    <a href="#">FAQ</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+            </div>
+            <div class="nordic-footer-bottom">
+                <span>© 2024 Dental.Co. All rights reserved.</span>
+                <div class="nordic-footer-social">
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg></a>
+                    <a href="#"><svg class="icon" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                </div>
+            </div>
+        </footer>
+    </section>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     GSAP ANIMATIONS & THEME SWITCHER LOGIC
+     ═══════════════════════════════════════════ -->
+<script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ═══ THEME SWITCHER ═══
+    function switchTheme(themeName) {
+        const containers = document.querySelectorAll('.theme-container');
+        const buttons = document.querySelectorAll('.theme-btn');
+
+        containers.forEach(c => {
+            c.classList.remove('active');
+            c.style.display = 'none';
+        });
+        buttons.forEach(b => b.classList.remove('active'));
+
+        const target = document.getElementById('theme-' + themeName);
+        const btn = document.querySelector('.theme-btn[data-theme="' + themeName + '"]');
+
+        if (target && btn) {
+            target.style.display = 'block';
+            // Small delay to allow display:block to apply before opacity transition
+            setTimeout(() => {
+                target.classList.add('active');
+            }, 10);
+            btn.classList.add('active');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Update switcher height (may change on mobile if buttons wrap)
+            if (typeof updateSwitcherHeight === 'function') updateSwitcherHeight();
+
+            // Re-trigger animations for the newly shown theme
+            setTimeout(() => {
+                initAnimationsForTheme(themeName);
+            }, 300);
+        }
+    }
+
+    // ═══ INIT ANIMATIONS FOR ACTIVE THEME ═══
+    function initAnimationsForTheme(themeName) {
+        const container = document.getElementById('theme-' + themeName);
+        if (!container) return;
+
+        // Kill existing ScrollTriggers for this container to prevent duplicates
+        ScrollTrigger.getAll().forEach(st => {
+            if (container.contains(st.trigger)) st.kill();
+        });
+
+        // Reveal animations
+        container.querySelectorAll('.reveal').forEach((el, i) => {
+            gsap.fromTo(el, 
+                { opacity: 0, y: 50 },
+                {
+                    scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+                    opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', delay: (i % 5) * 0.08
+                }
+            );
+        });
+
+        container.querySelectorAll('.reveal-left').forEach((el, i) => {
+            gsap.fromTo(el,
+                { opacity: 0, x: -40 },
+                {
+                    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+                    opacity: 1, x: 0, duration: 0.8, ease: 'power3.out', delay: i * 0.1
+                }
+            );
+        });
+
+        container.querySelectorAll('.reveal-right').forEach((el, i) => {
+            gsap.fromTo(el,
+                { opacity: 0, x: 40 },
+                {
+                    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+                    opacity: 1, x: 0, duration: 0.8, ease: 'power3.out', delay: i * 0.1
+                }
+            );
+        });
+
+        container.querySelectorAll('.reveal-scale').forEach((el, i) => {
+            gsap.fromTo(el,
+                { opacity: 0, scale: 0.9 },
+                {
+                    scrollTrigger: { trigger: el, start: 'top 88%', once: true },
+                    opacity: 1, scale: 1, duration: 1, ease: 'power3.out', delay: i * 0.15
+                }
+            );
+        });
+
+        // Service cards stagger
+        const serviceGrids = container.querySelectorAll('.brutal-services-grid, .frosted-services-grid, .soft-services-grid, .nordic-services-grid');
+        serviceGrids.forEach(grid => {
+            const cards = grid.querySelectorAll('.reveal, .brutal-service-card, .frosted-service-card, .soft-service-card-neu, .nordic-service-card');
+            gsap.fromTo(cards,
+                { opacity: 0, y: 40 },
+                {
+                    scrollTrigger: { trigger: grid, start: 'top 85%', once: true },
+                    opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out'
+                }
+            );
+        });
+
+        // Testimonial cards stagger
+        const testimonialGrids = container.querySelectorAll('.brutal-testimonials-grid, .frosted-testimonials-grid, .soft-testimonials-grid, .nordic-testimonials-grid');
+        testimonialGrids.forEach(grid => {
+            const cards = grid.querySelectorAll('.brutal-testimonial-card, .frosted-testimonial-card, .soft-testimonial-card, .nordic-testimonial-card');
+            gsap.fromTo(cards,
+                { opacity: 0, y: 30 },
+                {
+                    scrollTrigger: { trigger: grid, start: 'top 85%', once: true },
+                    opacity: 1, y: 0, duration: 0.7, stagger: 0.15, ease: 'power3.out'
+                }
+            );
+        });
+
+        // Stat counter animation
+        container.querySelectorAll('.brutal-about-stat .num, .frosted-about-stat .num, .soft-about-stat .num, .nordic-about-stat .num, .nordic-trust-num').forEach(stat => {
+            const text = stat.textContent;
+            const hasPlus = text.includes('+');
+            const hasK = text.includes('K');
+            const numVal = parseFloat(text.replace(/[^0-9.]/g, ''));
+
+            ScrollTrigger.create({
+                trigger: stat,
+                start: 'top 85%',
+                once: true,
+                onEnter: () => {
+                    const obj = { val: 0 };
+                    gsap.to(obj, {
+                        val: numVal,
+                        duration: 2,
+                        ease: 'power2.out',
+                        onUpdate: () => {
+                            const current = Math.round(obj.val);
+                            let suffix = '';
+                            if (hasK) suffix = 'K+';
+                            else if (hasPlus) suffix = '+';
+                            stat.textContent = current + suffix;
+                        }
+                    });
+                }
+            });
+        });
+
+        // Hero parallax
+        const heroImgs = container.querySelectorAll('.brutal-hero-img-frame img, .soft-hero-img-neu img, .nordic-hero-img-lg img, .nordic-hero-img-sm img');
+        heroImgs.forEach(heroImg => {
+            gsap.to(heroImg, {
+                scrollTrigger: { trigger: heroImg.closest('.brutal-hero, .soft-hero, .nordic-hero'), start: 'top top', end: 'bottom top', scrub: 1 },
+                y: 60, scale: 1.05
+            });
+        });
+
+        // Blob parallax for frosted
+        if (themeName === 'frosted') {
+            gsap.to('.frosted-blob-1', {
+                scrollTrigger: { trigger: '.theme-frosted', start: 'top bottom', end: 'bottom top', scrub: 1 },
+                y: -180
+            });
+            gsap.to('.frosted-blob-2', {
+                scrollTrigger: { trigger: '.theme-frosted', start: 'top bottom', end: 'bottom top', scrub: 1 },
+                y: 150
+            });
+        }
+
+        // Morph shape parallax for soft
+        if (themeName === 'soft') {
+            gsap.to('.soft-hero-bg-morph', {
+                scrollTrigger: { trigger: '.soft-hero', start: 'top bottom', end: 'bottom top', scrub: 1 },
+                rotation: 30, scale: 1.2
+            });
+        }
+
+        // Organic blob parallax for nordic
+        if (themeName === 'nordic') {
+            gsap.to('.nordic-hero-bg-blob', {
+                scrollTrigger: { trigger: '.nordic-hero', start: 'top bottom', end: 'bottom top', scrub: 1 },
+                rotation: 45, scale: 1.3, y: -30
+            });
+        }
+    }
+
+    // ═══ NAV SCROLL EFFECTS ═══
+    function initNavScroll(navSelector) {
+        const nav = document.querySelector(navSelector);
+        if (!nav) return;
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) nav.classList.add('scrolled');
+            else nav.classList.remove('scrolled');
+        }, { passive: true });
+    }
+
+    // ═══ SMOOTH SCROLL FOR ANCHOR LINKS ═══
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if (href.length > 1) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offset = 60;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            }
+        });
+    });
+
+    // ═══ INITIALIZE ═══
+    function updateSwitcherHeight() {
+        const sw = document.querySelector('.themeSwitcher');
+        if (sw) document.documentElement.style.setProperty('--switcher-h', sw.offsetHeight + 'px');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        // Show brutal theme by default
+        switchTheme('brutal');
+
+        // Measure switcher height
+        updateSwitcherHeight();
+        window.addEventListener('resize', updateSwitcherHeight);
+
+        // Init nav scroll effects for all themes
+        initNavScroll('.brutal-nav');
+        initNavScroll('.frosted-nav');
+        initNavScroll('.soft-nav');
+        initNavScroll('.nordic-nav');
+
+        // Mobile nav toggle
+        document.querySelectorAll('.brutal-nav-toggle, .frosted-nav-toggle, .soft-nav-toggle, .nordic-nav-toggle').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const nav = this.closest('nav');
+                const links = nav.querySelector('.brutal-nav-links, .frosted-nav-links, .soft-nav-links, .nordic-nav-links');
+                if (links) links.classList.toggle('open');
+            });
+        });
+    });
+</script>
+</body>
+</html>
